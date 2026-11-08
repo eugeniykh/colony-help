@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — guía</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html" selected>Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>Un juego de estrategia sobre dos colonias de hormigas: recoge comida y madera, reúne un ejército, investiga tecnologías,
+       sobrevive entre la fauna salvaje — y derrota a tus vecinos.</p>
+    <span class="ver">Guía · versión 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>Contenido</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">El juego y su objetivo</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Inicio de partida</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Interfaz</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Recursos</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Unidades</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Edificios y trampas</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Investigación</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Automatización</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Modo y zonas</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Órdenes y selección</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Ataque</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Entorno</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Setas</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Vida salvaje</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Hormigas rojas</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">El enemigo</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Resultados y gráficos</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Ajustes</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Teclas rápidas</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">Consejos</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">El juego y su objetivo</h2>
+  <p class="lead">Colony es un juego de estrategia económica sobre dos colonias de hormigas: la tuya y la de un rival controlado por el ordenador.
+  El hormiguero enemigo está colocado en espejo respecto al centro del campo. Tu tarea: recoger recursos con astucia,
+  desarrollar la colonia y quebrar al rival.</p>
+  <figure><img src="help/world.jpg" alt="El campo de juego">
+    <figcaption>Un mapa mediano: a la izquierda tu hormiguero (círculo verde), a la derecha la colonia enemiga con sus zonas de recogida (discontinuas rojas),
+      en el centro arroyos con pasos, arañas, una mantis, la madriguera de un carábido, estanques y nidos de hormigas rojas.</figcaption></figure>
+  <h3>Victoria y derrota</h3>
+  <ul>
+    <li><b>Victoria</b> — al enemigo no le queda ninguna obrera (incluidos los huevos de la incubadora) y tiene menos de 5 de comida, así que no puede incubar una nueva.</li>
+    <li><b>Derrota</b> — lo mismo le ha pasado a tu colonia.</li>
+    <li>Los edificios no se pueden destruir: las colonias solo matan las hormigas de la otra.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Inicio de partida</h2>
+  <div class="side">
+    <div>
+      <p>En el menú principal hay dos formas de empezar:</p>
+      <ul>
+        <li><b>Nueva partida</b> — el inicio habitual: <span class="res"><img src="Textures/eda_1.png" alt="">25</span> de comida y <span class="res"><img src="Textures/der_1.png" alt="">10</span> de madera.</li>
+        <li><b>Modo muchos recursos</b> — ambos bandos reciben de entrada 1500 de comida y 500 de madera: construcción, investigación y combate empiezan enseguida.</li>
+      </ul>
+      <p>En el modo muchos recursos, mientras te quede comida (al menos 10), hay una <b>carrera armamentística</b>: si compras más guerreras que el enemigo,
+        este incuba al instante guerreras de la misma fuerza total (contando las Guerreras fuertes) y mientras tanto no gasta nada en mejoras. Con fuerzas iguales,
+        en mejoras y almacenes solo gasta lo que tiene por encima de tus reservas. Así, la victoria más rápida no se consigue con una carga temprana.</p>
+      <p>Durante una partida, el menú muestra también <b>Continuar</b> y <b>Reintentar</b> (el mismo mapa desde el principio). Además están las <b>Estadísticas</b> — tus contadores
+        de todas las partidas — y las <b>Clasificaciones</b> de Steam de las victorias más rápidas.</p>
+      <p>Después se abre la pantalla de ajustes de la partida; el juego empieza con <b>Empezar</b>. La elección se guarda.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Menú principal"><figcaption>Menú principal</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Ajustes de la partida">
+    <figcaption>A la izquierda dificultad, mapa y visibilidad; a la derecha los ajustes del mundo; abajo la vista previa del mapa.</figcaption></figure>
+  <h3>Dificultad</h3>
+  <p>La dificultad solo cambia al rival del ordenador:</p>
+  <table>
+    <tr><th>Nivel</th><th>Qué cambia</th></tr>
+    <tr><td><b>Explorador</b></td><td>El enemigo no crea guerreras, no pone trampas y nunca ataca — explora el campo y la economía con calma. En este modo no hay logros.</td></tr>
+    <tr><td><b>Fácil</b></td><td>El enemigo recoge un 30 % menos, sin trampas, y no ataca antes de 6 minutos.</td></tr>
+    <tr><td><b>Normal</b></td><td>El enemigo recoge un 10 % menos y no ataca antes de 3 minutos.</td></tr>
+    <tr><td><b>Difícil</b></td><td>El enemigo juega a plena fuerza desde el principio.</td></tr>
+  </table>
+  <h3>Mapa y visibilidad</h3>
+  <ul>
+    <li><b>Mapa</b>: Pequeño (800×600), Mediano (1152×864), Grande (1440×1080), Enorme (1728×1296). En un mapa mayor hay proporcionalmente más piedras, pantanos y hierba.</li>
+    <li><b>Niebla de guerra</b> — solo se ve lo que está cerca de tu hormiguero, tus almacenes y tus hormigas. El terreno explorado queda semivisible; un hormiguero enemigo encontrado y sus almacenes permanecen en el mapa. Las explosiones y efectos en la niebla no se ven. Cada nivel de Salto genético amplía el alcance de visión.</li>
+    <li><b>Mapa completo visible</b> — con la rueda se puede alejar hasta ver todo el campo. Sin esta opción, no más allá de 800×600 — el campo se desplaza.</li>
+  </ul>
+  <h3>Ajustes del mundo</h3>
+  <p>Cada elemento del entorno y de la fauna se puede activar o desactivar y elegir su cantidad
+     (<i>Pocos / Normal / Muchos</i>): piedras, pantanos, tocones, estanques, arroyo, setas, zapateros, caracoles (solo con estanques o arroyo), carábidos, arañas, mantis, hormigas rojas.
+     «Por defecto» restablece el mundo habitual. Abajo a la derecha — una vista previa del mapa en vivo.</p>
+  <div class="side">
+    <div>
+      <h3>Elegir el sitio del hormiguero</h3>
+      <p>Tras Empezar, la cámara sobrevuela el campo y luego eliges con un clic el sitio de tu colonia. Los hexágonos marcan los sitios permitidos;
+        el hormiguero no puede estar demasiado cerca del centro ni de los bordes. El enemigo aparece en espejo.</p>
+      <p>Lo primero es incubar al menos una obrera (pista en la parte inferior de la pantalla).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Elegir la posición inicial"><figcaption>Elegir la posición inicial</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Interfaz</h2>
+  <figure><img src="help/toolbar.jpg" alt="Barra superior"><figcaption>Barra superior</figcaption></figure>
+  <ul>
+    <li><b>Construir</b> — incubar hormigas y edificios.</li>
+    <li><b>Tecnología</b> — mejoras, automatización y trampas (tras construir el laboratorio).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>Comida</b> y <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>Madera</b> — tus reservas.</li>
+    <li><b>Zona</b> — dibujar zonas de recogida: <b>On</b> — añadir, <b>Off</b>; teclas <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Ataque</b> — panel de órdenes y ataque. <b>Modo</b> — silvicultura, micocultura y conducta de unidades.</li>
+    <li>A la derecha — el tiempo de juego. Abajo — la línea de pistas y el panel de hormigas seleccionadas.</li>
+  </ul>
+  <h3>Cámara</h3>
+  <ul>
+    <li>Rueda — acercar/alejar hacia el cursor (hasta 2,5×).</li>
+    <li>Botón derecho mantenido — arrastrar el campo («agarrar y tirar»); un clic derecho breve sigue cancelando la selección.</li>
+    <li>Flechas — desplazar el campo; botón derecho (o central) mantenido — arrastrar el campo.</li>
+    <li><span class="k">Home</span> — volver a tu hormiguero.</li>
+  </ul>
+  <h3>Pistas al pasar el ratón</h3>
+  <p>Pasa el cursor sobre una hormiga, planta, seta, trampa, animal u hormiguero — aparece una ficha: salud, edad,
+    crecimiento, maduración, pudrición, carga de la trampa, las reservas de un nido de hormigas rojas, etc.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Recursos</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Comida</h4>
+      <p>Crece de semillas: un grupo de plantas maduro da nuevas semillas. La recogen las obreras. La comida que no se recoge durante mucho tiempo se lignifica y se vuelve madera.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Madera</h4>
+      <p>La recogen las constructoras. Surge de la comida no recogida durante mucho tiempo y crece como juncos en la orilla de los estanques. Necesaria para el laboratorio, los almacenes, las guerreras y parte de la investigación.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Setas</h4>
+      <p>Otra fuente de comida tras la investigación Nuevo tipo de recurso. Más en la sección <a href="#mush">Setas</a>.</p></div>
+  </div>
+  <h3>Recogida y entrega</h3>
+  <ul>
+    <li>Las hormigas solo recogen recursos dentro de las <b>zonas de recogida</b> (o por orden directa) y los llevan al almacén u hormiguero más cercano.</li>
+    <li>Con carga, una hormiga camina un 30 % más despacio.</li>
+    <li>Las hormigas libres que no tienen nada que recoger parpadean como manchas sobre el hormiguero.</li>
+  </ul>
+  <h3>Senderos de hormigas</h3>
+  <p>Donde las hormigas de la colonia pasan a menudo, la hierba se pisotea hasta formar un sendero de arena granulosa. Por su propio sendero las hormigas van más rápido — hasta +15 %.
+     Un sendero abandonado se cubre de hierba en pocos minutos. Los senderos del enemigo solo se ven donde ves el campo.</p>
+  <div class="tip">Coloca los almacenes de modo que el camino «campo → almacén» sea corto y bien pisado: el sendero acelera la entrega por sí solo.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Unidades</h2>
+  <p>Las hormigas se incuban en el panel <b>Construir</b>: primero aparece un huevo en la incubadora alrededor del hormiguero (hasta 16 a la vez) y de él sale la hormiga.
+     <b>Mayús + tecla</b> encarga 16 hormigas de una vez.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Unidad</th><th>Precio</th><th>Función</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>Obrera</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Recoge comida y setas. 1 punto de salud.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Constructora</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Recoge madera y juncos. 1 punto de salud. En Nueva partida, ni tú ni el enemigo podéis incubar constructoras durante los primeros 30 segundos desde el inicio (la primera obrera), para que la partida empiece de forma justa; en el modo muchos recursos, enseguida.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Guerrera</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Ataque y defensa. Salud 10 (15/20/25 con Guerreras fuertes). Requiere el laboratorio.</td></tr>
+      </table>
+      <p style="font-size:13px">* Con cada nivel de Guerreras fuertes la guerrera se encarece: 35/15, 45/25, 50/30. La mejora solo se aplica a las guerreras nuevas.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="Panel Construir"><figcaption>El panel Construir</figcaption></figure>
+  </div>
+  <h3>Límite y edad</h3>
+  <ul>
+    <li>Como máximo 40 obreras y 40 constructoras; cada almacén sube cada límite en 10. Las guerreras no tienen límite.</li>
+    <li>Las hormigas envejecen y mueren de vejez — la barra de edad de la ficha pasa de verde a rojo. En un pantano envejecen 10 veces más rápido.</li>
+    <li>En ataque, las hormigas van un 30 % más rápido de lo habitual.</li>
+  </ul>
+  <h3>Obreras y constructoras también muerden</h3>
+  <p>Por orden, obreras y constructoras pueden enviarse contra hormigas enemigas y animales. Muerden débilmente (a los animales, cuatro veces menos que una guerrera),
+     y su mordisco no mejora — un último recurso cuando no hay guerreras.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Edificios y trampas</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Hormiguero</h4>
+      <p>El edificio principal: se coloca antes de empezar la partida. Aquí se traen los recursos y aquí nacen las hormigas.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Laboratorio <span class="k">L</span></h4>
+      <p>Un anexo del hormiguero, sin sitio que elegir. Desbloquea guerreras, investigación y trampas.</p>
+      <p class="cost">Precio: <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Almacén <span class="k">S</span></h4>
+      <p>Un punto de entrega cercano para los recursos y +10 al límite de obreras y constructoras. Hasta 5 almacenes, Más almacenes añade más.</p>
+      <p class="cost">Precio: <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Trampa <span class="k">B</span></h4>
+      <p>Una mina: estalla cuando una hormiga ajena o un animal la pisa.</p>
+      <p class="cost">Precio: <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Dónde se puede poner un almacén</h3>
+  <ul>
+    <li>Solo al alcance del hormiguero o de otro de tus almacenes — la red de almacenes crece paso a paso (el alcance se muestra con círculos discontinuos).</li>
+    <li>No demasiado cerca de recursos en crecimiento.</li>
+    <li>No sobre tocones, setas, estanques y juncos, el arroyo, nidos de hormigas rojas, trampas, comida, madera ni telarañas. En la orilla de un estanque, sí.</li>
+    <li>El enemigo sigue las mismas reglas.</li>
+  </ul>
+  <p>Si un almacén, una trampa o una zona no puede colocarse en algún sitio, aparece junto al cursor una pista con el motivo: «Demasiado cerca de un hormiguero», «Solo dentro de tus zonas»,
+     «Aquí no hay nada que recoger», etc.</p>
+  <h3>Trampas</h3>
+  <ul>
+    <li>Se colocan solo dentro de tus zonas de recogida, en tu mitad del campo — mientras eliges el sitio, las zonas se ven en el campo.</li>
+    <li>Tras colocarla, la trampa se carga (unos 17 segundos, el progreso aparece en la ficha) y después se arma.</li>
+    <li>Se activa con hormigas enemigas, fauna y hormigas rojas. La explosión mata a las hormigas cercanas, una araña, un carábido, un zapatero;
+      a una <b>mantis</b> le quita 60 de salud.</li>
+    <li>Las trampas del enemigo son igual de peligrosas. El enemigo pone trampas a partir de la dificultad Normal.</li>
+    <li>La automatización Trampas las coloca sola.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Investigación</h2>
+  <p>El panel <b>Tecnología</b> <span class="k">T</span> se abre tras construir el laboratorio. A la izquierda las mejoras (tres niveles), a la derecha la automatización.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Panel Tecnología"><figcaption>El panel Tecnología</figcaption></figure>
+  <table>
+    <tr><th>Mejora</th><th>Niv. I</th><th>Niv. II</th><th>Niv. III</th><th>Efecto</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Mejor cosecha</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>Las plantas crecen más rápido y hay más.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Maniobra</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Desbloquea el tipo de ataque Maniobra — las guerreras rodean al enemigo en arco y atacan por el flanco; más rápido con cada nivel.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Salto genético</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Velocidad de las hormigas ×1,2 / ×1,4 / ×1,6 y alcance de visión en la niebla.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Guerreras fuertes</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>Las guerreras nuevas tienen 15 / 20 / 25 de salud en lugar de 10.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Ampliar almacén</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Cría de comida y madera: +5 % / +10 % / +18 % de ingresos de los almacenes.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Más almacenes</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>+1 almacén por encima de cinco por nivel.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Nuevo tipo de recurso</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — las obreras recogen setas, se pueden poner zonas sobre setas; II — las setas de nuestra mitad crecen un 20 % más rápido; III — crecen un 20 % más.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — comida, <span class="res"><img src="Textures/der_1.png" alt=""></span> — madera. El enemigo investiga las mismas tecnologías.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Automatización</h2>
+  <p>Se compra una vez en la columna derecha del panel Tecnología. Después, la mayoría se activa y desactiva con el botón <i>Auto / Manual</i>.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Zonas</h4><p>Las zonas de recogida se colocan automáticamente alrededor de los recursos.</p><p class="cost">25 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Silvicultura</h4><p>Parte de la espesura automáticamente no se recoge — se convierte en madera.</p><p class="cost">10 madera</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Micocultura</h4><p>En los micelios de tu mitad se deja ~40 % de las setas — los micelios crecen más rápido. Requiere Nuevo tipo de recurso I.</p><p class="cost">30 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">Construcción</h4><p>Incubación automática: la colonia incuba sola las hormigas necesarias.</p><p class="cost">10 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Ataque</h4><p>Ataque planificado: la colonia reúne guerreras sola y ataca cuando es lo bastante fuerte.</p><p class="cost">25 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Trampas</h4><p>Autotrampas: las trampas se colocan solas mientras haya recursos.</p><p class="cost">10 comida</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Modo y zonas de recogida</h2>
+  <div class="side">
+    <div>
+      <h3>Zonas de recogida</h3>
+      <p>Pulsa Zona (o <span class="k">=</span>) y dibuja zonas en el campo — las hormigas recogen dentro de ellas. <span class="k">-</span> — quitar zonas.
+        Si los recursos están lejos de un almacén, mejor no pongas zona allí hasta que haya un almacén cerca.</p>
+      <h3>El panel Modo</h3>
+      <ul>
+        <li><b>Silvicultura</b> <span class="k">F</span> — marca las plantas que las obreras no tocarán: crecerán hasta convertirse en madera. «+» en el cursor — marcar, «−» — quitar la marca.</li>
+        <li><b>Micocultura</b> <span class="k">G</span> — de la misma forma se marcan las setas que no se recogen.</li>
+        <li><b>Conducta de unidades</b>:
+          <ul><li><b>Atacar a todos</b> — las guerreras libres protegen a las obreras: se lanzan contra cualquier animal o enemigo que las haya atacado.</li>
+              <li><b>Cosecha</b> — todas las fuerzas a la recogida de recursos.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Panel Modo"><figcaption>El panel Modo</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Órdenes y selección</h2>
+  <h3>Selección</h3>
+  <ul>
+    <li><b>Marco</b>: mantén el botón izquierdo sobre el campo y traza un marco verde — se seleccionan las hormigas de dentro (guerreras si las hay, si no constructoras, si no obreras).</li>
+    <li><span class="k">Tab</span> — seleccionar todas tus guerreras.</li>
+    <li>Las seleccionadas se muestran abajo a la izquierda: una casilla por hormiga con su barra de salud, su número y su fuerza total.</li>
+    <li><b>Botón derecho</b> — cancelar la selección y cerrar los paneles abiertos.</li>
+    <li>Las hormigas seleccionadas solo te obedecen a ti: la defensa de la colonia, Atacar a todos y el autoataque no las toman.</li>
+  </ul>
+  <h3>Dónde se puede hacer clic</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">En el campo</h4><p>Las hormigas van al punto (una línea discontinua animada) y esperan allí.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Puesto</h4><p>Un segundo clic junto al mismo punto, cuando las guerreras ya están allí, crea un <b>puesto</b>: las guerreras mantienen el sitio,
+      golpean a los enemigos que se acercan y vuelven. Sobre el punto se alza una bandera y el anillo discontinuo «respira». Solo una nueva orden a esas guerreras deshace el puesto.
+      Antes del segundo clic, una bandera de pista cae una y otra vez sobre el punto.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">En comida / una seta</h4><p>Las obreras recogen la comida cercana, incluso fuera de las zonas, y la llevan a casa. Una seta, la roen (si las setas están investigadas).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">En madera</h4><p>Las constructoras recogen la madera cercana.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">En un enemigo / un animal</h4><p>Las seleccionadas atacan al objetivo (círculo discontinuo rojo). Si muere, pasan a las crías del nido; si no, esperan.</p></div>
+  </div>
+  <p>La mira verde en el cursor muestra adónde se puede enviar a las hormigas. Las hormigas cumplen la orden incluso tras cancelar la selección
+     y después vuelven a su trabajo habitual. Los ataques ordenados con clic sobre un enemigo también aparecen en los gráficos.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Ataque</h2>
+  <div class="side">
+    <div>
+      <p>El panel <b>Ataque</b>:</p>
+      <ul>
+        <li>Arriba — el tipo de tus hormigas (un clic lo cambia), debajo — el tipo de hormigas enemigas a atacar.</li>
+        <li><b>«‹ 1 ›»</b> — cuántas hormigas enviar (mantener — rápido). Las elegidas se marcan con un anillo.</li>
+        <li><b>Ataque</b> — enviar el destacamento.</li>
+        <li><b>Tipo de ataque</b>: <i>Directo</i> — de frente; <i>Maniobra</i> — en arco rodeando (requiere la investigación Maniobra).</li>
+        <li><b>Ataque constante</b> — las guerreras se envían sin parar contra el enemigo; el panel sigue abierto y muestra cuántas están «atacando».</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Panel Ataque"><figcaption>El panel Ataque</figcaption></figure>
+  </div>
+  <h3>Combate</h3>
+  <ul>
+    <li>La salud de todos se mide en las mismas unidades: obrera y constructora — 1, guerrera — 10…25.</li>
+    <li>La salud de una guerrera se ve en los pétalos que la rodean: rojo anaranjados en tus guerreras, azules en las del enemigo.</li>
+    <li>Si el panel Ataque está cerrado, las hormigas que esperan vuelven al trabajo.</li>
+    <li>Cuando atacan la colonia suena una alarma y la música cambia a la de combate.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Combate"><figcaption>En plena partida: el enemigo ataca la colonia por la izquierda, los destellos son trampas que estallan.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Entorno</h2>
+  <table>
+    <tr><th>Objeto</th><th>Transitable</th><th>Particularidades</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Piedras</b></td><td>No</td><td>Se rodean; junto a las piedras las arañas tejen sus telas.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Pantanos</b></td><td>Sí, 4 veces más lento</td><td>Las hormigas envejecen 10 veces más rápido. Cerca, las setas crecen más rápido y más densas.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Tocones</b></td><td>Sí</td><td>Bajo algunos — madrigueras de carábidos; junto a los tocones crecen setas. No se puede poner un almacén sobre un tocón.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Setas</b></td><td>Sí, el doble de lento</td><td>No se puede poner un almacén sobre una seta.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Estanques</b></td><td>No (agua)</td><td>Orilla fértil: las plantas crecen más rápido y dan más semillas. Los juncos del borde son madera lista y vuelven a crecer rápido. En cada estanque vive un zapatero; del agua salen caracoles.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Arroyo</b></td><td>Solo por los pasos</td><td>Atraviesa el campo. Los pasos son de piedras o troncos, de 3 filas de ancho; los usan tanto hormigas como animales.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Telaraña</b></td><td>Sí, casi 3 veces más lento</td><td>La dueña de la tela se lanza contra quien se acerque.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Estanque"><figcaption>Un estanque con nenúfares, juncos y un zapatero; al lado, un carábido</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Telaraña junto a las piedras"><figcaption>Una telaraña junto a las piedras y un estanque del lado enemigo</figcaption></figure>
+  </div>
+  <p>Hay de uno a cuatro estanques, y ambos bandos reciben los mismos: uno en el centro, los pares en espejo. Si el mapa tiene arroyo, de él salen brazos laterales hacia los estanques cercanos — canales estrechos que desembocan en el estanque (en espejo en ambas mitades). Un canal, como el arroyo, no se puede cruzar: hay que rodear el estanque.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Setas</h2>
+  <p>Los micelios crecen junto a los tocones y sobre todo junto a los pantanos. Las setas se pueden recoger tras la investigación Nuevo tipo de recurso.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Parasol</h4><p>La más grande: hasta <b>13</b> de comida.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Boleto</h4><p>Grande: hasta <b>11</b> de comida.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Matamoscas</h4><p>Mediana: hasta <b>6</b> de comida.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Rebozuelo</h4><p>Pequeña: hasta <b>4</b> de comida.</p></div>
+  </div>
+  <ul>
+    <li>Cuanto mayor la seta, más comida, pero más se tarda en roerla. Las obreras solo toman setas maduras; las jóvenes siguen creciendo y alimentan el micelio.</li>
+    <li>Sobre la seta se ve un círculo de progreso; a casa se lleva un trozo roído. Una seta no recogida acaba pudriéndose y desaparece.</li>
+    <li>Un micelio extiende hilos; donde se encuentran los hilos de dos micelios nace uno nuevo. Un hilo que llega a un pantano bebe de él — en ese micelio las setas aparecen 1,7 veces más a menudo, en los unidos a él 1,35 veces.</li>
+    <li>Cuanto más larga la red de micelios unidos, más a menudo aparecen setas (hasta 2,5×) y más grandes son.</li>
+    <li>Si se come más de la mitad de un micelio, las nuevas setas aparecen muchas veces más despacio; uno recolectado por completo tarda mucho en recuperarse.</li>
+  </ul>
+  <div class="tip">Activa la micocultura: las setas que se dejan mantienen el micelio a plena fuerza, y te alimenta durante más tiempo.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Vida salvaje</h2>
+  <p>Los animales no son tuyos ni del enemigo y viven lejos de ambos hormigueros. Si está elegido Atacar a todos, las guerreras libres corren solas
+     hacia un animal que haya atacado a tus obreras. Un enemigo con suficientes guerreras planea una <b>cacería</b> de los animales que le molestan.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Araña de jardín</h3>
+  <div class="stats"><span class="hp">salud 30</span><span class="dmg">mordisco a guerrera −4</span><span>crías: 12 / −2, hasta 6</span></div>
+  <p>Teje su tela junto a las piedras y espera en el centro; se lanza contra cualquier hormiga que se acerque y se lleva la presa en un capullo. Mata a una obrera o constructora de un mordisco.
+     De los capullos (1 guerrera + 1 obrera o 3 obreras) nacen crías. La última araña gravemente herida huye a otras piedras y teje una tela nueva.
+     Si atacan a una araña, toda la familia se lanza contra las guerreras. Una araña aislada por el arroyo busca camino por un paso.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Carábido</h3>
+  <div class="stats"><span class="hp">salud 40</span><span class="dmg">mordisco a guerrera −4</span><span>crías: 14 / −2, hasta 4</span></div>
+  <p>Vive en una madriguera bajo un tocón y caza hormigas solitarias (a los grupos de tres o más no los toca). Más rápido que una hormiga normal — solo se le escapa tras
+     el segundo Salto genético. Caparazón duro: las guerreras lo hieren más despacio. Herido, se esconde en la madriguera y se cura; sin crías puede huir a un tocón
+     vacío y cavar una nueva. No persigue presas al otro lado del arroyo.</p>
+  <figure><img src="help/beetle.jpg" alt="Madriguera de un carábido"><figcaption>La madriguera de un carábido bajo un tocón, setas, una telaraña y un combate en un paso</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Caracol</h3>
+  <div class="stats"><span class="hp">salud 10–50</span><span>no ataca</span><span>recompensa 10–70 comida</span></div>
+  <p>De vez en cuando sale de un estanque o del arroyo y se arrastra despacio por el campo (rodeando piedras y colinas, dejando un rastro brillante) — casi siempre cerca del agua, pero a veces se va «cansado» lejos. Cuanto más se arrastra,
+     más crece: 6 etapas; sale del agua en una de las tres primeras. Si pasa sobre comida, se la come — hasta 10 trozos, y luego descansa.
+     Al caracol lo roen las obreras y constructoras (envíalas como a una seta); las guerreras no lo hieren. Cuanto mayor es el caracol, más comida da —
+     cuánta, lo dice la ficha; la comida va al bando cuyas hormigas son más numerosas junto a él.
+     En los ajustes del mundo: Caracoles — Pocos / Normal / Muchos (solo con estanques o arroyo).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Mantis religiosa — el jefe</h3>
+  <div class="stats"><span class="hp">salud 150</span><span class="dmg">golpe a guerrera −8</span><span>recompensa 60 comida</span></div>
+  <div class="side">
+    <div>
+      <p>Cuántas hay lo deciden los ajustes del mundo: <i>Pocos</i> — una, <i>Normal</i> — dos (en un mapa pequeño, una), <i>Muchos</i> — de dos a cuatro.
+        Acecha en la franja neutral, casi invisible en la hierba. Golpea como un rayo a cualquier hormiga al alcance de sus patas prensoras: una obrera muere,
+        una guerrera pierde 8 de salud. Se defiende de todas a la vez — hace falta una multitud de guerreras. El bando con más guerreras junto al cuerpo en el momento de su muerte recibe 60 de comida.
+        Una trampa le quita 60 de salud. Una mantis muerta no vuelve a aparecer.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Mantis"><figcaption>Una mantis en la hierba junto a un micelio, al lado una telaraña</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Zapatero</h3>
+  <div class="stats"><span class="hp">salud 20</span><span>tira la carga</span></div>
+  <p>Se desliza por el estanque y le tira la comida o la madera a una hormiga que camina pegada a la orilla — la carga se hunde. Nunca nada hacia donde haya una guerrera cerca (a menos de ~70),
+     así que una zona de patrulla junto al estanque protege la orilla. Un zapatero muerto es sustituido con el tiempo por uno nuevo.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Hormigas rojas</h2>
+  <div class="stats"><span class="hp">hormiga 12</span><span class="hp">nido 250</span><span>neutrales</span></div>
+  <div class="side">
+    <div>
+      <p>Una colonia neutral: un nido en el centro (<i>Pocos</i>), dos en espejo (<i>Normal</i>) o dos en cada mitad (<i>Muchos</i>).
+        Las rojas recogen migas alrededor de su casa y <b>no tocan a nadie</b> mientras nadie las toque.</p>
+      <ul>
+        <li>A las guerreras que se acercan al nido solo las ahuyentan — sin guerra.</li>
+        <li>El bando cuyas guerreras atacaron a una hormiga roja o a un nido recibe una <b>enemistad</b>: sus hormigas junto al nido son atacadas,
+          y de vez en cuando un destacamento de rojas sale de <b>incursión</b> contra sus obreras.</li>
+        <li>Un nido destruido entrega toda su reserva de comida al bando con más guerreras cerca. La reserva aparece en la ficha.</li>
+        <li>Junto a los nidos de hormigas rojas no crecen comida ni setas; las patrullas los rodean.</li>
+      </ul>
+      <h3>Colonias nuevas</h3>
+      <p>Cuando un nido ha reunido 200 de comida, entrega 75 y la mitad de sus hormigas a una <b>colonia nueva</b>: el destacamento va a un sitio libre en la misma orilla
+        (como al crear el mapa — no junto al agua, piedras, setas, comida, almacenes, trampas, otros nidos de rojas ni tus colonias; si el sitio se estropea por el camino,
+        se elige otro). Si por el camino matan a más de la mitad del destacamento, las demás huyen a casa. Allí, las hormigas acarrean ramitas y el nido crece en 8 etapas
+        (en la ficha «En construcción: N %»); la obra se puede destruir. Una vez terminado, es un nido de hormigas rojas normal con su propia reserva. En total
+        hay como máximo 3 / 4 / 5 / 7 nidos de rojas en el mapa — del pequeño al enorme, pero siempre al menos dos más que al principio.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Nido de hormigas rojas"><figcaption>Nido de hormigas rojas</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">El enemigo</h2>
+  <div class="side">
+    <div>
+      <p>El rival del ordenador juega con las mismas reglas: incuba hormigas, construye un laboratorio y una cadena de almacenes, pone zonas (discontinuas rojas), investiga,
+        pone trampas, ataca y cruza el arroyo por los pasos.</p>
+      <ul>
+        <li>Caza animales molestos si tiene suficientes guerreras.</li>
+        <li>Protege a sus obreras en modo agresivo.</li>
+        <li>Su comportamiento depende de la <a href="#start">dificultad</a> elegida.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Colonia enemiga"><figcaption>La colonia enemiga</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Resultados y gráficos</h2>
+  <p>Tras una victoria o derrota se abre la pantalla de resultados: tiempo de juego, dificultad y tamaño del mapa, botones <b>Reintentar</b> y <b>Al menú</b>.
+     Tras la melodía de victoria o derrota vuelve a sonar la música del menú principal.</p>
+  <ul>
+    <li><b>Resumen</b> — recursos obtenidos, hormigas destruidas y perdidas por tipo, tecnologías investigadas, trampas (colocadas / destruidas / del enemigo),
+      animales muertos por las colonias.</li>
+    <li><b>Gráficos</b> — número de hormigas y recursos de ambos bandos a lo largo del tiempo. Las espadas marcan los ataques: la cifra junto al icono es cuántas hormigas distintas
+      participaron (también cuentan los ataques ordenados con clic sobre un enemigo).</li>
+  </ul>
+  <h3>Estadísticas y clasificaciones</h3>
+  <ul>
+    <li><b>Estadísticas</b> (menú principal) — contadores de todas las partidas: partidas jugadas (una partida cuenta tras 2 minutos de juego o si termina antes), victorias y derrotas
+      por dificultad, tiempo de juego, recursos recogidos, hormigas destruidas y perdidas, almacenes y trampas, animales vencidos. Los contadores se guardan junto al juego y en Steam.</li>
+    <li><b>Clasificaciones</b> — la victoria más rápida para cada dificultad, tamaño de mapa y modo (normal / rico): el top mundial y tus amigos de Steam.
+      Tras una victoria, la pantalla de resultados muestra tu puesto. Los resultados en el modo Explorador no se guardan.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Ajustes</h2>
+  <ul>
+    <li><b>Sonido</b> y <b>Música</b> — activar/desactivar y volumen en barras (pasos del 10 %).</li>
+    <li><b>Desplazamiento</b> — velocidad de desplazamiento del campo en el borde de la pantalla y con las flechas: 50 % — normal, 100 % — el doble, 0 % — el campo no se desplaza en el borde (solo arrastrando).</li>
+    <li><b>Pantalla completa</b> — <i>Sí</i> (por defecto): el juego ocupa la pantalla; <i>No</i>: en ventana. También se cambia con <span class="k">Alt</span>+<span class="k">Intro</span>.</li>
+    <li><b>Resolución</b> — para la pantalla completa, una lista desplegable hasta 4K (por defecto — la del escritorio).</li>
+    <li><b>Fondo de menú dinámico</b> — <i>Sí</i>: en el menú principal se reproduce un vídeo; <i>No</i> (por defecto): se muestra el primer fotograma fijo.</li>
+    <li><b>Idioma</b> — 9 idiomas: ruso, inglés, ucraniano, alemán, francés, español, portugués, polaco, turco.</li>
+    <li><b>Teclas rápidas</b> — cualquier tecla se puede reasignar; «Por defecto» restablece las habituales.</li>
+  </ul>
+  <p>La música se adapta a la situación: menú, juego tranquilo, combate, victoria, derrota.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Teclas rápidas</h2>
+  <p>Teclas por defecto (se pueden cambiar en los ajustes):</p>
+  <table>
+    <tr><th>Tecla</th><th>Acción</th><th>Tecla</th><th>Acción</th></tr>
+    <tr><td><span class="k">E</span></td><td>Obrera</td><td><span class="k">T</span></td><td>Panel Tecnología</td></tr>
+    <tr><td><span class="k">A</span></td><td>Constructora</td><td><span class="k">F</span></td><td>Silvicultura</td></tr>
+    <tr><td><span class="k">W</span></td><td>Guerrera</td><td><span class="k">G</span></td><td>Micocultura</td></tr>
+    <tr><td><span class="k">Mayús</span>+<span class="k">E/A/W</span></td><td>16 hormigas de una vez</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Añadir / quitar zona</td></tr>
+    <tr><td><span class="k">L</span></td><td>Laboratorio</td><td><span class="k">Tab</span></td><td>Seleccionar todas las guerreras</td></tr>
+    <tr><td><span class="k">S</span></td><td>Almacén</td><td><span class="k">Home</span></td><td>A mi colonia</td></tr>
+    <tr><td><span class="k">B</span></td><td>Trampa</td><td><span class="k">Esc</span></td><td>Menú principal</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Intro</span></td><td>Pantalla completa / ventana</td><td></td><td></td></tr>
+  </table>
+  <p>Ratón: botón izquierdo — selección, marco, orden; derecho — un clic cancela la selección y cierra paneles, mantenido arrastra el campo; rueda — zoom; botón central — también arrastra el campo.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">Consejos</h2>
+  <ul>
+    <li>Empieza con unas cuantas obreras y, a los 30 segundos, un par de constructoras: 35 de madera para el laboratorio y 25 para el almacén son la etapa clave del principio.</li>
+    <li>Pon almacenes en sitios ricos lejos del hormiguero — la entrega se acorta y los senderos aceleran a las hormigas.</li>
+    <li>Activa Atacar a todos y mantén unas cuantas guerreras junto a las zonas de recogida — protegen a las obreras de arañas, carábidos y zapateros.</li>
+    <li>No mandes obreras a través de pantanos: allí van despacio y envejecen rápido.</li>
+    <li>No toques a las rojas sin necesidad — la enemistad trae incursiones contra tus obreras. Pero un nido destruido entrega toda su reserva de comida.</li>
+    <li>Ataca a la mantis con una gran multitud o atráela a las trampas — 60 de comida valen la pena.</li>
+    <li>Pon guerreras de puesto junto a una zona de recogida (segundo clic en el mismo punto) — no se dispersan y protegen a las obreras.</li>
+    <li>Envía obreras a un caracol grande que se arrastre por tu comida — da hasta 70 de comida.</li>
+    <li>Ampliar almacén actúa en porcentaje de la reserva — sale más a cuenta cuando tienes muchos recursos.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · Guía del juego</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — довідка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html" selected>Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>Стратегія про дві мурашині колонії: збирайте їжу й деревину, ростіть армію, вивчайте технології,
+       виживайте серед дикої природи — і переможіть сусідів.</p>
+    <span class="ver">Довідка · версія 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>Зміст</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">Про гру й мета</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Початок гри</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Інтерфейс</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Ресурси</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Юніти</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Споруди й пастки</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Технології</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Автоматизатори</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Режим і зони</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Накази й виділення</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Атака</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Довкілля</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Гриби</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Дика природа</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Руді мурахи</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">Суперник</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Підсумки й графіки</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Налаштування</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Гарячі клавіші</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">Поради</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">Про гру й мета</h2>
+  <p class="lead">Colony — економічна стратегія про дві колонії мурах: вашу й комп'ютерного суперника.
+  Мурашник суперника стоїть дзеркально відносно центру поля. Ваше завдання — вміло добувати ресурси,
+  розвивати колонію й зламати суперника.</p>
+  <figure><img src="help/world.jpg" alt="Ігрове поле">
+    <figcaption>Середня мапа: ліворуч ваш мурашник (зелене коло), праворуч — колонія суперника із зонами збору (червоний пунктир),
+      посередині — струмки з переправами, павуки, богомол, нора туруна, ставки й мурашники рудих.</figcaption></figure>
+  <h3>Перемога й поразка</h3>
+  <ul>
+    <li><b>Перемога</b> — у суперника не лишилося жодного робітника (включно з яйцями в інкубаторі) і в нього менше 5 їжі, тобто йому нема за що виростити нового робітника.</li>
+    <li><b>Поразка</b> — те саме сталося з вашою колонією.</li>
+    <li>Споруди зруйнувати не можна: колонії знищують лише мурах одна одної.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Початок гри</h2>
+  <div class="side">
+    <div>
+      <p>У головному меню два способи почати:</p>
+      <ul>
+        <li><b>Нова гра</b> — звичайний старт: <span class="res"><img src="Textures/eda_1.png" alt="">25</span> їжі й <span class="res"><img src="Textures/der_1.png" alt="">10</span> деревини.</li>
+        <li><b>Режим багатих ресурсів</b> — в обох сторін одразу 1500 їжі й 500 деревини: можна одразу будувати, вивчати й воювати.</li>
+      </ul>
+      <p>У режимі багатих ресурсів, поки у вас ще є їжа (не менше 10), тривають <b>перегони озброєнь</b>: щойно ви купите воїнів більше, ніж у суперника,
+        він одразу вирощує воїнів такої ж загальної сили (з урахуванням «Потужних воїнів») і в цей час не витрачається на покращення. Коли сили рівні, на покращення
+        й склади він витрачає лише те, що має понад ваші запаси. Тож найшвидшу перемогу не здобути одним раннім ривком.</p>
+      <p>Якщо партія триває, у меню з'являються <b>«Продовжити»</b> і <b>«Заново»</b> (та сама мапа з початку). Ще там <b>«Статистика»</b> — ваші лічильники за всі партії —
+        і <b>«Таблиці лідерів»</b> Steam — найшвидші перемоги.</p>
+      <p>Потім відкривається екран налаштувань партії; гра починається кнопкою <b>«Почати»</b>. Вибір запам'ятовується.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Головне меню"><figcaption>Головне меню</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Налаштування партії">
+    <figcaption>Ліворуч — складність, мапа й огляд; праворуч — «Налаштування світу»; внизу — попередній перегляд мапи.</figcaption></figure>
+  <h3>Складність</h3>
+  <p>Складність змінює лише комп'ютерного суперника:</p>
+  <table>
+    <tr><th>Рівень</th><th>Що змінюється</th></tr>
+    <tr><td><b>Дослідник</b></td><td>Суперник не будує воїнів, не ставить пасток і не нападає — спокійно вивчайте поле й економіку. Досягнення в цьому режимі не видаються.</td></tr>
+    <tr><td><b>Легкий</b></td><td>Суперник збирає на 30% менше, без пасток, нападає не раніше ніж через 6 хвилин.</td></tr>
+    <tr><td><b>Нормальний</b></td><td>Суперник збирає на 10% менше й нападає не раніше ніж через 3 хвилини.</td></tr>
+    <tr><td><b>Важкий</b></td><td>Суперник грає на повну силу від самого початку.</td></tr>
+  </table>
+  <h3>Мапа й огляд</h3>
+  <ul>
+    <li><b>Мапа</b>: Мала (800×600), Середня (1152×864), Велика (1440×1080), Величезна (1728×1296). Каміння, боліт і трави на великій мапі пропорційно більше.</li>
+    <li><b>Туман війни</b> — видно лише те, що поруч із вашим мурашником, складами й мурахами. Розвідана місцевість лишається напівпрозорою; знайдені мурашник і склади суперника лишаються на мапі. Вибухи й ефекти в тумані не видно. Кожен рівень «Генетичного стрибка» збільшує дальність огляду.</li>
+    <li><b>Видно всю карту</b> — коліщатком можна віддалити камеру до всього поля. Без цього налаштування далі за масштаб 800×600 віддалити не можна — поле прокручується.</li>
+  </ul>
+  <h3>Налаштування світу</h3>
+  <p>Кожен елемент довкілля й дикої природи можна ввімкнути чи вимкнути й вибрати кількість
+     (<i>Мало / Звичайно / Багато</i>): каміння, болота, коряги, ставки, струмок, гриби, водомірки, равлики (лише якщо є ставки чи струмок), туруни, павуки, богомол, руді мурахи.
+     «За замовчуванням» повертає стандартний світ. Праворуч унизу — живий попередній перегляд мапи.</p>
+  <div class="side">
+    <div>
+      <h3>Вибір місця мурашника</h3>
+      <p>Після «Почати» камера пролітає над полем, потім виберіть місце своєї колонії клацанням. Шестикутники показують дозволені місця;
+        мурашник не можна ставити надто близько до центру й країв. Суперник з'явиться дзеркально.</p>
+      <p>Перше, що треба зробити, — виростити хоча б одного робітника (підказка внизу екрана).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Вибір позиції"><figcaption>Вибір початкової позиції</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Інтерфейс</h2>
+  <figure><img src="help/toolbar.jpg" alt="Верхня панель"><figcaption>Верхня панель</figcaption></figure>
+  <ul>
+    <li><b>Будувати</b> — народження мурах і споруди.</li>
+    <li><b>Технології</b> — покращення, автоматизатори й пастки (після побудови лабораторії).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>їжа</b> й <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>деревина</b> — ваші запаси.</li>
+    <li><b>Зона</b> — режим малювання зон збору: <b>On</b> — додавати, <b>Off</b>; клавіші <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Атака</b> — панель наказів і атак. <b>Режим</b> — лісівництво, грибництво й поведінка юнітів.</li>
+    <li>Праворуч — час партії. Унизу — рядок підказок і панель виділених мурах.</li>
+  </ul>
+  <h3>Камера</h3>
+  <ul>
+    <li>Коліщатко миші — наблизити/віддалити до курсора (до 2,5×).</li>
+    <li>Затиснута права кнопка — перетягування поля («схопив і тягнеш»); коротке клацання правою кнопкою, як і раніше, знімає виділення.</li>
+    <li>Стрілки на клавіатурі — прокручування поля; затиснута права (або середня) кнопка миші — перетягування поля.</li>
+    <li><span class="k">Home</span> — до свого мурашника.</li>
+  </ul>
+  <h3>Підказки при наведенні</h3>
+  <p>Наведіть курсор на мураху, рослину, гриб, пастку, істоту чи мурашник — з'явиться картка: здоров'я, вік,
+    ріст, достигання, гниття, заряджання пастки, запас мурашника рудих тощо.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Ресурси</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Їжа</h4>
+      <p>Росте з насіння: коли група рослин достигає, вона дає нове насіння. Збирають робітники. Якщо їжу довго не збирати, вона дерев'яніє й перетворюється на деревину.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Деревина</h4>
+      <p>Збирають будівельники. З'являється з довго незібраної їжі й росте очеретом по берегах ставків. Потрібна для лабораторії, складів, воїнів і частини технологій.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Гриби</h4>
+      <p>Ще одне джерело їжі після технології «Новий тип ресурсів». Докладно — у розділі <a href="#mush">Гриби</a>.</p></div>
+  </div>
+  <h3>Збір і доставка</h3>
+  <ul>
+    <li>Мурахи збирають ресурси лише в <b>зонах збору</b> (або за прямим наказом) і несуть їх до найближчого складу чи мурашника.</li>
+    <li>З ношею мураха йде на 30% повільніше.</li>
+    <li>Вільні мурахи, яким нема чого збирати, блимають плямами на мурашнику.</li>
+  </ul>
+  <h3>Мурашині стежки</h3>
+  <p>Там, де мурахи колонії ходять часто, трава витоптується в зернисту піщану стежку. Своєю стежкою мурахи біжать швидше — до +15%.
+     Покинута стежка за кілька хвилин заростає. Стежки суперника видно лише там, де ви бачите поле.</p>
+  <div class="tip">Ставте склади так, щоб дорога «поле → склад» була короткою й натоптаною: стежка сама пришвидшить доставку.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Юніти</h2>
+  <p>Мурахи народжуються на панелі <b>«Будувати»</b>: спершу з'являється яйце в інкубаторі навколо мурашника (до 16 одразу), з нього вилуплюється мураха.
+     <b>Shift + клавіша</b> замовляє 16 мурах за раз.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Юніт</th><th>Ціна</th><th>Роль</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>Робітник</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Збирає їжу й гриби. 1 одиниця здоров'я.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Будівельник</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Збирає деревину й очерет. 1 одиниця здоров'я. У «Новій грі» перші 30 секунд після початку гри (першого робітника) будівельників вирощувати не можна ні вам, ні супернику, щоб партія почалася чесно; у режимі багатих ресурсів — можна одразу.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Воїн</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Атака й захист. Здоров'я 10 (15/20/25 з «Потужними воїнами»). Потрібна лабораторія.</td></tr>
+      </table>
+      <p style="font-size:13px">* З кожним рівнем «Потужних воїнів» воїн дорожчий: 35/15, 45/25, 50/30. Покращення діє лише на нових воїнів.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="Панель Будувати"><figcaption>Панель «Будувати»</figcaption></figure>
+  </div>
+  <h3>Ліміт і вік</h3>
+  <ul>
+    <li>Робітників — не більше 40 і будівельників — не більше 40; кожен склад додає +10 до кожного ліміту. Воїни не обмежені.</li>
+    <li>Мурахи старіють і помирають від старості — колір смужки віку в підказці йде від зеленого до червоного. У болоті старіння в 10 разів швидше.</li>
+    <li>В атаці мурахи біжать на 30% швидше, ніж зазвичай.</li>
+  </ul>
+  <h3>Робітники й будівельники теж кусаються</h3>
+  <p>За наказом робітників і будівельників можна відправити в атаку на мурах суперника й на істот. Кусають вони слабко (істот — учетверо слабше за воїна),
+     а їхня сила удару не покращується — це крайній захід, коли воїнів нема.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Споруди й пастки</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Мурашник</h4>
+      <p>Головна споруда: ставиться до початку гри. Сюди несуть ресурси, тут народжуються мурахи.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Лабораторія <span class="k">L</span></h4>
+      <p>Прибудова до мурашника, місце вибирати не треба. Відкриває воїнів, технології й пастки.</p>
+      <p class="cost">Ціна: <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Склад <span class="k">S</span></h4>
+      <p>Близький пункт доставки ресурсів і +10 до ліміту робітників і будівельників. До 5 складів, «Більше складів» додає ще.</p>
+      <p class="cost">Ціна: <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Пастка <span class="k">B</span></h4>
+      <p>Міна: вибухає, коли на неї наступає чужа мураха чи істота.</p>
+      <p class="cost">Ціна: <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Де можна ставити склад</h3>
+  <ul>
+    <li>Лише в межах досяжності від мурашника чи іншого вашого складу — мережа складів росте крок за кроком (зона показана пунктирними колами).</li>
+    <li>Не надто близько до ресурсів, що ростуть.</li>
+    <li>Не можна на коряги, гриби, ставки й очерет, струмок, мурашники рудих, пастки, їжу, деревину й павутину. Біля берега ставка — можна.</li>
+    <li>Суперник підкоряється тим самим правилам.</li>
+  </ul>
+  <p>Якщо склад, пастку чи зону поставити не можна, біля курсора з'являється підказка з причиною: «Надто близько до мурашника», «Лише всередині ваших зон»,
+     «Тут нічого збирати» тощо.</p>
+  <h3>Пастки</h3>
+  <ul>
+    <li>Ставляться лише всередині ваших зон збору на своїй половині поля — поки ви вибираєте місце, зони видно на полі.</li>
+    <li>Після встановлення пастка заряджається (близько 17 секунд, поступ видно в підказці), потім стає активною.</li>
+    <li>Спрацьовує на мурах суперника, на диких істот і на рудих мурах. Вибух убиває мурах у радіусі, павука, туруна, водомірку;
+      <b>богомолу</b> знімає 60 здоров'я.</li>
+    <li>Пастки суперника теж небезпечні. Суперник ставить пастки, починаючи з Нормальної складності.</li>
+    <li>«Пастки» в автоматизаторах розставляють їх самі.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Технології</h2>
+  <p>Панель <b>«Технології»</b> <span class="k">T</span> відкривається після побудови лабораторії. Ліворуч — покращення (три рівні), праворуч — автоматизатори.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Панель технологій"><figcaption>Панель «Технології»</figcaption></figure>
+  <table>
+    <tr><th>Покращення</th><th>Р. I</th><th>Р. II</th><th>Р. III</th><th>Ефект</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Покращити врожай</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>Рослини ростуть швидше, і їх стає більше.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Маневр</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Відкриває тип атаки «Маневр» — воїни обходять суперника дугою й б'ють збоку; з рівнем маневр швидший.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Генетичний стрибок</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Швидкість мурах ×1,2 / ×1,4 / ×1,6 і дальність огляду в тумані.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Потужні воїни</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>Здоров'я нових воїнів 15 / 20 / 25 замість 10.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Збільшити склад</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Розведення їжі й деревини: +5% / +10% / +18% доходу зі складів.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Більше складів</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>+1 склад понад п'ять за кожен рівень.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Новий тип ресурсів</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — робітники збирають гриби, на гриби можна ставити зони; II — гриби на нашому боці ростуть на 20% швидше; III — їх росте на 20% більше.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — їжа, <span class="res"><img src="Textures/der_1.png" alt=""></span> — деревина. Суперник вивчає ті самі технології.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Автоматизатори</h2>
+  <p>Купуються один раз у правій колонці панелі «Технології». Більшість потім вмикається/вимикається кнопкою <i>Авто / Вручну</i>.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Зони</h4><p>Зони збору розставляються автоматично навколо ресурсів.</p><p class="cost">25 їжі</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Лісівництво</h4><p>Частина заростей автоматично не збирається — вони перетворюються на деревину.</p><p class="cost">10 деревини</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Грибництво</h4><p>У грибницях на вашій половині ~40% грибів лишають рости — грибниці ростуть швидше. Потрібен «Новий тип ресурсів» I.</p><p class="cost">30 їжі</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">Будувати</h4><p>Автонародження: колонія сама вирощує потрібних мурах.</p><p class="cost">10 їжі</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Атака</h4><p>Спланована атака: колонія сама збирає воїнів і нападає, коли сил досить.</p><p class="cost">25 їжі</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Пастки</h4><p>Автопастки: пастки ставляться самі, поки є ресурси.</p><p class="cost">10 їжі</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Режим і зони збору</h2>
+  <div class="side">
+    <div>
+      <h3>Зони збору</h3>
+      <p>Натисніть «Зона» (або <span class="k">=</span>) і малюйте зони на полі — мурахи збирають усередині них. <span class="k">-</span> — режим видалення зон.
+        Якщо ресурси далеко від складу, краще не ставити там зону, поки поруч не з'явиться склад.</p>
+      <h3>Панель «Режим»</h3>
+      <ul>
+        <li><b>Лісівництво</b> <span class="k">F</span> — позначте рослини, яких робітники не чіпають: вони виростуть у деревину. Знак «+» біля курсора — позначити, «−» — зняти.</li>
+        <li><b>Грибництво</b> <span class="k">G</span> — так само позначаються гриби, яких робітники не збирають.</li>
+        <li><b>Поведінка юнітів</b>:
+          <ul><li><b>Нападати на всіх</b> — вільні воїни захищають робітників: біжать на будь-яку істоту чи ворога, що напав на них.</li>
+              <li><b>Збір урожаю</b> — усі зусилля на збір ресурсів.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Панель Режим"><figcaption>Панель «Режим»</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Накази й виділення</h2>
+  <h3>Виділення</h3>
+  <ul>
+    <li><b>Рамка</b>: затисніть ліву кнопку на полі й протягніть зелену рамку — вибираються мурахи всередині (воїни, якщо є, інакше будівельники, інакше робітники).</li>
+    <li><span class="k">Tab</span> — виділити всіх своїх воїнів.</li>
+    <li>Виділені показано внизу ліворуч: по плитці на мураху зі смужкою здоров'я, їхня кількість і загальна сила.</li>
+    <li><b>Права кнопка</b> — зняти виділення й закрити відкриті панелі.</li>
+    <li>Вибрані мурахи слухаються лише вас: захист колонії, «Нападати на всіх» і автоатака їх не забирають.</li>
+  </ul>
+  <h3>Куди можна клацнути</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">По полю</h4><p>Мурахи йдуть у точку (біжучий пунктир) і чекають там.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Пост</h4><p>Друге клацання поруч із тією ж точкою, коли воїни вже там, — <b>пост</b>: воїни тримають місце,
+      б'ють ворогів, що підійшли, і повертаються. Над точкою стоїть прапорець, пунктирне коло «дихає». Пост знімає лише новий наказ цим воїнам.
+      Перед другим клацанням над точкою падає прапорець-підказка.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">По їжі / грибу</h4><p>Робітники збирають їжу поруч із цим місцем, навіть поза зонами, і носять додому. Гриб — прогризають (якщо вивчено гриби).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">По деревині</h4><p>Будівельники збирають деревину поруч із цим місцем.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">По ворогу / істоті</h4><p>Вибрані атакують ціль (червоне пунктирне коло). Убили — перемикаються на дитинчат біля гнізда, інакше чекають.</p></div>
+  </div>
+  <p>Зелений приціл біля курсора показує, куди можна відправити мурах. Отримавши наказ, мурахи виконують його й після зняття виділення,
+     а потім повертаються до звичайної роботи. Атаки, віддані клацанням по ворогу, теж потрапляють на графіки підсумків.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Атака</h2>
+  <div class="side">
+    <div>
+      <p>Панель <b>«Атака»</b>:</p>
+      <ul>
+        <li>Угорі — тип ваших мурах (клацання перемикає), нижче — тип мурах суперника, на яких нападати.</li>
+        <li><b>«‹ 1 ›»</b> — скільки мурах відправити (утримання — швидко). Вибрані позначаються кільцем.</li>
+        <li><b>Атака</b> — відправити загін.</li>
+        <li><b>Тип атаки</b>: <i>Прямо</i> — в лоб; <i>Маневр</i> — обхід дугою (потрібна технологія «Маневр»).</li>
+        <li><b>Постійна атака</b> — воїни безперервно вирушають на ворога; панель лишається відкритою, видно, скільки «в атаці».</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Панель Атака"><figcaption>Панель «Атака»</figcaption></figure>
+  </div>
+  <h3>Бій</h3>
+  <ul>
+    <li>Здоров'я вимірюється в однакових одиницях для всіх: робітник і будівельник — 1, воїн — 10…25.</li>
+    <li>Здоров'я воїна видно за пелюстками навколо нього: у ваших воїнів вони червоно-помаранчеві, у воїнів суперника — блакитні.</li>
+    <li>Коли панель «Атака» закрита, мурахи, що чекали наказу, повертаються до роботи.</li>
+    <li>Якщо на колонію нападають, лунає тривога, а музика змінюється на бойову.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Бій"><figcaption>Розпал партії: суперник атакує колонію ліворуч, спалахи — пастки, що вибухнули.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Довкілля</h2>
+  <table>
+    <tr><th>Об'єкт</th><th>Прохідність</th><th>Особливості</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Каміння</b></td><td>Не можна</td><td>Обходиться; біля каміння павуки плетуть павутину.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Болота</b></td><td>Можна, учетверо повільніше</td><td>Мурахи старіють у 10 разів швидше. Поруч гриби ростуть швидше й густіше.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Коряги</b></td><td>Можна</td><td>Під деякими — нори турунів; біля коряг ростуть гриби. Склад на корягу не поставити.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Гриби</b></td><td>Можна, удвічі повільніше</td><td>Склад на гриб не поставити.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Ставки</b></td><td>Не можна (вода)</td><td>Родючий берег: рослини ростуть швидше й дають більше насіння. Очерет по краю — готова деревина, швидко відростає. На кожному ставку живе водомірка; з води виповзають равлики.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Струмок</b></td><td>Лише переправами</td><td>Перетинає поле. Переправи — з каміння чи колод, завширшки у 3 ряди; ними користуються і мурахи, і істоти.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Павутина</b></td><td>Можна, майже втричі повільніше</td><td>Господар павутини кидається на тих, хто підійшов.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Ставок"><figcaption>Ставок із лататтям, очеретом і водоміркою; поруч турун</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Павутина біля каміння"><figcaption>Павутина біля каміння й ставок на боці суперника</figcaption></figure>
+  </div>
+  <p>Ставків від одного до чотирьох, і обом сторонам вони дістаються порівну: один посередині, пари — дзеркально. Якщо на мапі є струмок, до ставків поруч із ним від струмка йдуть відгалуження — вузькі протоки, що впадають у ставок (дзеркально на обох половинах). Протоку, як і струмок, перейти не можна: її обходять довкола ставка.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Гриби</h2>
+  <p>Грибниці ростуть біля коряг і особливо охоче біля боліт. Збирати гриби можна після технології «Новий тип ресурсів».</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Гриб-парасолька</h4><p>Найбільший: до <b>13</b> їжі.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Білий гриб</h4><p>Великий: до <b>11</b> їжі.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Мухомор</h4><p>Середній: до <b>6</b> їжі.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Лисичка</h4><p>Маленька: до <b>4</b> їжі.</p></div>
+  </div>
+  <ul>
+    <li>Що більший гриб, то більше їжі, але то довше його прогризати. Робітники беруть лише стиглі гриби; молоді ростуть далі й живлять грибницю.</li>
+    <li>Над грибом видно коло поступу; додому несуть прогризений шматок. Незібраний гриб із часом гниє й зникає.</li>
+    <li>Грибниця пускає нитки міцелію; де зустрічаються нитки двох грибниць, з'являється нова. Нитка, що дотяглася до болота, п'є з нього — у такої грибниці гриби з'являються в 1,7 раза частіше, а в пов'язаних із нею — в 1,35 раза.</li>
+    <li>Що довша зрощена мережа міцелію, то частіше з'являються гриби (до 2,5×) і то вони більші.</li>
+    <li>Якщо з'їсти більше половини грибниці, нові гриби з'являються в рази повільніше; з'їдена повністю відростає дуже довго.</li>
+  </ul>
+  <div class="tip">Увімкніть «Грибництво»: залишені гриби тримають грибницю на повну силу, і вона годує довше.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Дика природа</h2>
+  <p>Істоти не належать ні вам, ні супернику й живуть далеко від обох мурашників. Якщо вибрано «Нападати на всіх», вільні воїни самі
+     біжать на істоту, що напала на ваших робітників. Суперник із достатньою кількістю воїнів планує <b>полювання</b> на істот, що йому заважають.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Павук-хрестовик</h3>
+  <div class="stats"><span class="hp">здоров'я 30</span><span class="dmg">укус воїну −4</span><span>павученята: 12 / −2, до 6</span></div>
+  <p>Плете павутину біля каміння й чекає в центрі; кидається на будь-яку мураху, що підійшла, і відносить здобич коконом. Робітника чи будівельника вбиває одним укусом.
+     З коконів (1 воїн + 1 робітник або 3 робітники) вилуплюються павученята. Тяжко поранений останній павук тікає до іншого каміння й плете нову павутину.
+     Якщо напасти на павука, уся родина кидається на воїнів. Павук, відрізаний струмком, шукає шлях через переправу.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Турун</h3>
+  <div class="stats"><span class="hp">здоров'я 40</span><span class="dmg">укус воїну −4</span><span>дитинчата: 14 / −2, до 4</span></div>
+  <p>Живе в норі під корягою й полює на мурах-одинаків (групу з трьох і більше не чіпає). Швидший за звичайну мураху — утекти можна лише після
+     другого «Генетичного стрибка». Міцний панцир: воїни ранять його повільніше. Поранений — ховається в нору й лікується, а без дитинчат може втекти до порожньої
+     коряги й вирити нову нору. Здобич за струмком не переслідує.</p>
+  <figure><img src="help/beetle.jpg" alt="Нора туруна"><figcaption>Нора туруна під корягою, гриби, павутина й сутичка біля переправи</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Равлик</h3>
+  <div class="stats"><span class="hp">здоров'я 10–50</span><span>не нападає</span><span>нагорода 10–70 їжі</span></div>
+  <p>Час від часу виповзає зі ставка чи струмка й повільно повзає полем (каміння й гірки обходить, лишає блискучий слід) — частіше біля води, але іноді, «втомившись», відповзає далеко. Що довше повзає,
+     то більшим росте: 6 стадій, із води з'являється на одній із перших трьох. Проповзаючи по їжі, з'їдає її — до 10 штук, потім відпочиває.
+     Равлика гризуть робітники й будівельники (відправте їх на нього, як на гриб); воїни його не ранять. Що більший равлик, то більше за нього їжі —
+     скільки, видно в підказці; їжа дістається тій стороні, чиїх мурах біля нього більше.
+     У налаштуваннях світу: «Равлики» — Мало / Звичайно / Багато (лише якщо є ставки чи струмок).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Богомол — бос</h3>
+  <div class="stats"><span class="hp">здоров'я 150</span><span class="dmg">удар воїну −8</span><span>нагорода 60 їжі</span></div>
+  <div class="side">
+    <div>
+      <p>Скільки їх на мапі, задається в налаштуваннях світу: <i>Мало</i> — один, <i>Звичайно</i> — два (на малій мапі один), <i>Багато</i> — від двох до чотирьох.
+        Сидить у засідці в нейтральній смузі, майже зливаючись із травою. Будь-яку мураху в межах передніх лап б'є блискавично: робітник гине,
+        воїн утрачає 8 здоров'я. Відбивається від усіх довкола — потрібен натовп воїнів. Сторона, чиїх воїнів біля тіла більше в момент загибелі, отримує 60 їжі.
+        Пастка знімає йому 60 здоров'я. Убитий богомол більше не з'являється.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Богомол"><figcaption>Богомол у траві біля грибниці, поруч павутина</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Водомірка</h3>
+  <div class="stats"><span class="hp">здоров'я 20</span><span>вибиває ношу</span></div>
+  <p>Ковзає ставком і вибиває їжу чи деревину в мурахи, що йде самим берегом, — ноша тоне. Ніколи не підпливає туди, де поруч воїн (ближче ~70),
+     тому зона патрулювання біля ставка захищає берег. Убиту водомірку з часом заступає нова.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Руді мурахи</h2>
+  <div class="stats"><span class="hp">мураха 12</span><span class="hp">мурашник 250</span><span>нейтральні</span></div>
+  <div class="side">
+    <div>
+      <p>Нейтральна колонія: один мурашник у центрі (<i>Мало</i>), два дзеркально (<i>Звичайно</i>) або по два на кожній половині (<i>Багато</i>).
+        Руді збирають крихти довкола дому й <b>нікого не чіпають</b>, поки не зачеплять їх.</p>
+      <ul>
+        <li>Воїнів, що підійшли впритул до мурашника, просто відганяють — без війни.</li>
+        <li>Сторона, чиї воїни напали на рудого мураху чи мурашник, отримує <b>ворожнечу</b>: її мурах біля мурашника атакують,
+          а час від часу загін рудих іде в <b>набіг</b> на її робітників.</li>
+        <li>Зруйнований мурашник віддає весь свій запас їжі стороні, у якої поруч більше воїнів. Запас видно в підказці.</li>
+        <li>Біля мурашників рудих не ростуть їжа й гриби; патрулі їх обходять.</li>
+      </ul>
+      <h3>Нові колонії</h3>
+      <p>Накопичивши 200 їжі, мурашник віддає 75 із них і половину своїх мурах на <b>нову колонію</b>: загін іде до вільного місця на тому ж березі
+        (як під час створення мапи — не біля води, каміння, грибів, їжі, складів, пасток, інших мурашників рудих і ваших колоній; якщо місце дорогою зіпсувалося,
+        вибирається інше). Якщо дорогою вбито більше половини загону, решта тікає додому. На місці мурахи носять прутики, і мурашник росте за 8 стадій
+        (у підказці — «Будується: N%»); будову можна зруйнувати. Готовий — звичайний мурашник рудих зі своїм запасом. Загалом мурашників рудих на мапі
+        не більше 3 / 4 / 5 / 7 — від малої до величезної мапи, але завжди щонайменше на два більше, ніж було на початку.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Мурашник рудих"><figcaption>Мурашник рудих</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">Суперник</h2>
+  <div class="side">
+    <div>
+      <p>Комп'ютерний суперник грає за тими самими правилами: вирощує мурах, будує лабораторію й ланцюжок складів, ставить зони (червоний пунктир), вивчає технології,
+        ставить пастки, атакує й переходить струмок переправами.</p>
+      <ul>
+        <li>Полює на істот, що заважають, коли в нього досить воїнів.</li>
+        <li>Захищає своїх робітників в агресивному режимі.</li>
+        <li>Його поведінка залежить від вибраної <a href="#start">складності</a>.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Колонія суперника"><figcaption>Колонія суперника</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Підсумки й графіки</h2>
+  <p>Після перемоги чи поразки відкривається екран результатів: час партії, складність і розмір мапи, кнопки <b>«Заново»</b> і <b>«До меню»</b>.
+     Після мелодії перемоги/поразки знову грає музика головного меню.</p>
+  <ul>
+    <li><b>Підсумки</b> — отримано ресурсів, знищено й утрачено мурах за типами, вивчені технології, пастки (розставлено / знищено / ворогом),
+      дика природа, убита колоніями.</li>
+    <li><b>Графіки</b> — чисельність мурах і ресурси обох сторін у часі. Мечі позначають атаки: число на значку — скільки різних мурах
+      брало участь (ураховуються й атаки, віддані клацанням по ворогу).</li>
+  </ul>
+  <h3>Статистика й таблиці лідерів</h3>
+  <ul>
+    <li><b>Статистика</b> (головне меню) — лічильники за всі партії: зіграно (партія зараховується після 2 хвилин гри або якщо закінчилася раніше), перемоги й поразки
+      за складністю, час у грі, зібрані ресурси, убиті й утрачені мурахи, склади й пастки, переможені істоти. Лічильники зберігаються поруч із грою і в Steam.</li>
+    <li><b>Таблиці лідерів</b> — найшвидша перемога для кожної складності, розміру мапи й режиму (звичайний / багатий): світовий топ і друзі Steam.
+      Після перемоги на екрані підсумків видно ваше місце. У режимі «Дослідник» результати не записуються.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Налаштування</h2>
+  <ul>
+    <li><b>Звук</b> і <b>Музика</b> — увімкнення й гучність стовпчиками (крок 10%).</li>
+    <li><b>Прокрутка</b> — швидкість прокручування поля біля краю екрана й стрілками: 50% — звичайна, 100% — удвічі швидша, 0% — біля краю поле не прокручується (лише перетягуванням).</li>
+    <li><b>Повний екран</b> — <i>Увімк</i> (за замовчуванням): гра на весь екран; <i>Вимк</i>: у вікні. Перемикається й клавішами <span class="k">Alt</span>+<span class="k">Enter</span>.</li>
+    <li><b>Роздільність</b> — для повноекранного режиму, випадний список аж до 4K (за замовчуванням — роздільність робочого столу).</li>
+    <li><b>Динамічний фон меню</b> — <i>Увімк</i>: у головному меню грає відео; <i>Вимк</i> (за замовчуванням): показується нерухомий перший кадр.</li>
+    <li><b>Мова</b> — 9 мов: російська, англійська, українська, німецька, французька, іспанська, португальська, польська, турецька.</li>
+    <li><b>Гарячі клавіші</b> — будь-яку клавішу можна перепризначити; «За замовчуванням» поверне стандартні.</li>
+  </ul>
+  <p>Музика змінюється залежно від ситуації: меню, мирна гра, бій, перемога, поразка.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Гарячі клавіші</h2>
+  <p>Стандартні клавіші (змінюються в налаштуваннях):</p>
+  <table>
+    <tr><th>Клавіша</th><th>Дія</th><th>Клавіша</th><th>Дія</th></tr>
+    <tr><td><span class="k">E</span></td><td>Робітник</td><td><span class="k">T</span></td><td>Панель технологій</td></tr>
+    <tr><td><span class="k">A</span></td><td>Будівельник</td><td><span class="k">F</span></td><td>Лісівництво</td></tr>
+    <tr><td><span class="k">W</span></td><td>Воїн</td><td><span class="k">G</span></td><td>Грибництво</td></tr>
+    <tr><td><span class="k">Shift</span>+<span class="k">E/A/W</span></td><td>Одразу 16 мурах</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Додати / прибрати зону</td></tr>
+    <tr><td><span class="k">L</span></td><td>Лабораторія</td><td><span class="k">Tab</span></td><td>Виділити всіх воїнів</td></tr>
+    <tr><td><span class="k">S</span></td><td>Склад</td><td><span class="k">Home</span></td><td>До свого мурашника</td></tr>
+    <tr><td><span class="k">B</span></td><td>Пастка</td><td><span class="k">Esc</span></td><td>Головне меню</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Enter</span></td><td>Повний екран / вікно</td><td></td><td></td></tr>
+  </table>
+  <p>Миша: ліва кнопка — вибір, рамка, наказ; права — клацання знімає виділення й закриває панелі, затиснута — перетягує поле; коліщатко — масштаб; середня кнопка — теж перетягування поля.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">Поради</h2>
+  <ul>
+    <li>Почніть із кількох робітників, а через 30 секунд — пари будівельників: 35 деревини на лабораторію й 25 на склад — головний ранній рубіж.</li>
+    <li>Ставте склади біля багатих на ресурси місць далеко від мурашника — доставка стане короткою, а стежки пришвидшать мурах.</li>
+    <li>Увімкніть «Нападати на всіх» і тримайте пару воїнів біля зон збору — вони захистять робітників від павуків, турунів і водомірок.</li>
+    <li>Не водіть робітників через болота: там вони повільні й швидко старіють.</li>
+    <li>Не чіпайте рудих без потреби — ворожнеча призведе до набігів на ваших робітників. Але зруйнований мурашник дає весь свій запас їжі.</li>
+    <li>На богомола йдіть великим натовпом або підведіть його до пасток — 60 їжі того варті.</li>
+    <li>Поставте воїнів постом біля зони збору (друге клацання по тій самій точці) — вони не розбредуться й захистять робітників.</li>
+    <li>Великого равлика, що повзе по вашій їжі, відправте гризти робітників — він дасть до 70 їжі.</li>
+    <li>«Збільшити склад» працює у відсотках від запасу — вигідніше, коли ресурсів багато.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · довідка з гри</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html" selected>Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>Un jeu de stratégie entre deux colonies de fourmis : récoltez nourriture et bois, levez une armée, recherchez des technologies,
+       survivez parmi la faune sauvage — et battez vos voisins.</p>
+    <span class="ver">Guide · version 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>Sommaire</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">Le jeu et son but</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Début de partie</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Interface</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Ressources</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Unités</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Bâtiments et pièges</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Recherche</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Automatisation</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Mode et zones</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Ordres et sélection</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Attaque</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Environnement</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Champignons</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Faune sauvage</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Fourmis rousses</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">L'ennemi</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Résultats et graphiques</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Options</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Raccourcis</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">Conseils</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">Le jeu et son but</h2>
+  <p class="lead">Colony est un jeu de stratégie économique entre deux colonies de fourmis : la vôtre et celle d'un adversaire contrôlé par l'ordinateur.
+  La fourmilière ennemie est placée en miroir par rapport au centre du terrain. Votre but : récolter habilement les ressources,
+  développer la colonie et briser votre rival.</p>
+  <figure><img src="help/world.jpg" alt="Le terrain de jeu">
+    <figcaption>Une carte moyenne : à gauche votre fourmilière (cercle vert), à droite la colonie ennemie avec ses zones de récolte (pointillés rouges),
+      au centre des ruisseaux avec leurs passages, des araignées, une mante, le terrier d'un carabe, des étangs et des nids de fourmis rousses.</figcaption></figure>
+  <h3>Victoire et défaite</h3>
+  <ul>
+    <li><b>Victoire</b> — l'ennemi n'a plus aucune ouvrière (œufs de la couveuse compris) et moins de 5 de nourriture, il ne peut donc pas en faire éclore une nouvelle.</li>
+    <li><b>Défaite</b> — la même chose est arrivée à votre colonie.</li>
+    <li>Les bâtiments ne peuvent pas être détruits : les colonies ne tuent que les fourmis de l'autre.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Début de partie</h2>
+  <div class="side">
+    <div>
+      <p>Le menu principal propose deux façons de commencer :</p>
+      <ul>
+        <li><b>Nouvelle partie</b> — le départ habituel : <span class="res"><img src="Textures/eda_1.png" alt="">25</span> de nourriture et <span class="res"><img src="Textures/der_1.png" alt="">10</span> de bois.</li>
+        <li><b>Mode abondance</b> — les deux camps reçoivent d'emblée 1500 de nourriture et 500 de bois : construction, recherche et combat commencent tout de suite.</li>
+      </ul>
+      <p>En mode abondance, tant qu'il vous reste de la nourriture (au moins 10), c'est une <b>course aux armements</b> : achetez plus de guerrières que l'ennemi,
+        et il fait aussitôt éclore des guerrières de même force totale (Guerrières fortes comprises) sans rien dépenser en améliorations entre-temps. À force égale,
+        il ne dépense en améliorations et entrepôts que ce qu'il a au-delà de vos réserves. On ne décroche donc pas la victoire la plus rapide par une ruée précoce.</p>
+      <p>Pendant une partie, le menu affiche aussi <b>Continuer</b> et <b>Rejouer</b> (la même carte depuis le début). On y trouve aussi les <b>Statistiques</b> — vos compteurs
+        sur toutes les parties — et les <b>Classements</b> Steam des victoires les plus rapides.</p>
+      <p>Ensuite s'ouvre l'écran des réglages de la partie ; le jeu démarre avec <b>Commencer</b>. Vos choix sont mémorisés.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Menu principal"><figcaption>Menu principal</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Réglages de la partie">
+    <figcaption>À gauche la difficulté, la carte et la visibilité ; à droite les réglages du monde ; en bas l'aperçu de la carte.</figcaption></figure>
+  <h3>Difficulté</h3>
+  <p>La difficulté ne change que l'adversaire informatique :</p>
+  <table>
+    <tr><th>Niveau</th><th>Ce qui change</th></tr>
+    <tr><td><b>Explorateur</b></td><td>L'ennemi ne crée pas de guerrières, ne pose pas de pièges et n'attaque jamais — explorez le terrain et l'économie en paix. Pas de succès dans ce mode.</td></tr>
+    <tr><td><b>Facile</b></td><td>L'ennemi récolte 30 % de moins, sans pièges, et n'attaque pas avant 6 minutes.</td></tr>
+    <tr><td><b>Normal</b></td><td>L'ennemi récolte 10 % de moins et n'attaque pas avant 3 minutes.</td></tr>
+    <tr><td><b>Difficile</b></td><td>L'ennemi joue à pleine puissance dès le début.</td></tr>
+  </table>
+  <h3>Carte et visibilité</h3>
+  <ul>
+    <li><b>Carte</b> : Petite (800×600), Moyenne (1152×864), Grande (1440×1080), Immense (1728×1296). Une carte plus grande a d'autant plus de pierres, de marais et d'herbe.</li>
+    <li><b>Brouillard de guerre</b> — seul est visible ce qui est proche de votre fourmilière, de vos entrepôts et de vos fourmis. Le terrain exploré reste à demi visible ; une fourmilière ennemie découverte et ses entrepôts restent sur la carte. Les explosions et effets dans le brouillard ne se voient pas. Chaque niveau de Saut génétique augmente la portée de vue.</li>
+    <li><b>Carte entière visible</b> — la molette permet de dézoomer jusqu'au terrain entier. Sans cette option, pas au-delà de 800×600 — le terrain défile.</li>
+  </ul>
+  <h3>Réglages du monde</h3>
+  <p>Chaque élément de l'environnement et de la faune peut être activé ou désactivé, avec sa quantité
+     (<i>Peu / Normal / Beaucoup</i>) : pierres, marais, souches, étangs, ruisseau, champignons, gerris, escargots (seulement avec étangs ou ruisseau), carabes, araignées, mante, fourmis rousses.
+     « Par défaut » rétablit le monde habituel. En bas à droite — un aperçu de la carte en direct.</p>
+  <div class="side">
+    <div>
+      <h3>Choisir l'emplacement de la fourmilière</h3>
+      <p>Après Commencer, la caméra survole le terrain, puis vous choisissez d'un clic l'emplacement de votre colonie. Des hexagones marquent les emplacements autorisés ;
+        la fourmilière ne peut pas être trop près du centre ni des bords. L'ennemi apparaît en miroir.</p>
+      <p>La première chose à faire est de faire éclore au moins une ouvrière (indice en bas de l'écran).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Choix de la position de départ"><figcaption>Choix de la position de départ</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Interface</h2>
+  <figure><img src="help/toolbar.jpg" alt="Barre supérieure"><figcaption>Barre supérieure</figcaption></figure>
+  <ul>
+    <li><b>Construire</b> — éclosion des fourmis et bâtiments.</li>
+    <li><b>Technologie</b> — améliorations, automatisation et pièges (après la construction du laboratoire).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>Nourriture</b> et <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>Bois</b> — vos réserves.</li>
+    <li><b>Zone</b> — dessiner les zones de récolte : <b>On</b> — ajouter, <b>Off</b> ; touches <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Attaque</b> — panneau des ordres et de l'attaque. <b>Mode</b> — sylviculture, champignonnière et conduite des unités.</li>
+    <li>À droite — le temps de jeu. En bas — la ligne d'indices et le panneau des fourmis sélectionnées.</li>
+  </ul>
+  <h3>Caméra</h3>
+  <ul>
+    <li>Molette — zoom vers le curseur (jusqu'à 2,5×).</li>
+    <li>Bouton droit maintenu — faire glisser le terrain (« attraper et tirer ») ; un bref clic droit annule toujours la sélection.</li>
+    <li>Flèches — faire défiler le terrain ; bouton droit (ou du milieu) maintenu — faire glisser le terrain.</li>
+    <li><span class="k">Home</span> — revenir à votre fourmilière.</li>
+  </ul>
+  <h3>Infobulles au survol</h3>
+  <p>Survolez une fourmi, une plante, un champignon, un piège, un animal ou une fourmilière — une fiche apparaît : santé, âge,
+    croissance, maturation, pourriture, chargement du piège, réserves d'un nid de fourmis rousses, etc.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Ressources</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Nourriture</h4>
+      <p>Pousse à partir de graines : un groupe de plantes mûr donne de nouvelles graines. Récoltée par les ouvrières. La nourriture longtemps non récoltée se lignifie et devient du bois.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Bois</h4>
+      <p>Récolté par les bâtisseuses. Naît de la nourriture longtemps non récoltée et pousse en roseaux au bord des étangs. Nécessaire pour le laboratoire, les entrepôts, les guerrières et une partie de la recherche.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Champignons</h4>
+      <p>Une autre source de nourriture après la recherche Nouveau type de ressource. Voir la section <a href="#mush">Champignons</a>.</p></div>
+  </div>
+  <h3>Récolte et livraison</h3>
+  <ul>
+    <li>Les fourmis ne récoltent que dans les <b>zones de récolte</b> (ou sur ordre direct) et portent leur charge à l'entrepôt ou à la fourmilière la plus proche.</li>
+    <li>Chargée, une fourmi marche 30 % plus lentement.</li>
+    <li>Les fourmis libres qui n'ont rien à récolter clignotent en taches sur la fourmilière.</li>
+  </ul>
+  <h3>Pistes de fourmis</h3>
+  <p>Là où les fourmis de la colonie passent souvent, l'herbe est foulée en une piste de sable granuleuse. Sur leur propre piste, les fourmis vont plus vite — jusqu'à +15 %.
+     Une piste abandonnée se recouvre d'herbe en quelques minutes. Les pistes ennemies ne se voient que là où vous voyez le terrain.</p>
+  <div class="tip">Placez les entrepôts de sorte que le chemin « champ → entrepôt » soit court et bien foulé : la piste accélère d'elle-même la livraison.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Unités</h2>
+  <p>Les fourmis éclosent depuis le panneau <b>Construire</b> : un œuf apparaît d'abord dans la couveuse autour de la fourmilière (jusqu'à 16 à la fois), puis la fourmi en sort.
+     <b>Maj + touche</b> commande 16 fourmis d'un coup.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Unité</th><th>Prix</th><th>Rôle</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>Ouvrière</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Récolte nourriture et champignons. 1 point de santé.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Bâtisseuse</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Récolte bois et roseaux. 1 point de santé. En Nouvelle partie, ni vous ni l'ennemi ne pouvez faire éclore de bâtisseuses pendant les 30 premières secondes après le début (la première ouvrière), pour que la partie commence équitablement ; en mode abondance, tout de suite.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Guerrière</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Attaque et défense. Santé 10 (15/20/25 avec Guerrières fortes). Nécessite le laboratoire.</td></tr>
+      </table>
+      <p style="font-size:13px">* Chaque niveau de Guerrières fortes rend une guerrière plus chère : 35/15, 45/25, 50/30. L'amélioration ne s'applique qu'aux nouvelles guerrières.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="Panneau Construire"><figcaption>Le panneau Construire</figcaption></figure>
+  </div>
+  <h3>Limite et âge</h3>
+  <ul>
+    <li>Au plus 40 ouvrières et 40 bâtisseuses ; chaque entrepôt relève chaque limite de 10. Les guerrières sont illimitées.</li>
+    <li>Les fourmis vieillissent et meurent de vieillesse — la barre d'âge de l'infobulle passe du vert au rouge. Dans un marais, elles vieillissent 10 fois plus vite.</li>
+    <li>En attaque, les fourmis vont 30 % plus vite que d'habitude.</li>
+  </ul>
+  <h3>Ouvrières et bâtisseuses mordent aussi</h3>
+  <p>Sur ordre, ouvrières et bâtisseuses peuvent être envoyées contre les fourmis ennemies et les animaux. Elles mordent faiblement (quatre fois moins qu'une guerrière contre les animaux),
+     et leur morsure ne s'améliore pas — un dernier recours quand il n'y a pas de guerrières.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Bâtiments et pièges</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Fourmilière</h4>
+      <p>Le bâtiment principal : placé avant le début de la partie. Les ressources y sont apportées et les fourmis y éclosent.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Laboratoire <span class="k">L</span></h4>
+      <p>Une annexe de la fourmilière, sans emplacement à choisir. Débloque les guerrières, la recherche et les pièges.</p>
+      <p class="cost">Prix : <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Entrepôt <span class="k">S</span></h4>
+      <p>Un point de dépôt proche pour les ressources et +10 à la limite d'ouvrières et de bâtisseuses. Jusqu'à 5 entrepôts, Plus d'entrepôts en ajoute.</p>
+      <p class="cost">Prix : <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Piège <span class="k">B</span></h4>
+      <p>Une mine : explose quand une fourmi étrangère ou un animal marche dessus.</p>
+      <p class="cost">Prix : <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Où placer un entrepôt</h3>
+  <ul>
+    <li>Seulement à portée de la fourmilière ou d'un autre de vos entrepôts — le réseau d'entrepôts s'étend pas à pas (la portée est montrée par des cercles pointillés).</li>
+    <li>Pas trop près des ressources en croissance.</li>
+    <li>Pas sur les souches, champignons, étangs et roseaux, le ruisseau, les nids de fourmis rousses, les pièges, la nourriture, le bois ni les toiles d'araignée. Au bord d'un étang, c'est possible.</li>
+    <li>L'ennemi suit les mêmes règles.</li>
+  </ul>
+  <p>Si un entrepôt, un piège ou une zone ne peut pas être placé quelque part, une infobulle près du curseur en donne la raison : « Trop près d'une fourmilière », « Seulement dans vos zones »,
+     « Rien à récolter ici », etc.</p>
+  <h3>Pièges</h3>
+  <ul>
+    <li>Se posent seulement à l'intérieur de vos zones de récolte, sur votre moitié du terrain — pendant que vous choisissez l'emplacement, les zones sont visibles.</li>
+    <li>Après la pose, le piège se charge (environ 17 secondes, la progression est dans l'infobulle), puis il s'arme.</li>
+    <li>Se déclenche sur les fourmis ennemies, la faune et les fourmis rousses. L'explosion tue les fourmis alentour, une araignée, un carabe, un gerris ;
+      à une <b>mante</b>, elle retire 60 de santé.</li>
+    <li>Les pièges ennemis sont tout aussi dangereux. L'ennemi pose des pièges à partir de la difficulté Normal.</li>
+    <li>L'automatisation Pièges les pose d'elle-même.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Recherche</h2>
+  <p>Le panneau <b>Technologie</b> <span class="k">T</span> s'ouvre après la construction du laboratoire. À gauche les améliorations (trois niveaux), à droite l'automatisation.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Panneau Technologie"><figcaption>Le panneau Technologie</figcaption></figure>
+  <table>
+    <tr><th>Amélioration</th><th>Niv. I</th><th>Niv. II</th><th>Niv. III</th><th>Effet</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Récolte accrue</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>Les plantes poussent plus vite et sont plus nombreuses.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Manoeuvre</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Débloque le type d'attaque Manoeuvre — les guerrières contournent l'ennemi en arc et frappent de flanc ; plus rapide à chaque niveau.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Saut génétique</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Vitesse des fourmis ×1,2 / ×1,4 / ×1,6 et portée de vue dans le brouillard.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Guerrières fortes</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>Les nouvelles guerrières ont 15 / 20 / 25 de santé au lieu de 10.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Agrandir entrepôt</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Élevage de nourriture et de bois : +5 % / +10 % / +18 % de revenu des entrepôts.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Plus d'entrepôts</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>+1 entrepôt au-delà de cinq par niveau.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Nouveau type de ressource</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — les ouvrières récoltent les champignons, on peut poser des zones sur les champignons ; II — les champignons de notre moitié poussent 20 % plus vite ; III — il en pousse 20 % de plus.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — nourriture, <span class="res"><img src="Textures/der_1.png" alt=""></span> — bois. L'ennemi recherche les mêmes technologies.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Automatisation</h2>
+  <p>S'achète une fois dans la colonne de droite du panneau Technologie. La plupart s'activent ou se désactivent ensuite avec le bouton <i>Auto / Manuel</i>.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Zones</h4><p>Les zones de récolte se posent automatiquement autour des ressources.</p><p class="cost">25 nourriture</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Sylviculture</h4><p>Une partie des fourrés n'est automatiquement pas récoltée — elle devient du bois.</p><p class="cost">10 bois</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Champignonnière</h4><p>Dans les mycéliums de votre moitié, ~40 % des champignons sont laissés — les mycéliums poussent plus vite. Nécessite Nouveau type de ressource I.</p><p class="cost">30 nourriture</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">Construction</h4><p>Éclosion automatique : la colonie fait éclore elle-même les fourmis nécessaires.</p><p class="cost">10 nourriture</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Attaque</h4><p>Attaque planifiée : la colonie rassemble elle-même des guerrières et attaque quand elle est assez forte.</p><p class="cost">25 nourriture</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Pièges</h4><p>Pièges automatiques : les pièges se posent d'eux-mêmes tant qu'il y a des ressources.</p><p class="cost">10 nourriture</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Mode et zones de récolte</h2>
+  <div class="side">
+    <div>
+      <h3>Zones de récolte</h3>
+      <p>Appuyez sur Zone (ou <span class="k">=</span>) et dessinez des zones sur le terrain — les fourmis y récoltent. <span class="k">-</span> — retirer des zones.
+        Si les ressources sont loin d'un entrepôt, mieux vaut ne pas y poser de zone avant qu'un entrepôt soit construit à proximité.</p>
+      <h3>Le panneau Mode</h3>
+      <ul>
+        <li><b>Sylviculture</b> <span class="k">F</span> — marquez les plantes que les ouvrières ne toucheront pas : elles deviendront du bois. « + » au curseur — marquer, « − » — retirer la marque.</li>
+        <li><b>Champignonnière</b> <span class="k">G</span> — de même, on marque les champignons à ne pas récolter.</li>
+        <li><b>Conduite des unités</b> :
+          <ul><li><b>Attaquer tous</b> — les guerrières libres protègent les ouvrières : elles se jettent sur tout animal ou ennemi qui les a attaquées.</li>
+              <li><b>Récolte</b> — toutes les forces à la récolte des ressources.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Panneau Mode"><figcaption>Le panneau Mode</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Ordres et sélection</h2>
+  <h3>Sélection</h3>
+  <ul>
+    <li><b>Cadre</b> : maintenez le bouton gauche sur le terrain et tracez un cadre vert — les fourmis à l'intérieur sont sélectionnées (les guerrières s'il y en a, sinon les bâtisseuses, sinon les ouvrières).</li>
+    <li><span class="k">Tab</span> — sélectionner toutes vos guerrières.</li>
+    <li>Les sélectionnées s'affichent en bas à gauche : une vignette par fourmi avec sa barre de santé, leur nombre et leur force totale.</li>
+    <li><b>Bouton droit</b> — annuler la sélection et fermer les panneaux ouverts.</li>
+    <li>Les fourmis sélectionnées n'obéissent qu'à vous : la défense de la colonie, Attaquer tous et l'attaque automatique ne les prennent pas.</li>
+  </ul>
+  <h3>Où cliquer</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">Sur le terrain</h4><p>Les fourmis vont au point (une ligne pointillée animée) et y attendent.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Poste</h4><p>Un second clic près du même point, quand les guerrières y sont déjà, crée un <b>poste</b> : les guerrières tiennent la place,
+      frappent les ennemis qui approchent et reviennent. Un drapeau se dresse au-dessus du point et l'anneau pointillé « respire ». Seul un nouvel ordre à ces guerrières lève le poste.
+      Avant le second clic, un drapeau indicatif tombe sans cesse sur le point.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">Sur la nourriture / un champignon</h4><p>Les ouvrières récoltent la nourriture voisine, même hors des zones, et la ramènent. Un champignon, elles le rongent (si les champignons sont recherchés).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">Sur le bois</h4><p>Les bâtisseuses récoltent le bois voisin.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">Sur un ennemi / un animal</h4><p>Les sélectionnées attaquent la cible (cercle pointillé rouge). Une fois morte, elles passent aux petits du nid, sinon elles attendent.</p></div>
+  </div>
+  <p>Le viseur vert au curseur montre où l'on peut envoyer les fourmis. Les fourmis exécutent un ordre même après l'annulation de la sélection,
+     puis reprennent leur travail habituel. Les attaques ordonnées par clic sur un ennemi figurent aussi dans les graphiques.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Attaque</h2>
+  <div class="side">
+    <div>
+      <p>Le panneau <b>Attaque</b> :</p>
+      <ul>
+        <li>En haut — le type de vos fourmis (un clic le change), en dessous — le type de fourmis ennemies à attaquer.</li>
+        <li><b>« ‹ 1 › »</b> — combien de fourmis envoyer (maintenir — rapide). Les choisies sont marquées d'un anneau.</li>
+        <li><b>Assaut</b> — envoyer le détachement.</li>
+        <li><b>Type d'attaque</b> : <i>Direct</i> — de front ; <i>Manoeuvre</i> — en arc de contournement (nécessite la recherche Manoeuvre).</li>
+        <li><b>Attaque continue</b> — les guerrières sont envoyées sans arrêt contre l'ennemi ; le panneau reste ouvert et montre combien sont « en attaque ».</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Panneau Attaque"><figcaption>Le panneau Attaque</figcaption></figure>
+  </div>
+  <h3>Combat</h3>
+  <ul>
+    <li>La santé de tous se mesure dans les mêmes unités : ouvrière et bâtisseuse — 1, guerrière — 10…25.</li>
+    <li>La santé d'une guerrière se lit aux pétales qui l'entourent : rouge-orangé pour vos guerrières, bleus pour celles de l'ennemi.</li>
+    <li>Quand le panneau Attaque est fermé, les fourmis en attente retournent au travail.</li>
+    <li>Quand la colonie est attaquée, une alarme retentit et la musique passe en mode combat.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Combat"><figcaption>En pleine partie : l'ennemi attaque la colonie à gauche, les éclairs sont des pièges qui explosent.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Environnement</h2>
+  <table>
+    <tr><th>Objet</th><th>Praticable</th><th>Particularités</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Pierres</b></td><td>Non</td><td>On les contourne ; les araignées tissent leurs toiles contre les pierres.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Marais</b></td><td>Oui, 4 fois plus lent</td><td>Les fourmis vieillissent 10 fois plus vite. À proximité, les champignons poussent plus vite et plus dru.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Souches</b></td><td>Oui</td><td>Sous certaines — des terriers de carabes ; des champignons poussent près des souches. Pas d'entrepôt sur une souche.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Champignons</b></td><td>Oui, deux fois plus lent</td><td>Pas d'entrepôt sur un champignon.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Étangs</b></td><td>Non (eau)</td><td>Rive fertile : les plantes poussent plus vite et donnent plus de graines. Les roseaux du bord sont du bois prêt et repoussent vite. Chaque étang abrite un gerris ; des escargots sortent de l'eau.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Ruisseau</b></td><td>Seulement par les passages</td><td>Traverse le terrain. Les passages sont en pierres ou en rondins, larges de 3 rangées ; fourmis et animaux les empruntent.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Toile d'araignée</b></td><td>Oui, près de 3 fois plus lent</td><td>La propriétaire de la toile se jette sur quiconque approche.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Étang"><figcaption>Un étang avec nénuphars, roseaux et un gerris ; à côté, un carabe</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Toile contre les pierres"><figcaption>Une toile contre les pierres et un étang du côté ennemi</figcaption></figure>
+  </div>
+  <p>Il y a d'un à quatre étangs, et chaque camp en reçoit autant : un au centre, les paires en miroir. Si la carte a un ruisseau, des bras latéraux en partent vers les étangs voisins — d'étroits chenaux qui se jettent dans l'étang (en miroir sur les deux moitiés). Un chenal, comme le ruisseau, ne se franchit pas : on contourne l'étang.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Champignons</h2>
+  <p>Les mycéliums poussent près des souches et surtout près des marais. On peut récolter les champignons après la recherche Nouveau type de ressource.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Coulemelle</h4><p>Le plus grand : jusqu'à <b>13</b> de nourriture.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Cèpe</h4><p>Grand : jusqu'à <b>11</b> de nourriture.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Amanite tue-mouches</h4><p>Moyen : jusqu'à <b>6</b> de nourriture.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Girolle</h4><p>Petit : jusqu'à <b>4</b> de nourriture.</p></div>
+  </div>
+  <ul>
+    <li>Plus le champignon est grand, plus il donne de nourriture, mais plus il faut de temps pour le ronger. Les ouvrières ne prennent que les champignons mûrs ; les jeunes continuent de pousser et nourrissent le mycélium.</li>
+    <li>Un cercle de progression apparaît au-dessus du champignon ; on rapporte un morceau rongé. Un champignon non récolté finit par pourrir et disparaître.</li>
+    <li>Un mycélium étend des filaments ; là où se rencontrent les filaments de deux mycéliums, un nouveau naît. Un filament qui atteint un marais y boit — ce mycélium donne des champignons 1,7 fois plus souvent, ceux qui y sont reliés 1,35 fois.</li>
+    <li>Plus le réseau de mycéliums soudés est long, plus les champignons apparaissent souvent (jusqu'à 2,5×) et plus ils sont grands.</li>
+    <li>Si plus de la moitié d'un mycélium est mangée, les nouveaux champignons apparaissent bien plus lentement ; un mycélium entièrement récolté met très longtemps à repousser.</li>
+  </ul>
+  <div class="tip">Activez la champignonnière : les champignons laissés gardent le mycélium en pleine forme, et il vous nourrit plus longtemps.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Faune sauvage</h2>
+  <p>Les animaux n'appartiennent ni à vous ni à l'ennemi et vivent loin des deux fourmilières. Si Attaquer tous est choisi, les guerrières libres courent d'elles-mêmes
+     vers un animal qui a attaqué vos ouvrières. Un ennemi qui a assez de guerrières planifie une <b>chasse</b> aux animaux qui le gênent.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Épeire diadème</h3>
+  <div class="stats"><span class="hp">Santé 30</span><span class="dmg">morsure contre guerrière −4</span><span>petits : 12 / −2, jusqu'à 6</span></div>
+  <p>Tisse sa toile contre les pierres et attend au centre ; se jette sur toute fourmi qui approche et emporte la proie dans un cocon. Elle tue une ouvrière ou une bâtisseuse d'une morsure.
+     Des cocons (1 guerrière + 1 ouvrière ou 3 ouvrières) éclosent des petits. La dernière araignée grièvement blessée fuit vers d'autres pierres et tisse une nouvelle toile.
+     Si une araignée est attaquée, toute la famille se jette sur les guerrières. Une araignée coupée par le ruisseau cherche un chemin par un passage.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Carabe</h3>
+  <div class="stats"><span class="hp">Santé 40</span><span class="dmg">morsure contre guerrière −4</span><span>petits : 14 / −2, jusqu'à 4</span></div>
+  <p>Vit dans un terrier sous une souche et chasse les fourmis isolées (il laisse tranquilles les groupes de trois ou plus). Plus rapide qu'une fourmi ordinaire — on ne peut lui échapper qu'après
+     le second Saut génétique. Carapace solide : les guerrières le blessent plus lentement. Blessé, il se cache dans son terrier et guérit ; sans petits, il peut fuir vers une souche
+     vide et creuser un nouveau terrier. Il ne poursuit pas une proie de l'autre côté du ruisseau.</p>
+  <figure><img src="help/beetle.jpg" alt="Terrier d'un carabe"><figcaption>Le terrier d'un carabe sous une souche, des champignons, une toile et un combat près d'un passage</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Escargot</h3>
+  <div class="stats"><span class="hp">Santé 10–50</span><span>n'attaque pas</span><span>récompense 10–70 nourriture</span></div>
+  <p>Sort de temps en temps d'un étang ou du ruisseau et rampe lentement sur le terrain (en contournant pierres et collines, en laissant une traînée brillante) — surtout près de l'eau, mais parfois il s'en va « fatigué » au loin. Plus il rampe,
+     plus il grandit : 6 stades ; il sort de l'eau à l'un des trois premiers. S'il rampe sur de la nourriture, il la mange — jusqu'à 10 morceaux, puis se repose.
+     Un escargot est rongé par les ouvrières et les bâtisseuses (envoyez-les comme vers un champignon) ; les guerrières ne le blessent pas. Plus l'escargot est grand, plus il rapporte de nourriture —
+     la quantité est dans l'infobulle ; la nourriture va au camp dont les fourmis sont les plus nombreuses près de lui.
+     Dans les réglages du monde : Escargots — Peu / Normal / Beaucoup (seulement avec étangs ou ruisseau).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Mante religieuse — le boss</h3>
+  <div class="stats"><span class="hp">Santé 150</span><span class="dmg">coup contre guerrière −8</span><span>récompense 60 nourriture</span></div>
+  <div class="side">
+    <div>
+      <p>Leur nombre dépend des réglages du monde : <i>Peu</i> — une, <i>Normal</i> — deux (une sur une petite carte), <i>Beaucoup</i> — deux à quatre.
+        Elle guette dans la bande neutre, presque invisible dans l'herbe. Elle frappe en un éclair toute fourmi à portée de ses pattes ravisseuses : une ouvrière meurt,
+        une guerrière perd 8 de santé. Elle se défend contre tous à la fois — il faut une foule de guerrières. Le camp qui a le plus de guerrières près du corps au moment de sa mort reçoit 60 de nourriture.
+        Un piège lui retire 60 de santé. Une mante tuée ne réapparaît pas.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Mante"><figcaption>Une mante dans l'herbe près d'un mycélium, à côté d'une toile</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Gerris</h3>
+  <div class="stats"><span class="hp">Santé 20</span><span>fait tomber la charge</span></div>
+  <p>Glisse sur l'étang et fait tomber la nourriture ou le bois d'une fourmi qui marche au ras de la rive — la charge coule. Il ne nage jamais là où une guerrière est proche (moins de ~70),
+     si bien qu'une zone de patrouille près de l'étang protège la rive. Un gerris tué est remplacé par un nouveau avec le temps.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Fourmis rousses</h2>
+  <div class="stats"><span class="hp">fourmi 12</span><span class="hp">nid 250</span><span>neutres</span></div>
+  <div class="side">
+    <div>
+      <p>Une colonie neutre : un nid au centre (<i>Peu</i>), deux en miroir (<i>Normal</i>) ou deux sur chaque moitié (<i>Beaucoup</i>).
+        Les rousses ramassent des miettes autour de chez elles et <b>ne touchent personne</b> tant qu'on ne les touche pas.</p>
+      <ul>
+        <li>Les guerrières qui s'approchent du nid sont seulement chassées — sans guerre.</li>
+        <li>Le camp dont les guerrières ont attaqué une fourmi rousse ou un nid reçoit une <b>vendetta</b> : ses fourmis près du nid sont attaquées,
+          et de temps en temps un détachement de rousses part en <b>raid</b> contre ses ouvrières.</li>
+        <li>Un nid détruit donne toute sa réserve de nourriture au camp qui a le plus de guerrières à proximité. La réserve figure dans l'infobulle.</li>
+        <li>Près des nids de fourmis rousses ne poussent ni nourriture ni champignons ; les patrouilles les contournent.</li>
+      </ul>
+      <h3>Nouvelles colonies</h3>
+      <p>Quand un nid a amassé 200 de nourriture, il en cède 75 et la moitié de ses fourmis à une <b>nouvelle colonie</b> : le détachement part vers un emplacement libre sur la même rive
+        (comme lors de la création de la carte — pas près de l'eau, des pierres, des champignons, de la nourriture, des entrepôts, des pièges, d'autres nids de rousses ni de vos colonies ; si l'emplacement se gâte en route,
+        un autre est choisi). Si plus de la moitié du détachement est tuée en route, les survivantes rentrent. Sur place, les fourmis apportent des brindilles et le nid grandit en 8 stades
+        (dans l'infobulle « En construction : N % ») ; le chantier peut être détruit. Achevé, c'est un nid de fourmis rousses ordinaire avec sa propre réserve. Au total,
+        il y a au plus 3 / 4 / 5 / 7 nids de rousses sur la carte — de la petite à l'immense, mais toujours au moins deux de plus qu'au début.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Nid de fourmis rousses"><figcaption>Nid de fourmis rousses</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">L'ennemi</h2>
+  <div class="side">
+    <div>
+      <p>L'adversaire informatique joue selon les mêmes règles : il fait éclore des fourmis, construit un laboratoire et une chaîne d'entrepôts, pose des zones (pointillés rouges), fait de la recherche,
+        pose des pièges, attaque et franchit le ruisseau par les passages.</p>
+      <ul>
+        <li>Chasse les animaux gênants s'il a assez de guerrières.</li>
+        <li>Protège ses ouvrières en mode agressif.</li>
+        <li>Son comportement dépend de la <a href="#start">difficulté</a> choisie.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Colonie ennemie"><figcaption>La colonie ennemie</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Résultats et graphiques</h2>
+  <p>Après une victoire ou une défaite s'ouvre l'écran des résultats : temps de jeu, difficulté et taille de la carte, boutons <b>Rejouer</b> et <b>Menu</b>.
+     Après la mélodie de victoire ou de défaite revient la musique du menu principal.</p>
+  <ul>
+    <li><b>Résumé</b> — ressources obtenues, fourmis détruites et perdues par type, technologies recherchées, pièges (posés / détruits / par l'ennemi),
+      animaux tués par les colonies.</li>
+    <li><b>Graphiques</b> — nombre de fourmis et ressources des deux camps au fil du temps. Des épées marquent les attaques : le chiffre près de l'icône indique combien de fourmis différentes
+      y ont pris part (les attaques ordonnées par clic sur un ennemi comptent aussi).</li>
+  </ul>
+  <h3>Statistiques et classements</h3>
+  <ul>
+    <li><b>Statistiques</b> (menu principal) — compteurs sur toutes les parties : parties jouées (une partie compte après 2 minutes de jeu ou si elle se termine avant), victoires et défaites
+      par difficulté, temps de jeu, ressources récoltées, fourmis détruites et perdues, entrepôts et pièges, animaux vaincus. Les compteurs sont gardés à côté du jeu et dans Steam.</li>
+    <li><b>Classements</b> — la victoire la plus rapide pour chaque difficulté, taille de carte et mode (normal / riche) : le top mondial et vos amis Steam.
+      Après une victoire, l'écran des résultats affiche votre rang. Les résultats en mode Explorateur ne sont pas enregistrés.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Options</h2>
+  <ul>
+    <li><b>Son</b> et <b>Musique</b> — activés/désactivés et volume par barres (pas de 10 %).</li>
+    <li><b>Défilement</b> — vitesse de défilement du terrain au bord de l'écran et aux flèches : 50 % — normal, 100 % — deux fois plus vite, 0 % — pas de défilement au bord (seulement en faisant glisser).</li>
+    <li><b>Plein écran</b> — <i>Oui</i> (par défaut) : le jeu remplit l'écran ; <i>Non</i> : en fenêtre. Se bascule aussi avec <span class="k">Alt</span>+<span class="k">Entrée</span>.</li>
+    <li><b>Résolution</b> — pour le plein écran, une liste déroulante jusqu'à la 4K (par défaut — celle du bureau).</li>
+    <li><b>Fond de menu animé</b> — <i>Oui</i> : une vidéo tourne dans le menu principal ; <i>Non</i> (par défaut) : la première image fixe s'affiche.</li>
+    <li><b>Langue</b> — 9 langues : russe, anglais, ukrainien, allemand, français, espagnol, portugais, polonais, turc.</li>
+    <li><b>Raccourcis</b> — chaque touche peut être réassignée ; « Par défaut » rétablit les habituelles.</li>
+  </ul>
+  <p>La musique s'adapte à la situation : menu, jeu paisible, combat, victoire, défaite.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Raccourcis</h2>
+  <p>Touches par défaut (modifiables dans les options) :</p>
+  <table>
+    <tr><th>Touche</th><th>Action</th><th>Touche</th><th>Action</th></tr>
+    <tr><td><span class="k">E</span></td><td>Ouvrière</td><td><span class="k">T</span></td><td>Panneau Technologie</td></tr>
+    <tr><td><span class="k">A</span></td><td>Bâtisseuse</td><td><span class="k">F</span></td><td>Sylviculture</td></tr>
+    <tr><td><span class="k">W</span></td><td>Guerrière</td><td><span class="k">G</span></td><td>Champignonnière</td></tr>
+    <tr><td><span class="k">Maj</span>+<span class="k">E/A/W</span></td><td>16 fourmis d'un coup</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Ajouter / retirer une zone</td></tr>
+    <tr><td><span class="k">L</span></td><td>Laboratoire</td><td><span class="k">Tab</span></td><td>Sélectionner toutes les guerrières</td></tr>
+    <tr><td><span class="k">S</span></td><td>Entrepôt</td><td><span class="k">Home</span></td><td>Vers ma colonie</td></tr>
+    <tr><td><span class="k">B</span></td><td>Piège</td><td><span class="k">Échap</span></td><td>Menu principal</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Entrée</span></td><td>Plein écran / fenêtre</td><td></td><td></td></tr>
+  </table>
+  <p>Souris : bouton gauche — sélection, cadre, ordre ; droit — un clic annule la sélection et ferme les panneaux, maintenu il fait glisser le terrain ; molette — zoom ; bouton du milieu — fait aussi glisser le terrain.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">Conseils</h2>
+  <ul>
+    <li>Commencez par quelques ouvrières, puis après 30 secondes quelques bâtisseuses : 35 de bois pour le laboratoire et 25 pour l'entrepôt sont l'étape clé du début.</li>
+    <li>Placez des entrepôts sur les endroits riches loin de la fourmilière — la livraison devient courte, et les pistes accélèrent les fourmis.</li>
+    <li>Activez Attaquer tous et gardez quelques guerrières près des zones de récolte — elles protègent les ouvrières des araignées, carabes et gerris.</li>
+    <li>N'envoyez pas les ouvrières à travers les marais : elles y sont lentes et vieillissent vite.</li>
+    <li>Ne touchez pas aux rousses sans nécessité — une vendetta entraîne des raids sur vos ouvrières. Mais un nid détruit donne toute sa réserve de nourriture.</li>
+    <li>Attaquez la mante avec une grande foule ou attirez-la sur des pièges — 60 de nourriture, ça vaut le coup.</li>
+    <li>Mettez des guerrières en poste près d'une zone de récolte (second clic sur le même point) — elles ne se dispersent pas et protègent les ouvrières.</li>
+    <li>Envoyez des ouvrières sur un gros escargot qui rampe sur votre nourriture — il rapporte jusqu'à 70 de nourriture.</li>
+    <li>Agrandir entrepôt agit en pourcentage des réserves — c'est plus rentable quand vous avez beaucoup de ressources.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · Guide du jeu</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — справка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html" selected>Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>Стратегия про две муравьиные колонии: собирайте еду и дерево, растите армию, изучайте технологии,
+       выживайте среди дикой природы — и победите соседей.</p>
+    <span class="ver">Справка · версия 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>Содержание</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">Об игре и цель</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Начало игры</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Интерфейс</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Ресурсы</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Юниты</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Постройки и ловушки</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Технологии</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Автоматизаторы</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Режим и зоны</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Приказы и выделение</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Атака</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Окружение</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Грибы</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Дикая природа</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Рыжие муравьи</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">Противник</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Итоги и графики</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Настройки</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Горячие клавиши</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">Советы</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">Об игре и цель</h2>
+  <p class="lead">Colony — стратегия с экономикой про две колонии муравьев: вашу и компьютерного противника.
+  Муравейник противника стоит зеркально относительно центра поля. Ваша задача — грамотно добывать ресурсы,
+  развивать колонию и сломить соперника.</p>
+  <figure><img src="help/world.jpg" alt="Игровое поле">
+    <figcaption>Средняя карта: слева ваш муравейник (зеленый круг), справа — колония противника с зонами сбора (красный пунктир),
+      посередине ручьи с переправами, пауки, богомол, нора жужелицы, пруды и рыжие муравейники.</figcaption></figure>
+  <h3>Победа и поражение</h3>
+  <ul>
+    <li><b>Победа</b> — у противника не осталось ни одного рабочего (включая яйца в инкубаторе) и у него меньше 5 еды, то есть ему не на что родить нового рабочего.</li>
+    <li><b>Поражение</b> — то же самое случилось с вашей колонией.</li>
+    <li>Постройки разрушить нельзя: колонии уничтожают только муравьев друг друга.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Начало игры</h2>
+  <div class="side">
+    <div>
+      <p>В главном меню два способа начать:</p>
+      <ul>
+        <li><b>Новая игра</b> — обычный старт: <span class="res"><img src="Textures/eda_1.png" alt="">25</span> еды и <span class="res"><img src="Textures/der_1.png" alt="">10</span> дерева.</li>
+        <li><b>Режим богатых ресурсов</b> — у обеих сторон сразу 1500 еды и 500 дерева: можно сразу строить, изучать и воевать.</li>
+      </ul>
+      <p>В режиме богатых ресурсов, пока у вас еще есть еда (не меньше 10), идет <b>гонка вооружений</b>: стоит купить воинов больше, чем у противника,
+        как он сразу растит воинов той же общей силы (с учетом «Мощных воинов») и в это время не тратится на улучшения. Когда силы равны, на улучшения
+        и склады он тратит только то, что у него есть сверх ваших запасов. Так самая быстрая победа не дается одним ранним рывком.</p>
+      <p>Если партия идет, в меню появляются <b>«Продолжить»</b> и <b>«Заново»</b> (та же карта с начала). Еще там <b>«Статистика»</b> — ваши счетчики за все партии
+        и <b>«Таблицы лидеров»</b> Steam — самые быстрые победы.</p>
+      <p>Затем открывается экран настроек партии; игра начинается кнопкой <b>«Начать»</b>. Выбор запоминается.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Главное меню"><figcaption>Главное меню</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Настройки партии">
+    <figcaption>Слева — сложность, карта и обзор; справа — «Настройка мира»; внизу — предпросмотр карты.</figcaption></figure>
+  <h3>Сложность</h3>
+  <p>Сложность меняет только компьютерного противника:</p>
+  <table>
+    <tr><th>Уровень</th><th>Что меняется</th></tr>
+    <tr><td><b>Исследователь</b></td><td>Противник не строит воинов, не ставит ловушки и не нападает — спокойно изучайте поле и экономику. Достижения в этом режиме не выдаются.</td></tr>
+    <tr><td><b>Легкий</b></td><td>Противник собирает на 30% меньше, без ловушек, нападает не раньше чем через 6 минут.</td></tr>
+    <tr><td><b>Нормальный</b></td><td>Противник собирает на 10% меньше и нападает не раньше чем через 3 минуты.</td></tr>
+    <tr><td><b>Тяжелый</b></td><td>Противник играет в полную силу с самого начала.</td></tr>
+  </table>
+  <h3>Карта и обзор</h3>
+  <ul>
+    <li><b>Карта</b>: Маленькая (800×600), Средняя (1152×864), Большая (1440×1080), Огромная (1728×1296). Камней, болот и травы на большой карте пропорционально больше.</li>
+    <li><b>Туман войны</b> — видно только то, что рядом с вашим муравейником, складами и муравьями. Разведанная местность остается полупрозрачной; найденные муравейник и склады противника остаются на карте. Взрывы и эффекты в тумане не видны. Каждый уровень «Генетического скачка» увеличивает дальность обзора.</li>
+    <li><b>Видна вся карта</b> — колесиком можно отдалить камеру до всего поля. Без этой настройки дальше масштаба 800×600 отдалить нельзя — поле прокручивается.</li>
+  </ul>
+  <h3>Настройка мира</h3>
+  <p>Каждый элемент окружения и дикой природы можно включить или выключить и выбрать количество
+     (<i>Мало / Обычно / Много</i>): камни, болота, коряги, пруды, ручей, грибы, водомерки, улитки (только если есть пруды или ручей), жужелицы, пауки, богомол, рыжие муравьи.
+     «По умолчанию» возвращает стандартный мир. Справа внизу — живой предпросмотр карты.</p>
+  <div class="side">
+    <div>
+      <h3>Выбор места муравейника</h3>
+      <p>После «Начать» камера пролетает над полем, затем выберите место своей колонии щелчком. Шестиугольники показывают допустимые места;
+        муравейник нельзя ставить слишком близко к центру и краям. Противник появится зеркально.</p>
+      <p>Первое, что нужно сделать, — родить хотя бы одного рабочего (подсказка внизу экрана).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Выбор позиции"><figcaption>Выбор начальной позиции</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Интерфейс</h2>
+  <figure><img src="help/toolbar.jpg" alt="Верхняя панель"><figcaption>Верхняя панель</figcaption></figure>
+  <ul>
+    <li><b>Строить</b> — рождение муравьев и постройки.</li>
+    <li><b>Технологии</b> — улучшения, автоматизаторы и ловушки (после постройки лаборатории).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>еда</b> и <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>дерево</b> — ваши запасы.</li>
+    <li><b>Зона</b> — режим рисования зон сбора: <b>On</b> — добавлять, <b>Off</b>; клавиши <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Атака</b> — панель приказов и атак. <b>Режим</b> — лесоводство, грибничество и поведение юнитов.</li>
+    <li>Справа — время партии. Внизу — строка подсказок и панель выделенных муравьев.</li>
+  </ul>
+  <h3>Камера</h3>
+  <ul>
+    <li>Колесико мыши — приблизить/отдалить к курсору (до 2,5×).</li>
+    <li>Зажатая правая кнопка — перетаскивание поля («схватил и тянешь»); короткий щелчок правой кнопкой по-прежнему снимает выделение.</li>
+    <li>Стрелки на клавиатуре — прокрутка поля; зажатая правая (или средняя) кнопка мыши — перетаскивание поля.</li>
+    <li><span class="k">Home</span> — к своему муравейнику.</li>
+  </ul>
+  <h3>Подсказки при наведении</h3>
+  <p>Наведите курсор на муравья, растение, гриб, ловушку, существо или муравейник — появится карточка: здоровье, возраст,
+    рост, созревание, гниение, зарядка ловушки, запас рыжего муравейника и т. п.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Ресурсы</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Еда</h4>
+      <p>Растет из семян: когда группа растений дозревает, она дает новые семена. Собирают рабочие. Если еду долго не собирать, она одревесневает и превращается в дерево.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Дерево</h4>
+      <p>Собирают строители. Появляется из долго несобранной еды и растет камышом по берегам прудов. Нужно для лаборатории, складов, воинов и части технологий.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Грибы</h4>
+      <p>Еще один источник еды после технологии «Новый тип ресурсов». Подробно — в разделе <a href="#mush">Грибы</a>.</p></div>
+  </div>
+  <h3>Сбор и доставка</h3>
+  <ul>
+    <li>Муравьи собирают ресурсы только в <b>зонах сбора</b> (или по прямому приказу) и несут их к ближайшему складу или муравейнику.</li>
+    <li>С ношей муравей идет на 30% медленнее.</li>
+    <li>Свободные муравьи, которым нечего собирать, мигают пятнами на муравейнике.</li>
+  </ul>
+  <h3>Муравьиные тропы</h3>
+  <p>Там, где муравьи колонии ходят часто, трава вытаптывается в зернистую песчаную тропу. По своей тропе муравьи бегут быстрее — до +15%.
+     Заброшенная тропа за несколько минут зарастает. Тропы противника видны только там, где вы видите поле.</p>
+  <div class="tip">Ставьте склады так, чтобы дорога «поле → склад» была короткой и нахоженной: тропа сама ускорит доставку.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Юниты</h2>
+  <p>Муравьи рождаются на панели <b>«Строить»</b>: сначала появляется яйцо в инкубаторе вокруг муравейника (до 16 сразу), из него вылупляется муравей.
+     <b>Shift + клавиша</b> заказывает 16 муравьев за раз.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Юнит</th><th>Цена</th><th>Роль</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>Рабочий</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Собирает еду и грибы. 1 единица здоровья.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Строитель</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Собирает дерево и камыш. 1 единица здоровья. В «Новой игре» первые 30 секунд после начала игры (первого рабочего) строителей растить нельзя ни вам, ни противнику, чтобы партия началась честно; в режиме богатых ресурсов — можно сразу.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Воин</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Атака и защита. Здоровье 10 (15/20/25 с «Мощными воинами»). Нужна лаборатория.</td></tr>
+      </table>
+      <p style="font-size:13px">* С каждым уровнем «Мощных воинов» воин дороже: 35/15, 45/25, 50/30. Улучшение действует только на новых воинов.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="Панель Строить"><figcaption>Панель «Строить»</figcaption></figure>
+  </div>
+  <h3>Лимит и возраст</h3>
+  <ul>
+    <li>Рабочих — не больше 40 и строителей — не больше 40; каждый склад добавляет +10 к каждому лимиту. Воины не ограничены.</li>
+    <li>Муравьи стареют и умирают от старости — цвет полоски возраста в подсказке идет от зеленого к красному. В болоте старение в 10 раз быстрее.</li>
+    <li>В атаке муравьи бегут на 30% быстрее обычного.</li>
+  </ul>
+  <h3>Рабочие и строители тоже кусаются</h3>
+  <p>По приказу рабочих и строителей можно отправить в атаку на муравьев противника и на существ. Кусают они слабо (на существ — вчетверо слабее воина),
+     а их сила удара не улучшается — это крайняя мера, когда воинов нет.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Постройки и ловушки</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Муравейник</h4>
+      <p>Главное здание: ставится до начала игры. Сюда несут ресурсы, здесь рождаются муравьи.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Лаборатория <span class="k">L</span></h4>
+      <p>Пристройка к муравейнику, место выбирать не нужно. Открывает воинов, технологии и ловушки.</p>
+      <p class="cost">Цена: <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Склад <span class="k">S</span></h4>
+      <p>Ближний пункт доставки ресурсов и +10 к лимиту рабочих и строителей. До 5 складов, «Больше складов» добавляет еще.</p>
+      <p class="cost">Цена: <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Ловушка <span class="k">B</span></h4>
+      <p>Мина: взрывается, когда на нее наступает чужой муравей или существо.</p>
+      <p class="cost">Цена: <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Где можно ставить склад</h3>
+  <ul>
+    <li>Только в пределах досягаемости от муравейника или другого вашего склада — сеть складов растет шаг за шагом (зона показана пунктирными кругами).</li>
+    <li>Не слишком близко к растущим ресурсам.</li>
+    <li>Нельзя на коряги, грибы, пруды и камыш, ручей, рыжие муравейники, ловушки, еду, дерево и паутину. У берега пруда — можно.</li>
+    <li>Противник подчиняется тем же правилам.</li>
+  </ul>
+  <p>Если склад, ловушку или зону поставить нельзя, у курсора появляется подсказка с причиной: «Слишком близко к муравейнику», «Только внутри ваших зон»,
+     «Здесь нечего собирать» и т. п.</p>
+  <h3>Ловушки</h3>
+  <ul>
+    <li>Ставятся только внутри ваших зон сбора на своей половине поля — пока вы выбираете место, зоны видны на поле.</li>
+    <li>После установки ловушка заряжается (около 17 секунд, прогресс виден в подсказке), потом становится активной.</li>
+    <li>Срабатывает на муравьев противника, на диких существ и на рыжих муравьев. Взрыв убивает муравьев в радиусе, паука, жужелицу, водомерку;
+      <b>богомолу</b> снимает 60 здоровья.</li>
+    <li>Ловушки противника тоже опасны. Противник ставит ловушки начиная с Нормальной сложности.</li>
+    <li>«Ловушки» в автоматизаторах расставляют их сами.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Технологии</h2>
+  <p>Панель <b>«Технологии»</b> <span class="k">T</span> открывается после постройки лаборатории. Слева — улучшения (три уровня), справа — автоматизаторы.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Панель технологий"><figcaption>Панель «Технологии»</figcaption></figure>
+  <table>
+    <tr><th>Улучшение</th><th>Ур. I</th><th>Ур. II</th><th>Ур. III</th><th>Эффект</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Улучшить урожай</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>Растения растут быстрее и их становится больше.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Маневр</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Открывает тип атаки «Маневр» — воины обходят противника по дуге и бьют сбоку; с уровнем маневр быстрее.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Генетический скачок</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Скорость муравьев ×1,2 / ×1,4 / ×1,6 и дальность обзора в тумане.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Мощные воины</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>Здоровье новых воинов 15 / 20 / 25 вместо 10.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Увеличить склад</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Разведение еды и дерева: +5% / +10% / +18% дохода со складов.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Больше складов</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>+1 склад сверх пяти за каждый уровень.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Новый тип ресурсов</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — рабочие собирают грибы, на грибы можно ставить зоны; II — грибы на нашей стороне растут на 20% быстрее; III — их растет на 20% больше.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — еда, <span class="res"><img src="Textures/der_1.png" alt=""></span> — дерево. Противник изучает те же технологии.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Автоматизаторы</h2>
+  <p>Покупаются один раз в правой колонке панели «Технологии». Большинство потом включается/выключается кнопкой <i>Авто / Вручн</i>.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Зоны</h4><p>Зоны сбора расставляются автоматически вокруг ресурсов.</p><p class="cost">25 еды</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Лесоводство</h4><p>Часть зарослей автоматически не собирается — они превращаются в дерево.</p><p class="cost">10 дерева</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Грибничество</h4><p>В грибницах на вашей половине ~40% грибов оставляют расти — грибницы растут быстрее. Нужен «Новый тип ресурсов» I.</p><p class="cost">30 еды</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">Строить</h4><p>Авторождение: колония сама рожает нужных муравьев.</p><p class="cost">10 еды</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Атака</h4><p>Спланированная атака: колония сама собирает воинов и нападает, когда сил достаточно.</p><p class="cost">25 еды</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Ловушки</h4><p>Авто-ловушки: ловушки ставятся сами, пока есть ресурсы.</p><p class="cost">10 еды</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Режим и зоны сбора</h2>
+  <div class="side">
+    <div>
+      <h3>Зоны сбора</h3>
+      <p>Нажмите «Зона» (или <span class="k">=</span>) и рисуйте зоны на поле — муравьи собирают внутри них. <span class="k">-</span> — режим удаления зон.
+        Если ресурсы далеко от склада, лучше не ставить там зону, пока рядом не появится склад.</p>
+      <h3>Панель «Режим»</h3>
+      <ul>
+        <li><b>Лесоводство</b> <span class="k">F</span> — отметьте растения, которые рабочие не трогают: они вырастут в дерево. Знак «+» у курсора — отметить, «−» — снять.</li>
+        <li><b>Грибничество</b> <span class="k">G</span> — так же отмечаются грибы, которые рабочие не собирают.</li>
+        <li><b>Поведение юнитов</b>:
+          <ul><li><b>Нападать на всех</b> — свободные воины защищают рабочих: бегут на любое существо или врага, напавшего на них.</li>
+              <li><b>Сбор урожая</b> — все усилия на сбор ресурсов.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Панель Режим"><figcaption>Панель «Режим»</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Приказы и выделение</h2>
+  <h3>Выделение</h3>
+  <ul>
+    <li><b>Рамка</b>: зажмите левую кнопку на поле и протяните зеленую рамку — выбираются муравьи внутри (воины, если есть, иначе строители, иначе рабочие).</li>
+    <li><span class="k">Tab</span> — выделить всех своих воинов.</li>
+    <li>Выделенные показаны внизу слева: по плитке на муравья с полоской здоровья, их число и общая сила.</li>
+    <li><b>Правая кнопка</b> — снять выделение и закрыть открытые панели.</li>
+    <li>Выбранные муравьи слушаются только вас: защита колонии, «Нападать на всех» и автоатака их не забирают.</li>
+  </ul>
+  <h3>Куда можно щелкнуть</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">По полю</h4><p>Муравьи идут в точку (бегущий пунктир) и ждут там.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Пост</h4><p>Второй щелчок рядом с той же точкой, когда воины уже там, — <b>пост</b>: воины держат место,
+      бьют подошедших врагов и возвращаются. Над точкой стоит флажок, пунктирное кольцо «дышит». Пост снимает только новый приказ этим воинам.
+      Перед вторым щелчком над точкой падает флажок-подсказка.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">По еде / грибу</h4><p>Рабочие собирают еду рядом с этим местом, даже вне зон, и носят домой. Гриб — прогрызают (если изучены грибы).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">По дереву</h4><p>Строители собирают дерево рядом с этим местом.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">По врагу / существу</h4><p>Выбранные атакуют цель (красный пунктирный круг). Убили — переключаются на детенышей у гнезда, иначе ждут.</p></div>
+  </div>
+  <p>Зеленый прицел у курсора показывает, куда можно отправить муравьев. Получив приказ, муравьи выполняют его и после снятия выделения,
+     а затем возвращаются к обычной работе. Атаки, отданные щелчком по врагу, тоже попадают на графики итогов.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Атака</h2>
+  <div class="side">
+    <div>
+      <p>Панель <b>«Атака»</b>:</p>
+      <ul>
+        <li>Сверху — тип ваших муравьев (щелчок переключает), ниже — тип муравьев противника, на которых нападать.</li>
+        <li><b>«‹ 1 ›»</b> — сколько муравьев отправить (удержание — быстро). Выбранные отмечаются кольцом.</li>
+        <li><b>Атака</b> — отправить отряд.</li>
+        <li><b>Тип атаки</b>: <i>Прямо</i> — в лоб; <i>Маневр</i> — обход по дуге (нужна технология «Маневр»).</li>
+        <li><b>Постоянная атака</b> — воины непрерывно отправляются на врага; панель остается открытой, видно сколько «в атаке».</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Панель Атака"><figcaption>Панель «Атака»</figcaption></figure>
+  </div>
+  <h3>Бой</h3>
+  <ul>
+    <li>Здоровье измеряется в одних единицах для всех: рабочий и строитель — 1, воин — 10…25.</li>
+    <li>Здоровье воина видно по лепесткам вокруг него: у ваших воинов они красно-оранжевые, у воинов противника — голубые.</li>
+    <li>Когда панель «Атака» закрыта, ждавшие приказа муравьи возвращаются к работе.</li>
+    <li>Если на колонию нападают, звучит тревога, а музыка сменяется на боевую.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Бой"><figcaption>Разгар партии: противник атакует колонию слева, вспышки — взорвавшиеся ловушки.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Окружение</h2>
+  <table>
+    <tr><th>Объект</th><th>Проходимость</th><th>Особенности</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Камни</b></td><td>Нельзя</td><td>Обходятся; у камней пауки плетут паутину.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Болота</b></td><td>Можно, в 4 раза медленнее</td><td>Муравьи стареют в 10 раз быстрее. Рядом грибы растут быстрее и гуще.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Коряги</b></td><td>Можно</td><td>Под некоторыми — норы жужелиц; возле коряг растут грибы. Склад на корягу не поставить.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Грибы</b></td><td>Можно, вдвое медленнее</td><td>Склад на гриб не поставить.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Пруды</b></td><td>Нельзя (вода)</td><td>Плодородный берег: растения растут быстрее и дают больше семян. Камыш по краю — готовое дерево, быстро отрастает. На каждом пруду живет водомерка.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Ручей</b></td><td>Только по переправам</td><td>Пересекает поле. Переправы — из камней или бревен, шириной в 3 ряда; ими пользуются и муравьи, и существа.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Паутина</b></td><td>Можно, почти втрое медленнее</td><td>Хозяин паутины бросается на подошедших.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Пруд"><figcaption>Пруд с кувшинками, камышом и водомеркой; рядом жужелица</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Паутина у камней"><figcaption>Паутина у камней и пруд на стороне противника</figcaption></figure>
+  </div>
+  <p>Прудов от одного до четырёх, и обеим сторонам они достаются поровну: один посередине, пары — зеркально. Если на карте есть ручей, к прудам рядом с ним от ручья идут отростки — узкие протоки, впадающие в пруд (зеркально на обеих половинах). Протоку, как и ручей, перейти нельзя: её обходят вокруг пруда.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Грибы</h2>
+  <p>Грибницы растут возле коряг и особенно охотно у болот. Собирать грибы можно после технологии «Новый тип ресурсов».</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Гриб-зонтик</h4><p>Самый большой: до <b>13</b> еды.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Боровик</h4><p>Большой: до <b>11</b> еды.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Мухомор</h4><p>Средний: до <b>6</b> еды.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Лисичка</h4><p>Маленькая: до <b>4</b> еды.</p></div>
+  </div>
+  <ul>
+    <li>Чем больше гриб, тем больше еды, но тем дольше его прогрызать. Рабочие берут только спелые грибы; молодые растут дальше и питают грибницу.</li>
+    <li>Над грибом виден круг прогресса; домой несется прогрызенный кусок. Несобранный гриб со временем гниет и исчезает.</li>
+    <li>Грибница пускает нити мицелия; где встречаются нити двух грибниц, появляется новая. Нить, дотянувшаяся до болота, пьет из него — у такой грибницы грибы появляются в 1,7 раза чаще, а у связанных с ней — в 1,35 раза.</li>
+    <li>Чем длиннее сросшаяся сеть мицелия, тем чаще появляются грибы (до 2,5×) и тем они крупнее.</li>
+    <li>Если съесть больше половины грибницы, новые грибы появляются в разы медленнее; съеденная целиком отрастает очень долго.</li>
+  </ul>
+  <div class="tip">Включите «Грибничество»: оставленные грибы держат грибницу в полной силе, и она кормит дольше.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Дикая природа</h2>
+  <p>Существа не принадлежат ни вам, ни противнику и живут далеко от обоих муравейников. Если выбрано «Нападать на всех», свободные воины сами
+     бегут на существо, напавшее на ваших рабочих. Противник с достаточным числом воинов планирует <b>охоту</b> на мешающих ему существ.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Паук-крестовик</h3>
+  <div class="stats"><span class="hp">здоровье 30</span><span class="dmg">укус воину −4</span><span>паучата: 12 / −2, до 6</span></div>
+  <p>Плетет паутину у камней и ждет в центре; бросается на любого подошедшего муравья и уносит добычу коконом. Рабочего или строителя убивает одним укусом.
+     Из коконов (1 воин + 1 рабочий или 3 рабочих) вылупляются паучата. Сильно раненный последний паук убегает к другим камням и плетет новую паутину.
+     Если напасть на паука, вся семья бросается на воинов. Паук, отрезанный ручьем, ищет путь через переправу.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Жужелица</h3>
+  <div class="stats"><span class="hp">здоровье 40</span><span class="dmg">укус воину −4</span><span>детеныши: 14 / −2, до 4</span></div>
+  <p>Живет в норе под корягой и охотится на муравьев-одиночек (группу из трех и больше не трогает). Быстрее обычного муравья — убежать можно только после
+     второго «Генетического скачка». Прочный панцирь: воины ранят ее медленнее. Раненая — прячется в нору и лечится, а без детенышей может убежать к пустой
+     коряге и вырыть новую нору. Добычу за ручьем не преследует.</p>
+  <figure><img src="help/beetle.jpg" alt="Нора жужелицы"><figcaption>Нора жужелицы под корягой, грибы, паутина и схватка у переправы</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Улитка</h3>
+  <div class="stats"><span class="hp">здоровье 10–50</span><span>не нападает</span><span>награда 10–70 еды</span></div>
+  <p>Время от времени выползает из пруда или ручья и медленно ползает по полю (камни и горки обходит, оставляет блестящий след) — чаще у воды, но иногда, «устав», уползает далеко. Чем дольше ползает,
+     тем больше растет: 6 стадий, из воды появляется на одной из первых трех. Проползая по еде, съедает ее — до 10 штук, потом отдыхает.
+     Улитку грызут рабочие и строители (отправьте их на нее, как на гриб); воины ее не ранят. Чем крупнее улитка, тем больше еды за нее —
+     сколько, видно в подсказке; еда достается той стороне, чьих муравьев у нее больше.
+     В настройках мира: «Улитки» — Мало / Обычно / Много (только если есть пруды или ручей).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Богомол — босс</h3>
+  <div class="stats"><span class="hp">здоровье 150</span><span class="dmg">удар воину −8</span><span>награда 60 еды</span></div>
+  <div class="side">
+    <div>
+      <p>Сколько их на карте, задается в настройках мира: <i>Мало</i> — один, <i>Обычно</i> — два (на маленькой карте один), <i>Много</i> — от двух до четырех.
+        Сидит в засаде в нейтральной полосе, почти сливаясь с травой. Любого муравья в пределах передних лап бьет молниеносно: рабочий погибает,
+        воин теряет 8 здоровья. Отбивается от всех вокруг — нужна толпа воинов. Сторона, чьих воинов у тела больше в момент гибели, получает 60 еды.
+        Ловушка снимает ему 60 здоровья. Убитый богомол больше не появляется.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Богомол"><figcaption>Богомол в траве у грибницы, рядом паутина</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Водомерка</h3>
+  <div class="stats"><span class="hp">здоровье 20</span><span>выбивает ношу</span></div>
+  <p>Скользит по пруду и выбивает еду или дерево у муравья, идущего по самому берегу, — ноша тонет. Никогда не подплывает туда, где рядом воин (ближе ~70),
+     поэтому зона патрулирования у пруда защищает берег. Убитая водомерка со временем сменяется новой.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Рыжие муравьи</h2>
+  <div class="stats"><span class="hp">муравей 12</span><span class="hp">муравейник 250</span><span>нейтральные</span></div>
+  <div class="side">
+    <div>
+      <p>Нейтральная колония: один муравейник в центре (<i>Мало</i>), два зеркально (<i>Обычно</i>) или по два на каждой половине (<i>Много</i>).
+        Рыжие собирают крошки вокруг дома и <b>никого не трогают</b>, пока их не тронут.</p>
+      <ul>
+        <li>Воинов, подошедших вплотную к муравейнику, просто отгоняют — без войны.</li>
+        <li>Сторона, чьи воины напали на рыжего муравья или муравейник, получает <b>вражду</b>: ее муравьев у муравейника атакуют,
+          а время от времени отряд рыжих идет в <b>набег</b> на ее рабочих.</li>
+        <li>Разрушенный муравейник отдает весь свой запас еды стороне, у которой рядом больше воинов. Запас виден в подсказке.</li>
+        <li>Возле рыжих муравейников не растут еда и грибы; патрули их обходят.</li>
+      </ul>
+      <h3>Новые колонии</h3>
+      <p>Накопив 200 еды, муравейник отдает 75 из них и половину своих муравьев на <b>новую колонию</b>: отряд идет к свободному месту на том же берегу
+        (как при создании карты — не у воды, камней, грибов, еды, складов, ловушек, других рыжих муравейников и ваших колоний; если место по дороге испортилось,
+        выбирается другое). Если по пути убито больше половины отряда, остальные бегут домой. На месте муравьи носят прутики, и муравейник растет за 8 стадий
+        (в подсказке — «Строится: N%»); стройку можно разрушить. Готовый — обычный рыжий муравейник со своим запасом. Всего рыжих муравейников на карте
+        не больше 3 / 4 / 5 / 7 — от маленькой до огромной карты, но всегда хотя бы на два больше, чем было в начале.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Рыжий муравейник"><figcaption>Рыжий муравейник</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">Противник</h2>
+  <div class="side">
+    <div>
+      <p>Компьютерный противник играет по тем же правилам: рожает муравьев, строит лабораторию и цепочку складов, ставит зоны (красный пунктир), изучает технологии,
+        ставит ловушки, атакует и переходит ручей по переправам.</p>
+      <ul>
+        <li>Охотится на мешающих существ, когда у него достаточно воинов.</li>
+        <li>Защищает своих рабочих в агрессивном режиме.</li>
+        <li>Его поведение зависит от выбранной <a href="#start">сложности</a>.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Колония противника"><figcaption>Колония противника</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Итоги и графики</h2>
+  <p>После победы или поражения открывается экран результатов: время партии, сложность и размер карты, кнопки <b>«Заново»</b> и <b>«В меню»</b>.
+     После мелодии победы/поражения снова играет музыка главного меню.</p>
+  <ul>
+    <li><b>Итоги</b> — получено ресурсов, уничтожено и потеряно муравьев по типам, изученные технологии, ловушки (расставлено / уничтожено / врагом),
+      дикая природа, убитая колониями.</li>
+    <li><b>Графики</b> — численность муравьев и ресурсы обеих сторон по времени. Мечи отмечают атаки: число на значке — сколько разных муравьев
+      участвовало (учитываются и атаки, отданные щелчком по врагу).</li>
+  </ul>
+  <h3>Статистика и таблицы лидеров</h3>
+  <ul>
+    <li><b>Статистика</b> (главное меню) — счетчики за все партии: сыграно (партия засчитывается после 2 минут игры или если закончилась раньше), победы и поражения
+      по сложностям, время в игре, собранные ресурсы, убитые и потерянные муравьи, склады и ловушки, побежденные существа. Счетчики хранятся рядом с игрой и в Steam.</li>
+    <li><b>Таблицы лидеров</b> — самая быстрая победа для каждой сложности, размера карты и режима (обычный / богатые ресурсы): мировой топ и друзья Steam.
+      После победы на экране итогов видно ваше место. В режиме «Исследователь» результаты не записываются.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Настройки</h2>
+  <ul>
+    <li><b>Звук</b> и <b>Музыка</b> — включение и громкость столбиками (шаг 10%).</li>
+    <li><b>Прокрутка</b> — скорость прокрутки поля у края экрана и стрелками: 50% — обычная, 100% — вдвое быстрее, 0% — у края поле не прокручивается (только перетаскиванием).</li>
+    <li><b>Полный экран</b> — <i>Вкл</i> (по умолчанию): игра на весь экран; <i>Выкл</i>: в окне. Переключается и клавишами <span class="k">Alt</span>+<span class="k">Enter</span>.</li>
+    <li><b>Разрешение</b> — для полноэкранного режима, выпадающий список вплоть до 4K (по умолчанию — разрешение рабочего стола).</li>
+    <li><b>Динамическое меню</b> — <i>Вкл</i>: в главном меню играет видео; <i>Выкл</i> (по умолчанию): показывается неподвижный первый кадр.</li>
+    <li><b>Язык</b> — 9 языков: русский, английский, украинский, немецкий, французский, испанский, португальский, польский, турецкий.</li>
+    <li><b>Горячие клавиши</b> — любую клавишу можно переназначить; «По умолчанию» вернет стандартные.</li>
+  </ul>
+  <p>Музыка меняется по ситуации: меню, мирная игра, бой, победа, поражение.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Горячие клавиши</h2>
+  <p>Стандартные клавиши (меняются в настройках):</p>
+  <table>
+    <tr><th>Клавиша</th><th>Действие</th><th>Клавиша</th><th>Действие</th></tr>
+    <tr><td><span class="k">E</span></td><td>Рабочий</td><td><span class="k">T</span></td><td>Панель технологий</td></tr>
+    <tr><td><span class="k">A</span></td><td>Строитель</td><td><span class="k">F</span></td><td>Лесоводство</td></tr>
+    <tr><td><span class="k">W</span></td><td>Воин</td><td><span class="k">G</span></td><td>Грибничество</td></tr>
+    <tr><td><span class="k">Shift</span>+<span class="k">E/A/W</span></td><td>Сразу 16 муравьев</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Добавить / убрать зону</td></tr>
+    <tr><td><span class="k">L</span></td><td>Лаборатория</td><td><span class="k">Tab</span></td><td>Выделить всех воинов</td></tr>
+    <tr><td><span class="k">S</span></td><td>Склад</td><td><span class="k">Home</span></td><td>К своему муравейнику</td></tr>
+    <tr><td><span class="k">B</span></td><td>Ловушка</td><td><span class="k">Esc</span></td><td>Главное меню</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Enter</span></td><td>Полный экран / окно</td><td></td><td></td></tr>
+  </table>
+  <p>Мышь: левая кнопка — выбор, рамка, приказ; правая — щелчок снимает выделение и закрывает панели, зажатая — перетаскивает поле; колесико — масштаб; средняя кнопка — тоже перетаскивание поля.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">Советы</h2>
+  <ul>
+    <li>Начните с нескольких рабочих, а через 30 секунд — пары строителей: 35 дерева на лабораторию и 25 на склад — главный ранний рубеж.</li>
+    <li>Ставьте склады у богатых ресурсами мест вдали от муравейника — доставка станет короткой, а тропы ускорят муравьев.</li>
+    <li>Включите «Нападать на всех» и держите пару воинов у зон сбора — они защитят рабочих от пауков, жужелиц и водомерок.</li>
+    <li>Не ходите рабочими через болота: там они медленные и быстро стареют.</li>
+    <li>Не трогайте рыжих без нужды — вражда приведет к набегам на ваших рабочих. Но разрушенный муравейник дает весь свой запас еды.</li>
+    <li>На богомола идите большой толпой или подведите его к ловушкам — 60 еды того стоят.</li>
+    <li>Поставьте воинов постом у зоны сбора (второй щелчок по той же точке) — они не разбредутся и защитят рабочих.</li>
+    <li>Крупную улитку, ползущую по вашей еде, отправьте грызть рабочих — она даст до 70 еды.</li>
+    <li>«Увеличить склад» работает в процентах от запаса — выгоднее, когда ресурсов много.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · справка по игре</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

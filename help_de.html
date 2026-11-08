@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — Anleitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html" selected>Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>Ein Strategiespiel über zwei Ameisenkolonien: Sammle Nahrung und Holz, stelle ein Heer auf, erforsche Technologien,
+       überlebe inmitten der Wildtiere — und besiege deine Nachbarn.</p>
+    <span class="ver">Anleitung · Version 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>Inhalt</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">Über das Spiel und Ziel</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Spielbeginn</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Oberfläche</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Ressourcen</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Einheiten</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Gebäude und Fallen</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Forschung</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Automatisierung</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Modus und Zonen</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Befehle und Auswahl</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Angriff</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Umgebung</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Pilze</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Wildtiere</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Rote Ameisen</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">Der Gegner</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Ergebnisse und Diagramme</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Einstellungen</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Tastenbelegung</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">Tipps</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">Über das Spiel und Ziel</h2>
+  <p class="lead">Colony ist ein Wirtschafts-Strategiespiel über zwei Ameisenkolonien: deine und die eines Computergegners.
+  Der gegnerische Ameisenhaufen steht gespiegelt zur Mitte des Feldes. Deine Aufgabe: geschickt Ressourcen sammeln,
+  die Kolonie entwickeln und den Rivalen brechen.</p>
+  <figure><img src="help/world.jpg" alt="Das Spielfeld">
+    <figcaption>Eine mittlere Karte: links dein Ameisenhaufen (grüner Kreis), rechts die gegnerische Kolonie mit ihren Sammelzonen (rot gestrichelt),
+      in der Mitte Bäche mit Übergängen, Spinnen, eine Gottesanbeterin, der Bau eines Laufkäfers, Teiche und Nester der Roten Ameisen.</figcaption></figure>
+  <h3>Sieg und Niederlage</h3>
+  <ul>
+    <li><b>Sieg</b> — der Gegner hat keine Arbeiterin mehr (Eier im Brutkasten eingeschlossen) und weniger als 5 Nahrung, kann also keine neue Arbeiterin ausbrüten.</li>
+    <li><b>Niederlage</b> — dasselbe ist deiner Kolonie passiert.</li>
+    <li>Gebäude lassen sich nicht zerstören: Die Kolonien töten nur die Ameisen der anderen.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Spielbeginn</h2>
+  <div class="side">
+    <div>
+      <p>Im Hauptmenü gibt es zwei Arten zu beginnen:</p>
+      <ul>
+        <li><b>Neues Spiel</b> — der übliche Start: <span class="res"><img src="Textures/eda_1.png" alt="">25</span> Nahrung und <span class="res"><img src="Textures/der_1.png" alt="">10</span> Holz.</li>
+        <li><b>Viele Ressourcen</b> — beide Seiten haben sofort 1500 Nahrung und 500 Holz: Bauen, Forschen und Kämpfen geht sofort los.</li>
+      </ul>
+      <p>Im Modus Viele Ressourcen herrscht, solange du noch Nahrung hast (mindestens 10), ein <b>Wettrüsten</b>: Kaufst du mehr Kriegerinnen, als der Gegner hat,
+        brütet er sofort Kriegerinnen gleicher Gesamtstärke aus (Starke Kriegerinnen eingerechnet) und gibt währenddessen nichts für Verbesserungen aus. Bei gleicher Stärke
+        gibt er für Verbesserungen und Lager nur aus, was er über deine Vorräte hinaus hat. So lässt sich der schnellste Sieg nicht mit einem frühen Ansturm holen.</p>
+      <p>Während eine Partie läuft, zeigt das Menü auch <b>Fortsetzen</b> und <b>Neustart</b> (dieselbe Karte von vorn). Außerdem gibt es die <b>Statistik</b> — deine Zähler
+        über alle Partien — und die Steam-<b>Bestenlisten</b> der schnellsten Siege.</p>
+      <p>Danach öffnet sich der Bildschirm mit den Partie-Einstellungen; das Spiel beginnt mit <b>Starten</b>. Die Auswahl wird gespeichert.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Hauptmenü"><figcaption>Hauptmenü</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Partie-Einstellungen">
+    <figcaption>Links Schwierigkeit, Karte und Sicht; rechts die Welteinstellungen; unten die Kartenvorschau.</figcaption></figure>
+  <h3>Schwierigkeit</h3>
+  <p>Die Schwierigkeit verändert nur den Computergegner:</p>
+  <table>
+    <tr><th>Stufe</th><th>Was sich ändert</th></tr>
+    <tr><td><b>Entdecker</b></td><td>Der Gegner baut keine Kriegerinnen, stellt keine Fallen auf und greift nie an — erkunde Feld und Wirtschaft in Ruhe. In diesem Modus gibt es keine Erfolge.</td></tr>
+    <tr><td><b>Leicht</b></td><td>Der Gegner sammelt 30% weniger, ohne Fallen, und greift frühestens nach 6 Minuten an.</td></tr>
+    <tr><td><b>Normal</b></td><td>Der Gegner sammelt 10% weniger und greift frühestens nach 3 Minuten an.</td></tr>
+    <tr><td><b>Schwer</b></td><td>Der Gegner spielt von Anfang an mit voller Kraft.</td></tr>
+  </table>
+  <h3>Karte und Sicht</h3>
+  <ul>
+    <li><b>Karte</b>: Klein (800×600), Mittel (1152×864), Groß (1440×1080), Riesig (1728×1296). Auf einer größeren Karte gibt es entsprechend mehr Steine, Sümpfe und Gras.</li>
+    <li><b>Nebel des Krieges</b> — sichtbar ist nur, was nahe deinem Ameisenhaufen, deinen Lagern und Ameisen liegt. Erkundetes Gelände bleibt halb sichtbar; ein gefundener gegnerischer Ameisenhaufen und seine Lager bleiben auf der Karte. Explosionen und Effekte im Nebel sind nicht zu sehen. Jede Stufe des Genetischen Sprungs vergrößert die Sichtweite.</li>
+    <li><b>Ganze Karte sichtbar</b> — mit dem Mausrad lässt sich bis aufs ganze Feld herauszoomen. Ohne diese Einstellung nicht weiter als 800×600 — das Feld scrollt.</li>
+  </ul>
+  <h3>Welteinstellungen</h3>
+  <p>Jedes Element der Umgebung und der Wildtiere lässt sich ein- oder ausschalten und in der Menge wählen
+     (<i>Wenig / Normal / Viel</i>): Steine, Sümpfe, Baumstümpfe, Teiche, Bach, Pilze, Wasserläufer, Schnecken (nur mit Teichen oder Bach), Laufkäfer, Spinnen, Gottesanbeterin, Rote Ameisen.
+     „Standard" stellt die übliche Welt wieder her. Unten rechts — eine Live-Vorschau der Karte.</p>
+  <div class="side">
+    <div>
+      <h3>Platz für den Ameisenhaufen wählen</h3>
+      <p>Nach Starten fliegt die Kamera über das Feld, dann wählst du mit einem Klick den Platz deiner Kolonie. Sechsecke zeigen erlaubte Plätze;
+        der Ameisenhaufen darf nicht zu nah an der Mitte und an den Rändern stehen. Der Gegner erscheint gespiegelt.</p>
+      <p>Als Erstes solltest du mindestens eine Arbeiterin ausbrüten (Hinweis unten am Bildschirm).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Startposition wählen"><figcaption>Startposition wählen</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Oberfläche</h2>
+  <figure><img src="help/toolbar.jpg" alt="Obere Leiste"><figcaption>Obere Leiste</figcaption></figure>
+  <ul>
+    <li><b>Bauen</b> — Ameisen ausbrüten und Gebäude.</li>
+    <li><b>Forschung</b> — Verbesserungen, Automatisierung und Fallen (nach dem Bau des Labors).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>Nahrung</b> und <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>Holz</b> — deine Vorräte.</li>
+    <li><b>Zone</b> — Sammelzonen zeichnen: <b>On</b> — hinzufügen, <b>Off</b>; Tasten <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Angriff</b> — Befehls- und Angriffsleiste. <b>Modus</b> — Forst, Pilzzucht und Einheitenverhalten.</li>
+    <li>Rechts — die Spielzeit. Unten — die Hinweiszeile und die Leiste der ausgewählten Ameisen.</li>
+  </ul>
+  <h3>Kamera</h3>
+  <ul>
+    <li>Mausrad — zum Cursor hin hinein-/herauszoomen (bis 2,5×).</li>
+    <li>Gedrückte rechte Taste — Feld ziehen („packen und ziehen"); ein kurzer Rechtsklick hebt die Auswahl weiterhin auf.</li>
+    <li>Pfeiltasten — Feld scrollen; gedrückte rechte (oder mittlere) Maustaste — Feld ziehen.</li>
+    <li><span class="k">Home</span> — zum eigenen Ameisenhaufen.</li>
+  </ul>
+  <h3>Hinweise beim Überfahren</h3>
+  <p>Zeige auf eine Ameise, eine Pflanze, einen Pilz, eine Falle, ein Tier oder einen Ameisenhaufen — eine Karte erscheint: Gesundheit, Alter,
+    Wachstum, Reifen, Fäulnis, Laden der Falle, der Vorrat eines Nests der Roten Ameisen usw.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Ressourcen</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Nahrung</h4>
+      <p>Wächst aus Samen: Reift eine Pflanzengruppe, gibt sie neue Samen. Wird von Arbeiterinnen gesammelt. Lange nicht gesammelte Nahrung verholzt und wird zu Holz.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Holz</h4>
+      <p>Wird von Architektinnen gesammelt. Entsteht aus lange nicht gesammelter Nahrung und wächst als Schilf an Teichufern. Nötig für Labor, Lager, Kriegerinnen und einen Teil der Forschung.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Pilze</h4>
+      <p>Eine weitere Nahrungsquelle nach der Forschung Neue Ressourcenart. Mehr im Abschnitt <a href="#mush">Pilze</a>.</p></div>
+  </div>
+  <h3>Sammeln und Liefern</h3>
+  <ul>
+    <li>Ameisen sammeln Ressourcen nur in <b>Sammelzonen</b> (oder auf direkten Befehl) und tragen sie zum nächsten Lager oder Ameisenhaufen.</li>
+    <li>Mit Last läuft eine Ameise 30% langsamer.</li>
+    <li>Freie Ameisen, die nichts zu sammeln haben, blinken als Flecken auf dem Ameisenhaufen.</li>
+  </ul>
+  <h3>Ameisenpfade</h3>
+  <p>Wo die Ameisen der Kolonie oft laufen, wird das Gras zu einem körnigen Sandpfad zertreten. Auf dem eigenen Pfad laufen Ameisen schneller — bis zu +15%.
+     Ein verlassener Pfad wächst in wenigen Minuten zu. Pfade des Gegners sind nur dort zu sehen, wo du das Feld siehst.</p>
+  <div class="tip">Stelle Lager so, dass der Weg „Feld → Lager" kurz und gut ausgetreten ist: Der Pfad beschleunigt die Lieferung von selbst.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Einheiten</h2>
+  <p>Ameisen werden in der Leiste <b>Bauen</b> ausgebrütet: Zuerst erscheint ein Ei im Brutkasten um den Ameisenhaufen (bis zu 16 zugleich), daraus schlüpft die Ameise.
+     <b>Shift + Taste</b> bestellt 16 Ameisen auf einmal.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Einheit</th><th>Preis</th><th>Rolle</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>Arbeiterin</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Sammelt Nahrung und Pilze. 1 Gesundheitspunkt.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Architektin</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Sammelt Holz und Schilf. 1 Gesundheitspunkt. Im Neuen Spiel können in den ersten 30 Sekunden nach Spielbeginn (der ersten Arbeiterin) weder du noch der Gegner Architektinnen ausbrüten, damit die Partie fair beginnt; im Modus Viele Ressourcen sofort.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Kriegerin</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Angriff und Verteidigung. Gesundheit 10 (15/20/25 mit Starken Kriegerinnen). Braucht das Labor.</td></tr>
+      </table>
+      <p style="font-size:13px">* Mit jeder Stufe der Starken Kriegerinnen wird eine Kriegerin teurer: 35/15, 45/25, 50/30. Die Verbesserung gilt nur für neue Kriegerinnen.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="Leiste Bauen"><figcaption>Die Leiste Bauen</figcaption></figure>
+  </div>
+  <h3>Limit und Alter</h3>
+  <ul>
+    <li>Höchstens 40 Arbeiterinnen und höchstens 40 Architektinnen; jedes Lager erhöht jedes Limit um 10. Kriegerinnen sind unbegrenzt.</li>
+    <li>Ameisen altern und sterben an Altersschwäche — der Altersbalken im Hinweis geht von Grün zu Rot. Im Sumpf altern sie 10-mal schneller.</li>
+    <li>Im Angriff laufen Ameisen 30% schneller als sonst.</li>
+  </ul>
+  <h3>Auch Arbeiterinnen und Architektinnen beißen</h3>
+  <p>Auf Befehl lassen sich Arbeiterinnen und Architektinnen gegen gegnerische Ameisen und gegen Tiere schicken. Sie beißen schwach (Tiere viermal schwächer als eine Kriegerin),
+     und ihr Biss wird nicht verbessert — ein letztes Mittel, wenn es keine Kriegerinnen gibt.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Gebäude und Fallen</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Ameisenhaufen</h4>
+      <p>Das Hauptgebäude: wird vor Spielbeginn gesetzt. Hierher werden Ressourcen gebracht, hier schlüpfen die Ameisen.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Labor <span class="k">L</span></h4>
+      <p>Ein Anbau am Ameisenhaufen, kein Platz zu wählen. Schaltet Kriegerinnen, Forschung und Fallen frei.</p>
+      <p class="cost">Preis: <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Lager <span class="k">S</span></h4>
+      <p>Ein naher Abgabepunkt für Ressourcen und +10 zum Limit der Arbeiterinnen und Architektinnen. Bis zu 5 Lager, Mehr Lager fügt weitere hinzu.</p>
+      <p class="cost">Preis: <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Falle <span class="k">B</span></h4>
+      <p>Eine Mine: explodiert, wenn eine fremde Ameise oder ein Tier darauf tritt.</p>
+      <p class="cost">Preis: <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Wo ein Lager stehen darf</h3>
+  <ul>
+    <li>Nur in Reichweite des Ameisenhaufens oder eines anderen deiner Lager — das Lagernetz wächst Schritt für Schritt (die Reichweite zeigen gestrichelte Kreise).</li>
+    <li>Nicht zu nah an wachsenden Ressourcen.</li>
+    <li>Nicht auf Baumstümpfe, Pilze, Teiche und Schilf, den Bach, Nester der Roten Ameisen, Fallen, Nahrung, Holz und Spinnennetze. Am Teichufer geht es.</li>
+    <li>Der Gegner folgt denselben Regeln.</li>
+  </ul>
+  <p>Lässt sich ein Lager, eine Falle oder eine Zone irgendwo nicht setzen, erscheint am Cursor ein Hinweis mit dem Grund: „Zu nah am Ameisenhaufen", „Nur in deinen Zonen",
+     „Hier gibt es nichts zu sammeln" usw.</p>
+  <h3>Fallen</h3>
+  <ul>
+    <li>Werden nur innerhalb deiner Sammelzonen auf deiner Feldhälfte gesetzt — während du den Platz wählst, sind die Zonen auf dem Feld zu sehen.</li>
+    <li>Nach dem Aufstellen lädt sich die Falle (etwa 17 Sekunden, der Fortschritt steht im Hinweis), dann wird sie scharf.</li>
+    <li>Löst bei gegnerischen Ameisen, Wildtieren und Roten Ameisen aus. Die Explosion tötet Ameisen im Umkreis, eine Spinne, einen Laufkäfer, einen Wasserläufer;
+      einer <b>Gottesanbeterin</b> nimmt sie 60 Gesundheit.</li>
+    <li>Fallen des Gegners sind ebenso gefährlich. Der Gegner stellt ab Schwierigkeit Normal Fallen auf.</li>
+    <li>Die Automatisierung Fallen stellt sie selbst auf.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Forschung</h2>
+  <p>Die Leiste <b>Forschung</b> <span class="k">T</span> öffnet sich nach dem Bau des Labors. Links Verbesserungen (drei Stufen), rechts die Automatisierung.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Leiste Forschung"><figcaption>Die Leiste Forschung</figcaption></figure>
+  <table>
+    <tr><th>Verbesserung</th><th>St. I</th><th>St. II</th><th>St. III</th><th>Wirkung</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Mehr Ernte</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>Pflanzen wachsen schneller, und es werden mehr.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Manöver</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Schaltet die Angriffsart Manöver frei — Kriegerinnen umgehen den Gegner im Bogen und schlagen seitlich zu; mit jeder Stufe schneller.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Genetischer Sprung</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Ameisentempo ×1,2 / ×1,4 / ×1,6 und Sichtweite im Nebel.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Starke Kriegerinnen</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>Neue Kriegerinnen haben 15 / 20 / 25 Gesundheit statt 10.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Lager ausbauen</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Zucht von Nahrung und Holz: +5% / +10% / +18% Ertrag aus den Lagern.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Mehr Lager</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>+1 Lager über fünf hinaus je Stufe.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Neue Ressourcenart</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — Arbeiterinnen sammeln Pilze, Zonen können auf Pilze gelegt werden; II — Pilze auf unserer Hälfte wachsen 20% schneller; III — es wachsen 20% mehr.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — Nahrung, <span class="res"><img src="Textures/der_1.png" alt=""></span> — Holz. Der Gegner erforscht dieselben Technologien.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Automatisierung</h2>
+  <p>Wird einmal in der rechten Spalte der Leiste Forschung gekauft. Das meiste lässt sich dann mit der Taste <i>Auto / Hand</i> ein- und ausschalten.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Zonen</h4><p>Sammelzonen werden automatisch um Ressourcen gesetzt.</p><p class="cost">25 Nahrung</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Forst</h4><p>Ein Teil des Dickichts wird automatisch nicht gesammelt — es wird zu Holz.</p><p class="cost">10 Holz</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Pilzzucht</h4><p>In den Myzelien auf deiner Hälfte bleiben ~40% der Pilze stehen — die Myzelien wachsen schneller. Braucht Neue Ressourcenart I.</p><p class="cost">30 Nahrung</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">Bauen</h4><p>Automatisches Ausbrüten: Die Kolonie brütet die nötigen Ameisen selbst aus.</p><p class="cost">10 Nahrung</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Angriff</h4><p>Geplanter Angriff: Die Kolonie sammelt selbst Kriegerinnen und greift an, wenn sie stark genug ist.</p><p class="cost">25 Nahrung</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Fallen</h4><p>Auto-Fallen: Fallen werden von selbst gesetzt, solange Ressourcen da sind.</p><p class="cost">10 Nahrung</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Modus und Sammelzonen</h2>
+  <div class="side">
+    <div>
+      <h3>Sammelzonen</h3>
+      <p>Drücke Zone (oder <span class="k">=</span>) und zeichne Zonen aufs Feld — die Ameisen sammeln darin. <span class="k">-</span> — Zonen entfernen.
+        Liegen Ressourcen weit vom Lager, setze dort lieber noch keine Zone, bis in der Nähe ein Lager steht.</p>
+      <h3>Die Leiste Modus</h3>
+      <ul>
+        <li><b>Forst</b> <span class="k">F</span> — markiere Pflanzen, die Arbeiterinnen nicht anrühren: Sie wachsen zu Holz heran. „+" am Cursor — markieren, „−" — Markierung entfernen.</li>
+        <li><b>Pilzzucht</b> <span class="k">G</span> — ebenso werden Pilze markiert, die nicht gesammelt werden.</li>
+        <li><b>Einheitenverhalten</b>:
+          <ul><li><b>Alle angreifen</b> — freie Kriegerinnen schützen die Arbeiterinnen: Sie stürzen sich auf jedes Tier oder jeden Feind, der sie angegriffen hat.</li>
+              <li><b>Ernten</b> — alle Kraft in das Sammeln von Ressourcen.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Leiste Modus"><figcaption>Die Leiste Modus</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Befehle und Auswahl</h2>
+  <h3>Auswahl</h3>
+  <ul>
+    <li><b>Rahmen</b>: Halte die linke Taste auf dem Feld und ziehe einen grünen Rahmen — die Ameisen darin werden ausgewählt (Kriegerinnen, falls vorhanden, sonst Architektinnen, sonst Arbeiterinnen).</li>
+    <li><span class="k">Tab</span> — alle eigenen Kriegerinnen auswählen.</li>
+    <li>Die Ausgewählten stehen unten links: eine Kachel je Ameise mit Gesundheitsbalken, ihre Zahl und Gesamtstärke.</li>
+    <li><b>Rechte Taste</b> — Auswahl aufheben und offene Leisten schließen.</li>
+    <li>Ausgewählte Ameisen gehorchen nur dir: Kolonieschutz, Alle angreifen und der Auto-Angriff nehmen sie nicht.</li>
+  </ul>
+  <h3>Wohin du klicken kannst</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">Aufs Feld</h4><p>Die Ameisen gehen zum Punkt (laufende Strichlinie) und warten dort.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Posten</h4><p>Ein zweiter Klick neben denselben Punkt, wenn die Kriegerinnen schon dort sind, macht einen <b>Posten</b>: Die Kriegerinnen halten den Platz,
+      schlagen herankommende Feinde und kehren zurück. Über dem Punkt steht eine Fahne, der gestrichelte Ring „atmet". Nur ein neuer Befehl an diese Kriegerinnen hebt den Posten auf.
+      Vor dem zweiten Klick fällt eine Hinweisfahne immer wieder auf den Punkt.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">Auf Nahrung / einen Pilz</h4><p>Arbeiterinnen sammeln Nahrung in der Nähe, auch außerhalb der Zonen, und tragen sie heim. Einen Pilz nagen sie an (wenn Pilze erforscht sind).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">Auf Holz</h4><p>Architektinnen sammeln Holz in der Nähe.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">Auf einen Feind / ein Tier</h4><p>Die Ausgewählten greifen das Ziel an (roter gestrichelter Kreis). Ist es tot, wechseln sie zu den Jungen am Nest, sonst warten sie.</p></div>
+  </div>
+  <p>Das grüne Fadenkreuz am Cursor zeigt, wohin Ameisen geschickt werden können. Einen Befehl führen die Ameisen auch nach Aufheben der Auswahl aus
+     und kehren dann zu ihrer üblichen Arbeit zurück. Per Klick auf einen Feind befohlene Angriffe erscheinen ebenfalls in den Diagrammen.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Angriff</h2>
+  <div class="side">
+    <div>
+      <p>Die Leiste <b>Angriff</b>:</p>
+      <ul>
+        <li>Oben — die Art deiner Ameisen (ein Klick wechselt), darunter — die Art der gegnerischen Ameisen, die angegriffen werden.</li>
+        <li><b>„‹ 1 ›"</b> — wie viele Ameisen geschickt werden (Halten — schnell). Die Gewählten sind mit einem Ring markiert.</li>
+        <li><b>Angriff</b> — den Trupp losschicken.</li>
+        <li><b>Angriffsart</b>: <i>Direkt</i> — frontal; <i>Manöver</i> — im Bogen herum (braucht die Forschung Manöver).</li>
+        <li><b>Dauerangriff</b> — Kriegerinnen werden ununterbrochen gegen den Feind geschickt; die Leiste bleibt offen und zeigt, wie viele „im Angriff" sind.</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Leiste Angriff"><figcaption>Die Leiste Angriff</figcaption></figure>
+  </div>
+  <h3>Kampf</h3>
+  <ul>
+    <li>Gesundheit wird für alle in denselben Einheiten gemessen: Arbeiterin und Architektin — 1, Kriegerin — 10…25.</li>
+    <li>Die Gesundheit einer Kriegerin zeigen die Blütenblätter um sie: bei deinen Kriegerinnen rot-orange, bei den gegnerischen blau.</li>
+    <li>Ist die Leiste Angriff geschlossen, kehren die wartenden Ameisen zur Arbeit zurück.</li>
+    <li>Wird die Kolonie angegriffen, ertönt ein Alarm, und die Musik wechselt zu Kampfmusik.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Kampf"><figcaption>Mitten in der Partie: Der Gegner greift links die Kolonie an, die Blitze sind explodierende Fallen.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Umgebung</h2>
+  <table>
+    <tr><th>Objekt</th><th>Begehbar</th><th>Besonderheiten</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Steine</b></td><td>Nein</td><td>Werden umgangen; an Steinen weben Spinnen ihre Netze.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Sümpfe</b></td><td>Ja, 4-mal langsamer</td><td>Ameisen altern 10-mal schneller. In der Nähe wachsen Pilze schneller und dichter.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Baumstümpfe</b></td><td>Ja</td><td>Unter manchen — Baue von Laufkäfern; an Baumstümpfen wachsen Pilze. Kein Lager auf einen Baumstumpf.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Pilze</b></td><td>Ja, halb so schnell</td><td>Kein Lager auf einen Pilz.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Teiche</b></td><td>Nein (Wasser)</td><td>Fruchtbares Ufer: Pflanzen wachsen schneller und geben mehr Samen. Schilf am Rand ist fertiges Holz und wächst schnell nach. Auf jedem Teich lebt ein Wasserläufer; aus dem Wasser kriechen Schnecken.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Bach</b></td><td>Nur über Übergänge</td><td>Durchquert das Feld. Die Übergänge sind aus Steinen oder Stämmen, 3 Reihen breit; Ameisen wie Tiere benutzen sie.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Spinnennetz</b></td><td>Ja, fast 3-mal langsamer</td><td>Die Besitzerin des Netzes stürzt sich auf jeden, der herankommt.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Teich"><figcaption>Ein Teich mit Seerosen, Schilf und einem Wasserläufer; daneben ein Laufkäfer</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Netz an den Steinen"><figcaption>Ein Netz an den Steinen und ein Teich auf der Seite des Gegners</figcaption></figure>
+  </div>
+  <p>Es gibt einen bis vier Teiche, und beide Seiten bekommen gleich viel: einer in der Mitte, Paare gespiegelt. Hat die Karte einen Bach, führen von ihm Seitenarme zu den nahen Teichen — schmale Rinnen, die in den Teich münden (gespiegelt auf beiden Hälften). Eine Rinne lässt sich wie der Bach nicht überqueren: Man geht um den Teich herum.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Pilze</h2>
+  <p>Myzelien wachsen an Baumstümpfen und besonders gern an Sümpfen. Pilze lassen sich nach der Forschung Neue Ressourcenart sammeln.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Parasol</h4><p>Der größte: bis zu <b>13</b> Nahrung.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Steinpilz</h4><p>Groß: bis zu <b>11</b> Nahrung.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Fliegenpilz</h4><p>Mittel: bis zu <b>6</b> Nahrung.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Pfifferling</h4><p>Klein: bis zu <b>4</b> Nahrung.</p></div>
+  </div>
+  <ul>
+    <li>Je größer der Pilz, desto mehr Nahrung, aber desto länger dauert das Annagen. Arbeiterinnen nehmen nur reife Pilze; junge wachsen weiter und nähren das Myzel.</li>
+    <li>Über dem Pilz ist ein Fortschrittskreis zu sehen; nach Hause getragen wird ein abgenagtes Stück. Ein nicht gesammelter Pilz fault mit der Zeit und verschwindet.</li>
+    <li>Ein Myzel treibt Fäden aus; wo sich die Fäden zweier Myzelien treffen, entsteht ein neues. Ein Faden, der einen Sumpf erreicht, trinkt daraus — bei einem solchen Myzel erscheinen Pilze 1,7-mal öfter, bei den damit verbundenen 1,35-mal.</li>
+    <li>Je länger das zusammengewachsene Myzelnetz, desto öfter erscheinen Pilze (bis 2,5×) und desto größer sind sie.</li>
+    <li>Wird mehr als die Hälfte eines Myzels gegessen, erscheinen neue Pilze um ein Vielfaches langsamer; ein ganz abgeerntetes wächst sehr lange nach.</li>
+  </ul>
+  <div class="tip">Schalte die Pilzzucht ein: Die stehen gelassenen Pilze halten das Myzel bei voller Kraft, und es ernährt dich länger.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Wildtiere</h2>
+  <p>Tiere gehören weder dir noch dem Gegner und leben weit von beiden Ameisenhaufen. Ist Alle angreifen gewählt, laufen freie Kriegerinnen von selbst
+     zu einem Tier, das deine Arbeiterinnen angegriffen hat. Ein Gegner mit genug Kriegerinnen plant eine <b>Jagd</b> auf Tiere, die ihn stören.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Gartenkreuzspinne</h3>
+  <div class="stats"><span class="hp">Gesundheit 30</span><span class="dmg">Biss gegen Kriegerin −4</span><span>Jungspinnen: 12 / −2, bis 6</span></div>
+  <p>Webt ihr Netz an Steinen und wartet in der Mitte; stürzt sich auf jede herankommende Ameise und trägt die Beute im Kokon fort. Eine Arbeiterin oder Architektin tötet sie mit einem Biss.
+     Aus den Kokons (1 Kriegerin + 1 Arbeiterin oder 3 Arbeiterinnen) schlüpfen Jungspinnen. Die schwer verletzte letzte Spinne flieht zu anderen Steinen und webt ein neues Netz.
+     Wird eine Spinne angegriffen, stürzt sich die ganze Familie auf die Kriegerinnen. Eine vom Bach abgeschnittene Spinne sucht den Weg über einen Übergang.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Laufkäfer</h3>
+  <div class="stats"><span class="hp">Gesundheit 40</span><span class="dmg">Biss gegen Kriegerin −4</span><span>Junge: 14 / −2, bis 4</span></div>
+  <p>Lebt in einem Bau unter einem Baumstumpf und jagt einzelne Ameisen (Gruppen ab drei lässt er in Ruhe). Schneller als eine gewöhnliche Ameise — entkommen kann man erst nach
+     dem zweiten Genetischen Sprung. Fester Panzer: Kriegerinnen verletzen ihn langsamer. Verwundet versteckt er sich im Bau und heilt; ohne Junge kann er zu einem leeren
+     Baumstumpf fliehen und einen neuen Bau graben. Beute jenseits des Bachs verfolgt er nicht.</p>
+  <figure><img src="help/beetle.jpg" alt="Bau eines Laufkäfers"><figcaption>Der Bau eines Laufkäfers unter einem Baumstumpf, Pilze, ein Netz und ein Kampf an einem Übergang</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Schnecke</h3>
+  <div class="stats"><span class="hp">Gesundheit 10–50</span><span>greift nicht an</span><span>Belohnung 10–70 Nahrung</span></div>
+  <p>Kriecht ab und zu aus einem Teich oder dem Bach und kriecht langsam übers Feld (um Steine und Hügel herum, mit einer glänzenden Spur) — meist am Wasser, manchmal aber kriecht sie „müde" weit weg. Je länger sie kriecht,
+     desto größer wird sie: 6 Stufen; aus dem Wasser kommt sie in einer der ersten drei. Kriecht sie über Nahrung, frisst sie sie — bis zu 10 Stück, dann ruht sie.
+     Eine Schnecke wird von Arbeiterinnen und Architektinnen angenagt (schicke sie wie zu einem Pilz hin); Kriegerinnen verletzen sie nicht. Je größer die Schnecke, desto mehr Nahrung bringt sie —
+     wie viel, zeigt der Hinweis; die Nahrung bekommt die Seite, deren Ameisen zahlreicher bei ihr sind.
+     In den Welteinstellungen: Schnecken — Wenig / Normal / Viel (nur mit Teichen oder Bach).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Gottesanbeterin — der Boss</h3>
+  <div class="stats"><span class="hp">Gesundheit 150</span><span class="dmg">Schlag gegen Kriegerin −8</span><span>Belohnung 60 Nahrung</span></div>
+  <div class="side">
+    <div>
+      <p>Wie viele es gibt, legen die Welteinstellungen fest: <i>Wenig</i> — eine, <i>Normal</i> — zwei (auf einer kleinen Karte eine), <i>Viel</i> — zwei bis vier.
+        Sie lauert im neutralen Streifen, fast unsichtbar im Gras. Jede Ameise in Reichweite der Fangbeine trifft sie blitzschnell: Eine Arbeiterin stirbt,
+        eine Kriegerin verliert 8 Gesundheit. Sie wehrt sich gegen alle ringsum — man braucht eine Menge Kriegerinnen. Die Seite mit mehr Kriegerinnen am Körper im Moment des Todes bekommt 60 Nahrung.
+        Eine Falle nimmt ihr 60 Gesundheit. Eine getötete Gottesanbeterin erscheint nicht wieder.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Gottesanbeterin"><figcaption>Eine Gottesanbeterin im Gras an einem Myzel, daneben ein Netz</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Wasserläufer</h3>
+  <div class="stats"><span class="hp">Gesundheit 20</span><span>schlägt die Last weg</span></div>
+  <p>Gleitet über den Teich und schlägt einer Ameise, die direkt am Ufer geht, Nahrung oder Holz weg — die Last versinkt. Er schwimmt nie dorthin, wo eine Kriegerin in der Nähe ist (näher als ~70),
+     daher schützt eine Patrouillenzone am Teich das Ufer. Ein getöteter Wasserläufer wird mit der Zeit durch einen neuen ersetzt.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Rote Ameisen</h2>
+  <div class="stats"><span class="hp">Ameise 12</span><span class="hp">Nest 250</span><span>neutral</span></div>
+  <div class="side">
+    <div>
+      <p>Eine neutrale Kolonie: ein Nest in der Mitte (<i>Wenig</i>), zwei gespiegelt (<i>Normal</i>) oder je zwei auf jeder Hälfte (<i>Viel</i>).
+        Die Roten sammeln Krümel um ihr Zuhause und <b>tun niemandem etwas</b>, bis man ihnen etwas tut.</p>
+      <ul>
+        <li>Kriegerinnen, die bis ans Nest herankommen, werden nur vertrieben — ohne Krieg.</li>
+        <li>Die Seite, deren Kriegerinnen eine Rote Ameise oder ein Nest angegriffen haben, bekommt eine <b>Fehde</b>: Ihre Ameisen am Nest werden angegriffen,
+          und ab und zu zieht ein Trupp der Roten zu einem <b>Überfall</b> auf ihre Arbeiterinnen.</li>
+        <li>Ein zerstörtes Nest gibt seinen ganzen Nahrungsvorrat der Seite mit mehr Kriegerinnen in der Nähe. Der Vorrat steht im Hinweis.</li>
+        <li>An Nestern der Roten Ameisen wachsen keine Nahrung und keine Pilze; Patrouillen gehen um sie herum.</li>
+      </ul>
+      <h3>Neue Kolonien</h3>
+      <p>Hat ein Nest 200 Nahrung gesammelt, gibt es 75 davon und die Hälfte seiner Ameisen für eine <b>neue Kolonie</b> ab: Der Trupp zieht zu einem freien Platz am selben Ufer
+        (wie beim Erstellen der Karte — nicht an Wasser, Steinen, Pilzen, Nahrung, Lagern, Fallen, anderen Nestern der Roten oder deinen Kolonien; verdirbt der Platz unterwegs,
+        wird ein anderer gewählt). Wird unterwegs mehr als die Hälfte des Trupps getötet, fliehen die übrigen heim. Vor Ort tragen die Ameisen Zweige, und das Nest wächst in 8 Stufen
+        (im Hinweis „Im Bau: N%"); den Bau kann man zerstören. Fertig ist es ein gewöhnliches Nest der Roten Ameisen mit eigenem Vorrat. Insgesamt gibt es
+        höchstens 3 / 4 / 5 / 7 Nester der Roten auf der Karte — von der kleinen bis zur riesigen Karte, aber immer mindestens zwei mehr als zu Beginn.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Nest der Roten Ameisen"><figcaption>Nest der Roten Ameisen</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">Der Gegner</h2>
+  <div class="side">
+    <div>
+      <p>Der Computergegner spielt nach denselben Regeln: Er brütet Ameisen aus, baut ein Labor und eine Kette von Lagern, setzt Zonen (rot gestrichelt), forscht,
+        stellt Fallen, greift an und überquert den Bach über die Übergänge.</p>
+      <ul>
+        <li>Jagt störende Tiere, wenn er genug Kriegerinnen hat.</li>
+        <li>Schützt seine Arbeiterinnen im aggressiven Modus.</li>
+        <li>Sein Verhalten hängt von der gewählten <a href="#start">Schwierigkeit</a> ab.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Gegnerische Kolonie"><figcaption>Die gegnerische Kolonie</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Ergebnisse und Diagramme</h2>
+  <p>Nach einem Sieg oder einer Niederlage öffnet sich der Ergebnisbildschirm: Spielzeit, Schwierigkeit und Kartengröße, die Tasten <b>Neustart</b> und <b>Zum Menü</b>.
+     Nach der Sieges-/Niederlagenmelodie spielt wieder die Musik des Hauptmenüs.</p>
+  <ul>
+    <li><b>Übersicht</b> — erhaltene Ressourcen, vernichtete und verlorene Ameisen nach Art, erforschte Technologien, Fallen (aufgestellt / zerstört / vom Gegner),
+      von den Kolonien getötete Wildtiere.</li>
+    <li><b>Diagramme</b> — Ameisenzahl und Ressourcen beider Seiten über die Zeit. Schwerter markieren Angriffe: Die Zahl am Symbol ist, wie viele verschiedene Ameisen
+      teilnahmen (auch per Klick auf einen Feind befohlene Angriffe zählen).</li>
+  </ul>
+  <h3>Statistik und Bestenlisten</h3>
+  <ul>
+    <li><b>Statistik</b> (Hauptmenü) — Zähler über alle Partien: gespielte Partien (eine Partie zählt nach 2 Minuten Spiel oder wenn sie früher endet), Siege und Niederlagen
+      nach Schwierigkeit, Spielzeit, gesammelte Ressourcen, vernichtete und verlorene Ameisen, Lager und Fallen, besiegte Tiere. Die Zähler liegen neben dem Spiel und in Steam.</li>
+    <li><b>Bestenlisten</b> — der schnellste Sieg für jede Schwierigkeit, Kartengröße und jeden Modus (normal / reich): Welt-Top und deine Steam-Freunde.
+      Nach einem Sieg zeigt der Ergebnisbildschirm deinen Platz. Ergebnisse im Modus Entdecker werden nicht gespeichert.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Einstellungen</h2>
+  <ul>
+    <li><b>Ton</b> und <b>Musik</b> — an/aus und Lautstärke in Balken (Schritte von 10%).</li>
+    <li><b>Scrollen</b> — Tempo des Feldscrollens am Bildschirmrand und mit den Pfeilen: 50% — normal, 100% — doppelt so schnell, 0% — am Rand scrollt das Feld nicht (nur durch Ziehen).</li>
+    <li><b>Vollbild</b> — <i>An</i> (Standard): Das Spiel füllt den Bildschirm; <i>Aus</i>: im Fenster. Auch mit <span class="k">Alt</span>+<span class="k">Enter</span> umschaltbar.</li>
+    <li><b>Auflösung</b> — für den Vollbildmodus, eine Auswahlliste bis 4K (Standard — die Desktop-Auflösung).</li>
+    <li><b>Dynamischer Menühintergrund</b> — <i>An</i>: Im Hauptmenü läuft ein Video; <i>Aus</i> (Standard): Das unbewegte erste Bild wird gezeigt.</li>
+    <li><b>Sprache</b> — 9 Sprachen: Russisch, Englisch, Ukrainisch, Deutsch, Französisch, Spanisch, Portugiesisch, Polnisch, Türkisch.</li>
+    <li><b>Tastenbelegung</b> — jede Taste lässt sich neu belegen; „Standard" stellt die üblichen wieder her.</li>
+  </ul>
+  <p>Die Musik passt sich der Lage an: Menü, friedliches Spiel, Kampf, Sieg, Niederlage.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Tastenbelegung</h2>
+  <p>Standardtasten (in den Einstellungen änderbar):</p>
+  <table>
+    <tr><th>Taste</th><th>Aktion</th><th>Taste</th><th>Aktion</th></tr>
+    <tr><td><span class="k">E</span></td><td>Arbeiterin</td><td><span class="k">T</span></td><td>Leiste Forschung</td></tr>
+    <tr><td><span class="k">A</span></td><td>Architektin</td><td><span class="k">F</span></td><td>Forst</td></tr>
+    <tr><td><span class="k">W</span></td><td>Kriegerin</td><td><span class="k">G</span></td><td>Pilzzucht</td></tr>
+    <tr><td><span class="k">Shift</span>+<span class="k">E/A/W</span></td><td>16 Ameisen auf einmal</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Zone hinzufügen / entfernen</td></tr>
+    <tr><td><span class="k">L</span></td><td>Labor</td><td><span class="k">Tab</span></td><td>Alle Kriegerinnen auswählen</td></tr>
+    <tr><td><span class="k">S</span></td><td>Lager</td><td><span class="k">Home</span></td><td>Zum eigenen Ameisenhaufen</td></tr>
+    <tr><td><span class="k">B</span></td><td>Falle</td><td><span class="k">Esc</span></td><td>Hauptmenü</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Enter</span></td><td>Vollbild / Fenster</td><td></td><td></td></tr>
+  </table>
+  <p>Maus: linke Taste — Auswahl, Rahmen, Befehl; rechte — ein Klick hebt die Auswahl auf und schließt Leisten, gehalten zieht sie das Feld; Rad — Zoom; mittlere Taste — zieht ebenfalls das Feld.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">Tipps</h2>
+  <ul>
+    <li>Beginne mit einigen Arbeiterinnen und nach 30 Sekunden ein paar Architektinnen: 35 Holz fürs Labor und 25 fürs Lager sind die wichtigste frühe Etappe.</li>
+    <li>Stelle Lager an ressourcenreiche Stellen fern vom Ameisenhaufen — die Lieferung wird kurz, und die Pfade beschleunigen die Ameisen.</li>
+    <li>Schalte Alle angreifen ein und halte ein paar Kriegerinnen an den Sammelzonen — sie schützen die Arbeiterinnen vor Spinnen, Laufkäfern und Wasserläufern.</li>
+    <li>Schicke Arbeiterinnen nicht durch Sümpfe: Dort sind sie langsam und altern schnell.</li>
+    <li>Rühre die Roten nicht ohne Not an — eine Fehde bringt Überfälle auf deine Arbeiterinnen. Ein zerstörtes Nest gibt aber seinen ganzen Nahrungsvorrat.</li>
+    <li>Geh die Gottesanbeterin mit einer großen Menge an oder locke sie auf Fallen — 60 Nahrung sind es wert.</li>
+    <li>Stelle Kriegerinnen als Posten an eine Sammelzone (zweiter Klick auf denselben Punkt) — sie laufen nicht auseinander und schützen die Arbeiterinnen.</li>
+    <li>Schicke Arbeiterinnen an eine große Schnecke, die über deine Nahrung kriecht — sie bringt bis zu 70 Nahrung.</li>
+    <li>Lager ausbauen wirkt prozentual auf den Vorrat — es lohnt sich mehr, wenn du viele Ressourcen hast.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · Spielanleitung</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

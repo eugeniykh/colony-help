@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — kılavuz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html" selected>Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>İki karınca kolonisi hakkında bir strateji oyunu: yiyecek ve odun topla, ordu kur, teknolojileri araştır,
+       yaban hayatının ortasında hayatta kal — ve komşularını yen.</p>
+    <span class="ver">Kılavuz · sürüm 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>İçindekiler</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">Oyun ve amaç</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Oyuna başlangıç</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Arayüz</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Kaynaklar</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Birimler</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Yapılar ve tuzaklar</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Araştırma</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Otomasyon</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Mod ve alanlar</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Emirler ve seçim</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Saldırı</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Çevre</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Mantarlar</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Yaban hayatı</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Kızıl karıncalar</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">Düşman</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Sonuçlar ve grafikler</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Ayarlar</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Kısayol tuşları</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">İpuçları</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">Oyun ve amaç</h2>
+  <p class="lead">Colony, iki karınca kolonisi hakkında bir ekonomik strateji oyunudur: seninki ve bilgisayarın yönettiği rakibinki.
+  Düşman karınca yuvası alanın merkezine göre ayna simetrisiyle yerleşir. Görevin: kaynakları ustalıkla toplamak,
+  koloniyi geliştirmek ve rakibi kırmak.</p>
+  <figure><img src="help/world.jpg" alt="Oyun alanı">
+    <figcaption>Orta boy bir harita: solda senin karınca yuvan (yeşil daire), sağda toplama alanlarıyla düşman kolonisi (kırmızı kesik çizgi),
+      ortada geçitli dereler, örümcekler, bir peygamberdevesi, bir toprak böceği ini, göletler ve kızıl karınca yuvaları.</figcaption></figure>
+  <h3>Zafer ve yenilgi</h3>
+  <ul>
+    <li><b>Zafer</b> — düşmanın tek bir işçisi kalmadı (kuluçkadaki yumurtalar dahil) ve 5'ten az yiyeceği var, yani yeni bir işçi çıkaramaz.</li>
+    <li><b>Yenilgi</b> — aynısı senin kolonine oldu.</li>
+    <li>Yapılar yıkılamaz: koloniler yalnızca birbirlerinin karıncalarını öldürür.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Oyuna başlangıç</h2>
+  <div class="side">
+    <div>
+      <p>Ana menüde başlamanın iki yolu var:</p>
+      <ul>
+        <li><b>Yeni oyun</b> — olağan başlangıç: <span class="res"><img src="Textures/eda_1.png" alt="">25</span> yiyecek ve <span class="res"><img src="Textures/der_1.png" alt="">10</span> odun.</li>
+        <li><b>Bol kaynak modu</b> — iki taraf da hemen 1500 yiyecek ve 500 odun alır: inşaat, araştırma ve savaş hemen başlar.</li>
+      </ul>
+      <p>Bol kaynak modunda, yiyeceğin (en az 10) olduğu sürece bir <b>silahlanma yarışı</b> sürer: düşmandan fazla savaşçı alırsan,
+        o da hemen aynı toplam güçte savaşçı çıkarır (Güçlü savaşçılar dahil) ve bu arada geliştirmelere hiçbir şey harcamaz. Güçler eşitken
+        geliştirmelere ve depolara yalnızca senin rezervlerinin üstünde kalanı harcar. Böylece en hızlı zafer erken bir hücumla alınamaz.</p>
+      <p>Oyun sürerken menüde <b>Devam et</b> ve <b>Yeniden</b> (aynı harita baştan) de görünür. Ayrıca <b>İstatistikler</b> — tüm oyunlardaki sayaçların —
+        ve en hızlı zaferlerin Steam <b>Lider tabloları</b> vardır.</p>
+      <p>Ardından oyun ayarları ekranı açılır; oyun <b>Başla</b> ile başlar. Seçimin hatırlanır.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Ana menü"><figcaption>Ana menü</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Oyun ayarları">
+    <figcaption>Solda zorluk, harita ve görünürlük; sağda dünya ayarları; altta harita önizlemesi.</figcaption></figure>
+  <h3>Zorluk</h3>
+  <p>Zorluk yalnızca bilgisayar rakibini değiştirir:</p>
+  <table>
+    <tr><th>Seviye</th><th>Ne değişir</th></tr>
+    <tr><td><b>Kaşif</b></td><td>Düşman savaşçı üretmez, tuzak kurmaz ve asla saldırmaz — alanı ve ekonomiyi rahatça keşfet. Bu modda başarım yoktur.</td></tr>
+    <tr><td><b>Kolay</b></td><td>Düşman %30 daha az toplar, tuzak kurmaz ve 6 dakikadan önce saldırmaz.</td></tr>
+    <tr><td><b>Normal</b></td><td>Düşman %10 daha az toplar ve 3 dakikadan önce saldırmaz.</td></tr>
+    <tr><td><b>Zor</b></td><td>Düşman en baştan tam güçle oynar.</td></tr>
+  </table>
+  <h3>Harita ve görünürlük</h3>
+  <ul>
+    <li><b>Harita</b>: Küçük (800×600), Orta (1152×864), Büyük (1440×1080), Devasa (1728×1296). Daha büyük haritada orantılı olarak daha çok taş, bataklık ve çimen olur.</li>
+    <li><b>Savaş sisi</b> — yalnızca karınca yuvana, depolarına ve karıncalarına yakın yerler görünür. Keşfedilen arazi yarı görünür kalır; bulunan düşman yuvası ve depoları haritada kalır. Sisin içindeki patlamalar ve efektler görünmez. Genetik sıçramanın her seviyesi görüş mesafesini artırır.</li>
+    <li><b>Tüm harita görünür</b> — fare tekerleğiyle tüm alana kadar uzaklaştırabilirsin. Bu seçenek olmadan 800×600'den öteye gidilmez — alan kayar.</li>
+  </ul>
+  <h3>Dünya ayarları</h3>
+  <p>Çevrenin ve yaban hayatının her öğesi açılıp kapatılabilir ve miktarı seçilebilir
+     (<i>Az / Normal / Çok</i>): taşlar, bataklıklar, kütükler, göletler, dere, mantarlar, su örümcekleri, salyangozlar (yalnızca gölet veya dereyle), toprak böcekleri, örümcekler, peygamberdevesi, kızıl karıncalar.
+     «Varsayılan» olağan dünyayı geri getirir. Sağ altta — haritanın canlı önizlemesi.</p>
+  <div class="side">
+    <div>
+      <h3>Yuva yerini seçmek</h3>
+      <p>Başla'dan sonra kamera alanın üzerinden geçer, sonra tek tıklamayla kolonin için yer seçersin. Altıgenler izin verilen yerleri gösterir;
+        yuva merkeze ve kenarlara fazla yakın olamaz. Düşman ayna simetrisiyle belirir.</p>
+      <p>İlk iş en az bir işçi çıkarmaktır (ekranın altında ipucu var).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Başlangıç noktası seçimi"><figcaption>Başlangıç noktası seçimi</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Arayüz</h2>
+  <figure><img src="help/toolbar.jpg" alt="Üst panel"><figcaption>Üst panel</figcaption></figure>
+  <ul>
+    <li><b>İnşaat</b> — karınca çıkarma ve yapılar.</li>
+    <li><b>Teknoloji</b> — geliştirmeler, otomasyon ve tuzaklar (laboratuvar inşa edildikten sonra).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>Yiyecek</b> ve <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>Odun</b> — rezervlerin.</li>
+    <li><b>Alan</b> — toplama alanları çiz: <b>On</b> — ekle, <b>Off</b>; tuşlar <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Saldırı</b> — emir ve saldırı paneli. <b>Mod</b> — ormancılık, mantarcılık ve birim davranışı.</li>
+    <li>Sağda — oyun süresi. Altta — ipucu satırı ve seçili karıncalar paneli.</li>
+  </ul>
+  <h3>Kamera</h3>
+  <ul>
+    <li>Fare tekerleği — imlece doğru yakınlaştır/uzaklaştır (2,5×'e kadar).</li>
+    <li>Basılı sağ tuş — alanı sürükle («tut ve çek»); kısa bir sağ tıklama yine seçimi iptal eder.</li>
+    <li>Ok tuşları — alanı kaydır; basılı sağ (veya orta) tuş — alanı sürükle.</li>
+    <li><span class="k">Home</span> — kendi yuvana dön.</li>
+  </ul>
+  <h3>Üzerine gelince ipuçları</h3>
+  <p>İmleci bir karıncanın, bitkinin, mantarın, tuzağın, hayvanın veya yuvanın üzerine getir — bir kart çıkar: sağlık, yaş,
+    büyüme, olgunlaşma, çürüme, tuzağın dolumu, kızıl karınca yuvasının erzakı vb.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Kaynaklar</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Yiyecek</h4>
+      <p>Tohumdan büyür: olgunlaşan bir bitki grubu yeni tohumlar verir. İşçiler toplar. Uzun süre toplanmayan yiyecek odunlaşır ve oduna dönüşür.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Odun</h4>
+      <p>Mimarlar toplar. Uzun süre toplanmayan yiyecekten oluşur ve göletlerin kıyısında saz olarak büyür. Laboratuvar, depolar, savaşçılar ve araştırmanın bir kısmı için gerekir.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Mantarlar</h4>
+      <p>Yeni kaynak türü araştırmasından sonra başka bir yiyecek kaynağı. Ayrıntılar <a href="#mush">Mantarlar</a> bölümünde.</p></div>
+  </div>
+  <h3>Toplama ve teslim</h3>
+  <ul>
+    <li>Karıncalar kaynakları yalnızca <b>toplama alanlarında</b> (veya doğrudan emirle) toplar ve en yakın depoya ya da yuvaya taşır.</li>
+    <li>Yüklü bir karınca %30 daha yavaş yürür.</li>
+    <li>Toplayacak bir şeyi olmayan boştaki karıncalar yuvanın üzerinde lekeler halinde yanıp söner.</li>
+  </ul>
+  <h3>Karınca patikaları</h3>
+  <p>Koloninin karıncalarının sık geçtiği yerlerde çimen ezilip taneli kum bir patikaya döner. Kendi patikalarında karıncalar daha hızlı yürür — %15'e kadar.
+     Terk edilmiş bir patika birkaç dakikada otla kaplanır. Düşmanın patikaları yalnızca alanı gördüğün yerlerde görünür.</p>
+  <div class="tip">Depoları «tarla → depo» yolu kısa ve iyi çiğnenmiş olacak şekilde kur: patika teslimatı kendiliğinden hızlandırır.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Birimler</h2>
+  <p>Karıncalar <b>İnşaat</b> panelinden çıkarılır: önce yuvanın çevresindeki kuluçkada bir yumurta belirir (aynı anda 16'ya kadar), karınca ondan çıkar.
+     <b>Shift + tuş</b> tek seferde 16 karınca sipariş eder.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Birim</th><th>Fiyat</th><th>Görev</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>İşçi</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Yiyecek ve mantar toplar. 1 sağlık puanı.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Mimar</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Odun ve saz toplar. 1 sağlık puanı. Yeni oyunda ne sen ne de düşman, oyunun başlangıcından (ilk işçiden) sonraki ilk 30 saniye mimar çıkaramaz — oyun adil başlasın diye; bol kaynak modunda hemen.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Savaşçı</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Saldırı ve savunma. Sağlık 10 (Güçlü savaşçılarla 15/20/25). Laboratuvar gerekir.</td></tr>
+      </table>
+      <p style="font-size:13px">* Güçlü savaşçıların her seviyesiyle savaşçı pahalanır: 35/15, 45/25, 50/30. Geliştirme yalnızca yeni savaşçılara uygulanır.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="İnşaat paneli"><figcaption>İnşaat paneli</figcaption></figure>
+  </div>
+  <h3>Sınır ve yaş</h3>
+  <ul>
+    <li>En fazla 40 işçi ve 40 mimar; her depo her sınırı 10 artırır. Savaşçılar sınırsızdır.</li>
+    <li>Karıncalar yaşlanır ve yaşlılıktan ölür — karttaki yaş çubuğu yeşilden kırmızıya geçer. Bataklıkta 10 kat hızlı yaşlanırlar.</li>
+    <li>Saldırıda karıncalar her zamankinden %30 hızlı koşar.</li>
+  </ul>
+  <h3>İşçiler ve mimarlar da ısırır</h3>
+  <p>Emirle işçiler ve mimarlar düşman karıncalara ve hayvanlara gönderilebilir. Zayıf ısırırlar (hayvanları bir savaşçıdan dört kat zayıf),
+     ve ısırıkları geliştirilmez — savaşçı yokken son çare.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Yapılar ve tuzaklar</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Karınca yuvası</h4>
+      <p>Ana yapı: oyun başlamadan önce kurulur. Kaynaklar buraya getirilir, karıncalar burada doğar.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Laboratuvar <span class="k">L</span></h4>
+      <p>Yuvaya bir ek bina, yer seçmek gerekmez. Savaşçıları, araştırmayı ve tuzakları açar.</p>
+      <p class="cost">Fiyat: <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Depo <span class="k">S</span></h4>
+      <p>Kaynaklar için yakın bir teslim noktası ve işçi ile mimar sınırına +10. 5 depoya kadar, Daha fazla depo yenilerini ekler.</p>
+      <p class="cost">Fiyat: <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Tuzak <span class="k">B</span></h4>
+      <p>Bir mayın: üzerine yabancı bir karınca veya hayvan basınca patlar.</p>
+      <p class="cost">Fiyat: <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Depo nereye kurulabilir</h3>
+  <ul>
+    <li>Yalnızca yuvanın veya başka bir deponun menzilinde — depo ağı adım adım büyür (menzil kesik çizgili dairelerle gösterilir).</li>
+    <li>Büyüyen kaynaklara fazla yakın değil.</li>
+    <li>Kütük, mantar, gölet ve saz, dere, kızıl karınca yuvaları, tuzaklar, yiyecek, odun ve örümcek ağları üzerine değil. Gölet kıyısına kurulabilir.</li>
+    <li>Düşman da aynı kurallara uyar.</li>
+  </ul>
+  <p>Bir depo, tuzak veya alan bir yere kurulamıyorsa imlecin yanında nedenini söyleyen bir ipucu çıkar: «Karınca yuvasına çok yakın», «Yalnızca kendi bölgelerinde»,
+     «Burada toplanacak bir şey yok» vb.</p>
+  <h3>Tuzaklar</h3>
+  <ul>
+    <li>Yalnızca kendi toplama alanlarının içine, alanın kendi yarına kurulur — yer seçerken alanlar sahada görünür.</li>
+    <li>Kurulduktan sonra tuzak dolar (yaklaşık 17 saniye, ilerleme kartta görünür), sonra kurulur.</li>
+    <li>Düşman karıncalarında, yaban hayatında ve kızıl karıncalarda çalışır. Patlama çevredeki karıncaları, bir örümceği, bir toprak böceğini, bir su örümceğini öldürür;
+      <b>peygamberdevesinden</b> 60 sağlık götürür.</li>
+    <li>Düşmanın tuzakları da aynı derecede tehlikelidir. Düşman Normal zorluktan itibaren tuzak kurar.</li>
+    <li>Tuzaklar otomasyonu onları kendisi kurar.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Araştırma</h2>
+  <p><b>Teknoloji</b> paneli <span class="k">T</span> laboratuvar inşa edildikten sonra açılır. Solda geliştirmeler (üç seviye), sağda otomasyon.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Teknoloji paneli"><figcaption>Teknoloji paneli</figcaption></figure>
+  <table>
+    <tr><th>Geliştirme</th><th>Sv. I</th><th>Sv. II</th><th>Sv. III</th><th>Etkisi</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Hasat artışı</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>Bitkiler daha hızlı büyür ve daha çok olur.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Manevra</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Manevra saldırı türünü açar — savaşçılar düşmanı bir yay çizerek dolanır ve yandan vurur; her seviyede daha hızlı.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Genetik sıçrama</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Karınca hızı ×1,2 / ×1,4 / ×1,6 ve siste görüş mesafesi.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Güçlü savaşçılar</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>Yeni savaşçıların 10 yerine 15 / 20 / 25 sağlığı olur.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Depo artışı</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Yiyecek ve odun üretimi: depolardan +%5 / +%10 / +%18 gelir.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Daha fazla depo</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>Her seviyede beşin üstüne +1 depo.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Yeni kaynak türü</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — işçiler mantar toplar, alanlar mantarların üzerine kurulabilir; II — bizim yarıdaki mantarlar %20 daha hızlı büyür; III — %20 daha çok büyür.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — yiyecek, <span class="res"><img src="Textures/der_1.png" alt=""></span> — odun. Düşman da aynı teknolojileri araştırır.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Otomasyon</h2>
+  <p>Teknoloji panelinin sağ sütunundan bir kez satın alınır. Çoğu daha sonra <i>Oto / Elle</i> düğmesiyle açılıp kapatılır.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Alanlar</h4><p>Toplama alanları kaynakların çevresine otomatik kurulur.</p><p class="cost">25 yiyecek</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Ormancılık</h4><p>Çalılığın bir kısmı otomatik olarak toplanmaz — oduna dönüşür.</p><p class="cost">10 odun</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Mantarcılık</h4><p>Kendi yarındaki misellerde mantarların ~%40'ı bırakılır — miseller daha hızlı büyür. Yeni kaynak türü I gerekir.</p><p class="cost">30 yiyecek</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">İnşaat</h4><p>Otomatik çıkarma: koloni gereken karıncaları kendisi çıkarır.</p><p class="cost">10 yiyecek</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Saldırı</h4><p>Planlı saldırı: koloni kendisi savaşçı toplar ve yeterince güçlüyken saldırır.</p><p class="cost">25 yiyecek</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Tuzaklar</h4><p>Oto-tuzaklar: kaynak olduğu sürece tuzaklar kendiliğinden kurulur.</p><p class="cost">10 yiyecek</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Mod ve toplama alanları</h2>
+  <div class="side">
+    <div>
+      <h3>Toplama alanları</h3>
+      <p>Alan'a (veya <span class="k">=</span>) bas ve sahaya alanlar çiz — karıncalar onların içinde toplar. <span class="k">-</span> — alanları kaldır.
+        Kaynaklar depodan uzaksa, yakına bir depo kurulana kadar oraya alan koymamak daha iyidir.</p>
+      <h3>Mod paneli</h3>
+      <ul>
+        <li><b>Ormancılık</b> <span class="k">F</span> — işçilerin dokunmayacağı bitkileri işaretle: oduna dönüşecekler. İmleçte «+» — işaretle, «−» — işareti kaldır.</li>
+        <li><b>Mantarcılık</b> <span class="k">G</span> — aynı şekilde toplanmayacak mantarlar işaretlenir.</li>
+        <li><b>Birim davranışı</b>:
+          <ul><li><b>Herkese saldır</b> — boştaki savaşçılar işçileri korur: onlara saldıran her hayvana veya düşmana atılırlar.</li>
+              <li><b>Hasat</b> — tüm güç kaynak toplamaya.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Mod paneli"><figcaption>Mod paneli</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Emirler ve seçim</h2>
+  <h3>Seçim</h3>
+  <ul>
+    <li><b>Çerçeve</b>: sahada sol tuşu basılı tut ve yeşil bir çerçeve çiz — içindeki karıncalar seçilir (varsa savaşçılar, yoksa mimarlar, yoksa işçiler).</li>
+    <li><span class="k">Tab</span> — tüm savaşçılarını seç.</li>
+    <li>Seçilenler sol altta görünür: her karınca için sağlık çubuklu bir kutucuk, sayıları ve toplam güçleri.</li>
+    <li><b>Sağ tuş</b> — seçimi iptal et ve açık panelleri kapat.</li>
+    <li>Seçili karıncalar yalnızca sana itaat eder: koloni savunması, Herkese saldır ve oto-saldırı onları almaz.</li>
+  </ul>
+  <h3>Nereye tıklanabilir</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">Sahaya</h4><p>Karıncalar noktaya gider (hareketli kesik çizgi) ve orada bekler.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Nöbet noktası</h4><p>Savaşçılar oradayken aynı noktanın yanına ikinci bir tıklama bir <b>nöbet noktası</b> kurar: savaşçılar yeri tutar,
+      yaklaşan düşmanları vurur ve geri döner. Noktanın üzerinde bir bayrak durur, kesik çizgili halka «nefes alır». Nöbeti yalnızca bu savaşçılara verilen yeni bir emir kaldırır.
+      İkinci tıklamadan önce bir ipucu bayrağı noktaya tekrar tekrar düşer.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">Yiyeceğe / mantara</h4><p>İşçiler yakındaki yiyeceği, alanların dışında da olsa toplar ve eve taşır. Mantarı kemirirler (mantarlar araştırıldıysa).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">Oduna</h4><p>Mimarlar yakındaki odunu toplar.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">Düşmana / hayvana</h4><p>Seçilenler hedefe saldırır (kırmızı kesik daire). Hedef ölürse yuvadaki yavrulara geçerler, yoksa beklerler.</p></div>
+  </div>
+  <p>İmleçteki yeşil nişangâh karıncaların nereye gönderilebileceğini gösterir. Karıncalar emri seçim iptal edildikten sonra da yerine getirir,
+     ardından olağan işlerine döner. Bir düşmana tıklanarak verilen saldırılar da grafiklerde görünür.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Saldırı</h2>
+  <div class="side">
+    <div>
+      <p><b>Saldırı</b> paneli:</p>
+      <ul>
+        <li>Üstte — karıncalarının türü (tıklama değiştirir), altında — saldırılacak düşman karıncaların türü.</li>
+        <li><b>«‹ 1 ›»</b> — kaç karınca gönderilecek (basılı tutmak — hızlı). Seçilenler bir halkayla işaretlenir.</li>
+        <li><b>Saldır</b> — birliği gönder.</li>
+        <li><b>Saldırı türü</b>: <i>Doğrudan</i> — cepheden; <i>Manevra</i> — yay çizerek dolanma (Manevra araştırması gerekir).</li>
+        <li><b>Sürekli saldırı</b> — savaşçılar düşmana durmadan gönderilir; panel açık kalır ve kaçının «saldırıda» olduğunu gösterir.</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Saldırı paneli"><figcaption>Saldırı paneli</figcaption></figure>
+  </div>
+  <h3>Savaş</h3>
+  <ul>
+    <li>Herkesin sağlığı aynı birimlerle ölçülür: işçi ve mimar — 1, savaşçı — 10…25.</li>
+    <li>Bir savaşçının sağlığı çevresindeki taç yapraklardan görülür: senin savaşçılarında kırmızı-turuncu, düşmanınkilerde mavi.</li>
+    <li>Saldırı paneli kapalıyken bekleyen karıncalar işe döner.</li>
+    <li>Koloniye saldırıldığında alarm çalar ve müzik savaş müziğine geçer.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Savaş"><figcaption>Oyunun ortasında: düşman koloniye soldan saldırıyor, parlamalar patlayan tuzaklar.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Çevre</h2>
+  <table>
+    <tr><th>Nesne</th><th>Geçilebilir</th><th>Özellikler</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Taşlar</b></td><td>Hayır</td><td>Etrafından dolanılır; örümcekler ağlarını taşlara örer.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Bataklıklar</b></td><td>Evet, 4 kat yavaş</td><td>Karıncalar 10 kat hızlı yaşlanır. Yakınında mantarlar daha hızlı ve sık büyür.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Kütükler</b></td><td>Evet</td><td>Bazılarının altında — toprak böceği inleri; kütüklerin yanında mantarlar büyür. Kütüğün üzerine depo kurulamaz.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Mantarlar</b></td><td>Evet, iki kat yavaş</td><td>Mantarın üzerine depo kurulamaz.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Göletler</b></td><td>Hayır (su)</td><td>Verimli kıyı: bitkiler daha hızlı büyür ve daha çok tohum verir. Kenardaki saz hazır odundur ve çabuk yeniden büyür. Her gölette bir su örümceği yaşar; sudan salyangozlar çıkar.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Dere</b></td><td>Yalnızca geçitlerden</td><td>Alanı boydan boya keser. Geçitler taştan veya kütükten, 3 sıra geniştir; hem karıncalar hem hayvanlar kullanır.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Örümcek ağı</b></td><td>Evet, yaklaşık 3 kat yavaş</td><td>Ağın sahibi yaklaşan herkese atılır.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Gölet"><figcaption>Nilüferli, sazlı ve su örümcekli bir gölet; yanında bir toprak böceği</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Taşlardaki ağ"><figcaption>Taşlardaki bir ağ ve düşman tarafında bir gölet</figcaption></figure>
+  </div>
+  <p>Bir ila dört gölet olur ve iki taraf eşit pay alır: biri ortada, çiftler ayna simetrisiyle. Haritada dere varsa, ondan yakın göletlere yan kollar ayrılır — gölete dökülen dar kanallar (iki yarıda da ayna simetrisiyle). Kanal da dere gibi geçilemez: göletin etrafından dolanılır.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Mantarlar</h2>
+  <p>Miseller kütüklerin yanında, özellikle de bataklıkların yanında büyür. Mantarlar Yeni kaynak türü araştırmasından sonra toplanabilir.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Nar mantarı</h4><p>En büyüğü: <b>13</b> yiyeceğe kadar.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Çörek mantarı</h4><p>Büyük: <b>11</b> yiyeceğe kadar.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Sinek mantarı</h4><p>Orta: <b>6</b> yiyeceğe kadar.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Horozmantarı</h4><p>Küçük: <b>4</b> yiyeceğe kadar.</p></div>
+  </div>
+  <ul>
+    <li>Mantar ne kadar büyükse o kadar çok yiyecek verir, ama kemirmesi de o kadar uzun sürer. İşçiler yalnızca olgun mantarları alır; gençler büyümeye devam eder ve miseli besler.</li>
+    <li>Mantarın üzerinde bir ilerleme dairesi görünür; eve kemirilmiş bir parça taşınır. Toplanmayan mantar zamanla çürür ve kaybolur.</li>
+    <li>Misel iplikler uzatır; iki miselin iplikleri buluştuğu yerde yenisi doğar. Bataklığa ulaşan iplik ondan su içer — böyle bir miselde mantarlar 1,7 kat, ona bağlı olanlarda 1,35 kat daha sık çıkar.</li>
+    <li>Birleşmiş misel ağı ne kadar uzunsa mantarlar o kadar sık çıkar (2,5×'e kadar) ve o kadar büyük olur.</li>
+    <li>Bir miselin yarısından fazlası yenirse yeni mantarlar kat kat daha yavaş çıkar; tamamen hasat edilmiş bir misel çok uzun sürede toparlanır.</li>
+  </ul>
+  <div class="tip">Mantarcılığı aç: bırakılan mantarlar miseli tam güçte tutar ve seni daha uzun süre besler.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Yaban hayatı</h2>
+  <p>Hayvanlar ne senin ne de düşmanındır ve iki yuvadan da uzakta yaşar. Herkese saldır seçiliyse boştaki savaşçılar işçilerine saldıran
+     hayvana kendiliğinden koşar. Yeterli savaşçısı olan düşman, onu rahatsız eden hayvanlara bir <b>av</b> planlar.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Bahçe örümceği</h3>
+  <div class="stats"><span class="hp">sağlık 30</span><span class="dmg">savaşçıya ısırık −4</span><span>yavrular: 12 / −2, 6'ya kadar</span></div>
+  <p>Ağını taşlara örer ve ortada bekler; yaklaşan her karıncaya atılır ve avı bir kozada götürür. İşçiyi veya mimarı tek ısırıkla öldürür.
+     Kozalardan (1 savaşçı + 1 işçi veya 3 işçi) yavrular çıkar. Ağır yaralanan son örümcek başka taşlara kaçar ve yeni ağ örer.
+     Bir örümceğe saldırılırsa bütün aile savaşçılara atılır. Dereyle ayrılmış bir örümcek bir geçitten yol arar.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Toprak böceği</h3>
+  <div class="stats"><span class="hp">sağlık 40</span><span class="dmg">savaşçıya ısırık −4</span><span>yavrular: 14 / −2, 4'e kadar</span></div>
+  <p>Kütüğün altındaki bir inde yaşar ve yalnız karıncaları avlar (üç ve fazlası gruplara dokunmaz). Sıradan bir karıncadan hızlıdır — ancak
+     ikinci Genetik sıçramadan sonra ondan kaçılabilir. Sert kabuk: savaşçılar onu daha yavaş yaralar. Yaralanınca ine saklanır ve iyileşir; yavrusu yoksa boş
+     bir kütüğe kaçıp yeni bir in kazabilir. Derenin öbür yakasındaki avı kovalamaz.</p>
+  <figure><img src="help/beetle.jpg" alt="Toprak böceği ini"><figcaption>Kütüğün altında bir toprak böceği ini, mantarlar, bir ağ ve bir geçitte savaş</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Salyangoz</h3>
+  <div class="stats"><span class="hp">sağlık 10–50</span><span>saldırmaz</span><span>ödül 10–70 yiyecek</span></div>
+  <p>Ara sıra bir göletten veya dereden çıkar ve alanda yavaşça sürünür (taşların ve tepelerin etrafından dolanarak, parlak bir iz bırakarak) — çoğunlukla suyun yanında, ama bazen «yorgun» uzaklara gider. Ne kadar uzun sürünürse
+     o kadar büyür: 6 evre; sudan ilk üçünden birinde çıkar. Yiyeceğin üzerinden geçerse onu yer — 10 parçaya kadar, sonra dinlenir.
+     Salyangozu işçiler ve mimarlar kemirir (onları bir mantara gönderir gibi gönder); savaşçılar onu yaralamaz. Salyangoz ne kadar büyükse o kadar çok yiyecek verir —
+     ne kadar olduğu kartta yazar; yiyecek, yanında karıncası daha çok olan tarafa gider.
+     Dünya ayarlarında: Salyangozlar — Az / Normal / Çok (yalnızca gölet veya dereyle).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Peygamberdevesi — boss</h3>
+  <div class="stats"><span class="hp">sağlık 150</span><span class="dmg">savaşçıya darbe −8</span><span>ödül 60 yiyecek</span></div>
+  <div class="side">
+    <div>
+      <p>Kaç tane olacağını dünya ayarları belirler: <i>Az</i> — bir, <i>Normal</i> — iki (küçük haritada bir), <i>Çok</i> — ikiden dörde.
+        Tarafsız şeritte, çimenin içinde neredeyse görünmez halde pusuda bekler. Kıskaç bacaklarının menzilindeki her karıncaya şimşek gibi vurur: bir işçi ölür,
+        bir savaşçı 8 sağlık kaybeder. Etrafındaki herkese karşı aynı anda savunur — kalabalık bir savaşçı sürüsü gerekir. Öldüğü anda bedeninin yanında daha çok savaşçısı olan taraf 60 yiyecek alır.
+        Bir tuzak ondan 60 sağlık götürür. Öldürülen peygamberdevesi bir daha çıkmaz.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Peygamberdevesi"><figcaption>Bir miselin yanında çimenlerde bir peygamberdevesi, yanında bir ağ</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Su örümceği</h3>
+  <div class="stats"><span class="hp">sağlık 20</span><span>yükü düşürür</span></div>
+  <p>Gölette kayar ve kıyının dibinde yürüyen bir karıncanın yiyeceğini veya odununu düşürür — yük batar. Yakında bir savaşçı olan yere (~70'ten yakın) asla yüzmez,
+     bu yüzden göletin yanındaki bir devriye alanı kıyıyı korur. Öldürülen su örümceğinin yerine zamanla yenisi gelir.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Kızıl karıncalar</h2>
+  <div class="stats"><span class="hp">karınca 12</span><span class="hp">yuva 250</span><span>tarafsız</span></div>
+  <div class="side">
+    <div>
+      <p>Tarafsız bir koloni: ortada bir yuva (<i>Az</i>), ayna simetrisiyle iki (<i>Normal</i>) ya da her yarıda ikişer (<i>Çok</i>).
+        Kızıllar evlerinin çevresinde kırıntı toplar ve kimse onlara dokunmadıkça <b>kimseye dokunmaz</b>.</p>
+      <ul>
+        <li>Yuvaya yaklaşan savaşçılar yalnızca kovalanır — savaş olmadan.</li>
+        <li>Savaşçıları bir kızıl karıncaya veya yuvaya saldıran taraf <b>kan davası</b> kazanır: yuvanın yanındaki karıncalarına saldırılır,
+          ve ara sıra bir kızıl birliği işçilerine <b>baskına</b> çıkar.</li>
+        <li>Yıkılan yuva tüm yiyecek erzakını yakında daha çok savaşçısı olan tarafa verir. Erzak kartta görünür.</li>
+        <li>Kızıl karınca yuvalarının yanında yiyecek ve mantar büyümez; devriyeler etraflarından dolanır.</li>
+      </ul>
+      <h3>Yeni koloniler</h3>
+      <p>Bir yuva 200 yiyecek biriktirince bundan 75'ini ve karıncalarının yarısını <b>yeni bir koloniye</b> verir: birlik aynı kıyıda boş bir yere gider
+        (harita oluşturulurken olduğu gibi — su, taş, mantar, yiyecek, depo, tuzak, başka kızıl yuvaları ve senin kolonilerinin yanına değil; yer yolda bozulursa
+        başkası seçilir). Yolda birliğin yarısından fazlası öldürülürse kalanlar eve kaçar. Varınca karıncalar çubuk taşır ve yuva 8 evrede büyür
+        (kartta «İnşa ediliyor: %N»); inşaat yıkılabilir. Bitince kendi erzakı olan sıradan bir kızıl karınca yuvasıdır. Toplamda
+        haritada en fazla 3 / 4 / 5 / 7 kızıl yuvası olur — küçükten devasa haritaya; ama her zaman başlangıçtakinden en az iki fazla.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Kızıl karınca yuvası"><figcaption>Kızıl karınca yuvası</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">Düşman</h2>
+  <div class="side">
+    <div>
+      <p>Bilgisayar rakibi aynı kurallarla oynar: karınca çıkarır, bir laboratuvar ve bir depo zinciri kurar, alanlar koyar (kırmızı kesik çizgi), araştırma yapar,
+        tuzak kurar, saldırır ve dereyi geçitlerden geçer.</p>
+      <ul>
+        <li>Yeterli savaşçısı varsa rahatsız eden hayvanları avlar.</li>
+        <li>Saldırgan modda işçilerini korur.</li>
+        <li>Davranışı seçilen <a href="#start">zorluğa</a> bağlıdır.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Düşman kolonisi"><figcaption>Düşman kolonisi</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Sonuçlar ve grafikler</h2>
+  <p>Zafer veya yenilgiden sonra sonuç ekranı açılır: oyun süresi, zorluk ve harita boyutu, <b>Yeniden</b> ve <b>Menüye</b> düğmeleri.
+     Zafer veya yenilgi melodisinden sonra yine ana menü müziği çalar.</p>
+  <ul>
+    <li><b>Özet</b> — elde edilen kaynaklar, türe göre yok edilen ve kaybedilen karıncalar, araştırılan teknolojiler, tuzaklar (kurulan / yok edilen / düşmanın),
+      koloniler tarafından öldürülen hayvanlar.</li>
+    <li><b>Grafikler</b> — iki tarafın karınca sayısı ve kaynakları zamana göre. Kılıçlar saldırıları işaretler: simgenin yanındaki sayı kaç farklı karıncanın
+      katıldığıdır (bir düşmana tıklanarak verilen saldırılar da sayılır).</li>
+  </ul>
+  <h3>İstatistikler ve lider tabloları</h3>
+  <ul>
+    <li><b>İstatistikler</b> (ana menü) — tüm oyunlardaki sayaçlar: oynanan oyunlar (bir oyun 2 dakikalık oyundan sonra veya daha erken biterse sayılır), zorluğa göre zaferler ve yenilgiler,
+      oynama süresi, toplanan kaynaklar, yok edilen ve kaybedilen karıncalar, depolar ve tuzaklar, yenilen hayvanlar. Sayaçlar oyunun yanında ve Steam'de saklanır.</li>
+    <li><b>Lider tabloları</b> — her zorluk, harita boyutu ve mod (normal / zengin) için en hızlı zafer: dünya sıralaması ve Steam arkadaşların.
+      Zaferden sonra sonuç ekranı sıranı gösterir. Kaşif modundaki sonuçlar kaydedilmez.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Ayarlar</h2>
+  <ul>
+    <li><b>Ses</b> ve <b>Müzik</b> — aç/kapat ve çubuklarla ses düzeyi (%10'luk adımlar).</li>
+    <li><b>Kaydırma</b> — ekran kenarında ve ok tuşlarıyla alan kaydırma hızı: %50 — normal, %100 — iki kat hızlı, %0 — alan kenarda kaymaz (yalnızca sürükleyerek).</li>
+    <li><b>Tam ekran</b> — <i>Açık</i> (varsayılan): oyun ekranı kaplar; <i>Kapalı</i>: pencerede. <span class="k">Alt</span>+<span class="k">Enter</span> ile de değiştirilir.</li>
+    <li><b>Çözünürlük</b> — tam ekran için, 4K'ya kadar açılır liste (varsayılan — masaüstü çözünürlüğü).</li>
+    <li><b>Dinamik menü arka planı</b> — <i>Açık</i>: ana menüde video oynar; <i>Kapalı</i> (varsayılan): sabit ilk kare gösterilir.</li>
+    <li><b>Dil</b> — 9 dil: Rusça, İngilizce, Ukraynaca, Almanca, Fransızca, İspanyolca, Portekizce, Lehçe, Türkçe.</li>
+    <li><b>Kısayol tuşları</b> — her tuş yeniden atanabilir; «Varsayılan» olağanları geri getirir.</li>
+  </ul>
+  <p>Müzik duruma uyum sağlar: menü, sakin oyun, savaş, zafer, yenilgi.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Kısayol tuşları</h2>
+  <p>Varsayılan tuşlar (ayarlardan değiştirilebilir):</p>
+  <table>
+    <tr><th>Tuş</th><th>Eylem</th><th>Tuş</th><th>Eylem</th></tr>
+    <tr><td><span class="k">E</span></td><td>İşçi</td><td><span class="k">T</span></td><td>Teknoloji paneli</td></tr>
+    <tr><td><span class="k">A</span></td><td>Mimar</td><td><span class="k">F</span></td><td>Ormancılık</td></tr>
+    <tr><td><span class="k">W</span></td><td>Savaşçı</td><td><span class="k">G</span></td><td>Mantarcılık</td></tr>
+    <tr><td><span class="k">Shift</span>+<span class="k">E/A/W</span></td><td>Tek seferde 16 karınca</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Alan ekle / kaldır</td></tr>
+    <tr><td><span class="k">L</span></td><td>Laboratuvar</td><td><span class="k">Tab</span></td><td>Tüm savaşçıları seç</td></tr>
+    <tr><td><span class="k">S</span></td><td>Depo</td><td><span class="k">Home</span></td><td>Koloniye dön</td></tr>
+    <tr><td><span class="k">B</span></td><td>Tuzak</td><td><span class="k">Esc</span></td><td>Ana menü</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Enter</span></td><td>Tam ekran / pencere</td><td></td><td></td></tr>
+  </table>
+  <p>Fare: sol tuş — seçim, çerçeve, emir; sağ — tıklama seçimi iptal eder ve panelleri kapatır, basılı tutulunca alanı sürükler; tekerlek — yakınlaştırma; orta tuş — o da alanı sürükler.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">İpuçları</h2>
+  <ul>
+    <li>Birkaç işçiyle başla, 30 saniye sonra da birkaç mimar ekle: laboratuvar için 35 ve depo için 25 odun, başlangıcın kilit aşamasıdır.</li>
+    <li>Depoları yuvadan uzak zengin yerlere kur — teslimat kısalır ve patikalar karıncaları hızlandırır.</li>
+    <li>Herkese saldır'ı aç ve toplama alanlarının yanında birkaç savaşçı tut — işçileri örümceklerden, toprak böceklerinden ve su örümceklerinden korurlar.</li>
+    <li>İşçileri bataklıklardan geçirme: orada yavaşlar ve hızla yaşlanırlar.</li>
+    <li>Kızıllara gereksiz yere dokunma — kan davası işçilerine baskınlar getirir. Ama yıkılan bir yuva tüm yiyecek erzakını verir.</li>
+    <li>Peygamberdevesine büyük bir kalabalıkla git ya da onu tuzaklara çek — 60 yiyecek buna değer.</li>
+    <li>Savaşçıları bir toplama alanının yanında nöbete koy (aynı noktaya ikinci tıklama) — dağılmazlar ve işçileri korurlar.</li>
+    <li>Yiyeceğinin üzerinde sürünen büyük bir salyangoza işçi gönder — 70 yiyeceğe kadar verir.</li>
+    <li>Depo artışı rezervin yüzdesi olarak çalışır — kaynağın çok olduğunda daha kârlıdır.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · Oyun kılavuzu</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

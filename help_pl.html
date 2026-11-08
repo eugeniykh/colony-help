@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — poradnik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html" selected>Polski</option><option value="help_tr.html">Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>Gra strategiczna o dwóch koloniach mrówek: zbieraj jedzenie i drewno, zbierz armię, badaj technologie,
+       przetrwaj wśród dzikiej przyrody — i pokonaj sąsiadów.</p>
+    <span class="ver">Poradnik · wersja 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>Spis treści</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">O grze i cel</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Początek gry</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Interfejs</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Zasoby</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Jednostki</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Budynki i pułapki</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Badania</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Automatyzacja</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Tryb i obszary</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Rozkazy i zaznaczanie</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Atak</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Otoczenie</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Grzyby</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Dzika przyroda</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Rude mrówki</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">Przeciwnik</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Wyniki i wykresy</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Ustawienia</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Skróty klawiszowe</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">Porady</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">O grze i cel</h2>
+  <p class="lead">Colony to ekonomiczna gra strategiczna o dwóch koloniach mrówek: twojej i kolonii przeciwnika sterowanego przez komputer.
+  Wrogie mrowisko stoi w lustrzanym odbiciu względem środka pola. Twoje zadanie: zręcznie zbierać zasoby,
+  rozwijać kolonię i złamać rywala.</p>
+  <figure><img src="help/world.jpg" alt="Pole gry">
+    <figcaption>Średnia mapa: po lewej twoje mrowisko (zielone koło), po prawej wroga kolonia z obszarami zbioru (czerwona przerywana linia),
+      pośrodku strumienie z przeprawami, pająki, modliszka, nora biegacza, stawy i gniazda rudych mrówek.</figcaption></figure>
+  <h3>Zwycięstwo i porażka</h3>
+  <ul>
+    <li><b>Zwycięstwo</b> — wróg nie ma już ani jednej robotnicy (wliczając jaja w wylęgarni) i ma mniej niż 5 jedzenia, więc nie może wykluć nowej.</li>
+    <li><b>Porażka</b> — to samo spotkało twoją kolonię.</li>
+    <li>Budynków nie da się zniszczyć: kolonie zabijają tylko mrówki przeciwnika.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Początek gry</h2>
+  <div class="side">
+    <div>
+      <p>W menu głównym są dwa sposoby rozpoczęcia:</p>
+      <ul>
+        <li><b>Nowa gra</b> — zwykły start: <span class="res"><img src="Textures/eda_1.png" alt="">25</span> jedzenia i <span class="res"><img src="Textures/der_1.png" alt="">10</span> drewna.</li>
+        <li><b>Tryb dużo zasobów</b> — obie strony od razu mają 1500 jedzenia i 500 drewna: budowa, badania i walka zaczynają się natychmiast.</li>
+      </ul>
+      <p>W trybie dużo zasobów, dopóki masz jeszcze jedzenie (co najmniej 10), trwa <b>wyścig zbrojeń</b>: kup więcej wojowniczek, niż ma wróg,
+        a od razu wykluje on wojowniczki o tej samej łącznej sile (wliczając Silne wojowniczki), nie wydając w tym czasie nic na ulepszenia. Przy równej sile
+        na ulepszenia i magazyny wydaje tylko to, co ma ponad twoje zapasy. Dlatego najszybszego zwycięstwa nie zdobędziesz wczesnym szturmem.</p>
+      <p>W trakcie partii menu pokazuje też <b>Kontynuuj</b> i <b>Od nowa</b> (ta sama mapa od początku). Są tam też <b>Statystyki</b> — twoje liczniki
+        ze wszystkich partii — i <b>Rankingi</b> Steam najszybszych zwycięstw.</p>
+      <p>Potem otwiera się ekran ustawień partii; gra zaczyna się przyciskiem <b>Rozpocznij</b>. Wybór jest zapamiętywany.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Menu główne"><figcaption>Menu główne</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Ustawienia partii">
+    <figcaption>Po lewej poziom trudności, mapa i widoczność; po prawej ustawienia świata; na dole podgląd mapy.</figcaption></figure>
+  <h3>Poziom trudności</h3>
+  <p>Poziom trudności zmienia tylko komputerowego przeciwnika:</p>
+  <table>
+    <tr><th>Poziom</th><th>Co się zmienia</th></tr>
+    <tr><td><b>Odkrywca</b></td><td>Wróg nie tworzy wojowniczek, nie stawia pułapek i nigdy nie atakuje — spokojnie poznaj pole i gospodarkę. W tym trybie nie ma osiągnięć.</td></tr>
+    <tr><td><b>Łatwy</b></td><td>Wróg zbiera o 30% mniej, bez pułapek, i atakuje nie wcześniej niż po 6 minutach.</td></tr>
+    <tr><td><b>Normalny</b></td><td>Wróg zbiera o 10% mniej i atakuje nie wcześniej niż po 3 minutach.</td></tr>
+    <tr><td><b>Trudny</b></td><td>Wróg gra pełną siłą od samego początku.</td></tr>
+  </table>
+  <h3>Mapa i widoczność</h3>
+  <ul>
+    <li><b>Mapa</b>: Mała (800×600), Średnia (1152×864), Duża (1440×1080), Ogromna (1728×1296). Na większej mapie jest odpowiednio więcej kamieni, bagien i trawy.</li>
+    <li><b>Mgła wojny</b> — widać tylko to, co jest blisko twojego mrowiska, magazynów i mrówek. Zbadany teren pozostaje półwidoczny; odnalezione wrogie mrowisko i jego magazyny zostają na mapie. Wybuchów i efektów we mgle nie widać. Każdy poziom Skoku genetycznego zwiększa zasięg widzenia.</li>
+    <li><b>Cała mapa widoczna</b> — kółkiem myszy można oddalić aż do całego pola. Bez tej opcji nie dalej niż 800×600 — pole się przewija.</li>
+  </ul>
+  <h3>Ustawienia świata</h3>
+  <p>Każdy element otoczenia i fauny można włączyć lub wyłączyć i wybrać jego ilość
+     (<i>Mało / Normalnie / Dużo</i>): kamienie, bagna, pniaki, stawy, strumień, grzyby, nartniki, ślimaki (tylko ze stawami lub strumieniem), biegacze, pająki, modliszka, rude mrówki.
+     „Domyślne" przywraca zwykły świat. W prawym dolnym rogu — podgląd mapy na żywo.</p>
+  <div class="side">
+    <div>
+      <h3>Wybór miejsca mrowiska</h3>
+      <p>Po Rozpocznij kamera przelatuje nad polem, a potem jednym kliknięciem wybierasz miejsce kolonii. Sześciokąty oznaczają dozwolone miejsca;
+        mrowisko nie może stać zbyt blisko środka ani krawędzi. Wróg pojawia się w lustrzanym odbiciu.</p>
+      <p>Najpierw warto wykluć co najmniej jedną robotnicę (podpowiedź na dole ekranu).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Wybór pozycji startowej"><figcaption>Wybór pozycji startowej</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Interfejs</h2>
+  <figure><img src="help/toolbar.jpg" alt="Górny pasek"><figcaption>Górny pasek</figcaption></figure>
+  <ul>
+    <li><b>Budowa</b> — wylęganie mrówek i budynki.</li>
+    <li><b>Technologie</b> — ulepszenia, automatyzacja i pułapki (po zbudowaniu pracowni).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>Jedzenie</b> i <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>Drewno</b> — twoje zapasy.</li>
+    <li><b>Obszar</b> — rysowanie obszarów zbioru: <b>On</b> — dodaj, <b>Off</b>; klawisze <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Atak</b> — panel rozkazów i ataku. <b>Tryb</b> — leśnictwo, hodowla grzybów i zachowanie jednostek.</li>
+    <li>Po prawej — czas gry. Na dole — linia podpowiedzi i panel zaznaczonych mrówek.</li>
+  </ul>
+  <h3>Kamera</h3>
+  <ul>
+    <li>Kółko myszy — przybliżanie/oddalanie w stronę kursora (do 2,5×).</li>
+    <li>Wciśnięty prawy przycisk — przeciąganie pola („chwyć i ciągnij"); krótkie prawe kliknięcie nadal anuluje zaznaczenie.</li>
+    <li>Strzałki — przewijanie pola; wciśnięty prawy (lub środkowy) przycisk — przeciąganie pola.</li>
+    <li><span class="k">Home</span> — powrót do swojego mrowiska.</li>
+  </ul>
+  <h3>Podpowiedzi po najechaniu</h3>
+  <p>Najedź na mrówkę, roślinę, grzyb, pułapkę, zwierzę lub mrowisko — pojawi się karta: zdrowie, wiek,
+    wzrost, dojrzewanie, gnicie, ładowanie pułapki, zapas gniazda rudych mrówek itd.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Zasoby</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Jedzenie</h4>
+      <p>Wyrasta z nasion: dojrzała grupa roślin daje nowe nasiona. Zbierają je robotnice. Jedzenie długo niezbierane drewnieje i staje się drewnem.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Drewno</h4>
+      <p>Zbierają je budowniczki. Powstaje z długo niezbieranego jedzenia i rośnie jako trzcina na brzegach stawów. Potrzebne na pracownię, magazyny, wojowniczki i część badań.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Grzyby</h4>
+      <p>Kolejne źródło jedzenia po badaniu Nowy rodzaj zasobów. Więcej w rozdziale <a href="#mush">Grzyby</a>.</p></div>
+  </div>
+  <h3>Zbieranie i dostawa</h3>
+  <ul>
+    <li>Mrówki zbierają zasoby tylko w <b>obszarach zbioru</b> (lub na bezpośredni rozkaz) i noszą je do najbliższego magazynu lub mrowiska.</li>
+    <li>Z ładunkiem mrówka idzie o 30% wolniej.</li>
+    <li>Wolne mrówki, które nie mają czego zbierać, migają jako plamki na mrowisku.</li>
+  </ul>
+  <h3>Mrówcze ścieżki</h3>
+  <p>Tam, gdzie mrówki kolonii często chodzą, trawa zostaje wydeptana w ziarnistą piaszczystą ścieżkę. Po własnej ścieżce mrówki idą szybciej — do +15%.
+     Porzucona ścieżka zarasta w kilka minut. Ścieżki wroga widać tylko tam, gdzie widzisz pole.</p>
+  <div class="tip">Stawiaj magazyny tak, by droga „pole → magazyn" była krótka i dobrze wydeptana: ścieżka sama przyspieszy dostawę.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Jednostki</h2>
+  <p>Mrówki wylęga się w panelu <b>Budowa</b>: najpierw w wylęgarni wokół mrowiska pojawia się jajo (do 16 naraz), a z niego wychodzi mrówka.
+     <b>Shift + klawisz</b> zamawia 16 mrówek naraz.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Jednostka</th><th>Cena</th><th>Rola</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>Robotnica</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Zbiera jedzenie i grzyby. 1 punkt zdrowia.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Budowniczka</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Zbiera drewno i trzcinę. 1 punkt zdrowia. W Nowej grze ani ty, ani wróg nie możecie wykluwać budowniczek przez pierwsze 30 sekund od początku gry (pierwszej robotnicy), żeby partia zaczęła się uczciwie; w trybie dużo zasobów — od razu.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Wojowniczka</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Atak i obrona. Zdrowie 10 (15/20/25 z Silnymi wojowniczkami). Wymaga pracowni.</td></tr>
+      </table>
+      <p style="font-size:13px">* Z każdym poziomem Silnych wojowniczek wojowniczka drożeje: 35/15, 45/25, 50/30. Ulepszenie dotyczy tylko nowych wojowniczek.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="Panel Budowa"><figcaption>Panel Budowa</figcaption></figure>
+  </div>
+  <h3>Limit i wiek</h3>
+  <ul>
+    <li>Najwyżej 40 robotnic i 40 budowniczek; każdy magazyn podnosi każdy limit o 10. Wojowniczek jest bez limitu.</li>
+    <li>Mrówki się starzeją i umierają ze starości — pasek wieku na karcie przechodzi z zielonego w czerwony. Na bagnie starzeją się 10 razy szybciej.</li>
+    <li>W ataku mrówki biegną o 30% szybciej niż zwykle.</li>
+  </ul>
+  <h3>Robotnice i budowniczki też gryzą</h3>
+  <p>Na rozkaz robotnice i budowniczki można wysłać na wrogie mrówki i na zwierzęta. Gryzą słabo (zwierzęta cztery razy słabiej niż wojowniczka),
+     a ich ugryzienie się nie ulepsza — ostateczność, gdy nie ma wojowniczek.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Budynki i pułapki</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Mrowisko</h4>
+      <p>Główny budynek: stawiany przed początkiem gry. Tu przynosi się zasoby i tu wykluwają się mrówki.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Pracownia <span class="k">L</span></h4>
+      <p>Przybudówka mrowiska, bez wyboru miejsca. Odblokowuje wojowniczki, badania i pułapki.</p>
+      <p class="cost">Cena: <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Magazyn <span class="k">S</span></h4>
+      <p>Bliski punkt oddawania zasobów i +10 do limitu robotnic i budowniczek. Do 5 magazynów, Więcej magazynów dodaje kolejne.</p>
+      <p class="cost">Cena: <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Pułapka <span class="k">B</span></h4>
+      <p>Mina: wybucha, gdy nadepnie na nią obca mrówka lub zwierzę.</p>
+      <p class="cost">Cena: <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Gdzie można postawić magazyn</h3>
+  <ul>
+    <li>Tylko w zasięgu mrowiska lub innego twojego magazynu — sieć magazynów rośnie krok po kroku (zasięg pokazują przerywane okręgi).</li>
+    <li>Nie za blisko rosnących zasobów.</li>
+    <li>Nie na pniakach, grzybach, stawach i trzcinie, strumieniu, gniazdach rudych mrówek, pułapkach, jedzeniu, drewnie ani pajęczynach. Na brzegu stawu — można.</li>
+    <li>Wróg przestrzega tych samych zasad.</li>
+  </ul>
+  <p>Jeśli magazynu, pułapki lub obszaru nie da się gdzieś postawić, przy kursorze pojawia się podpowiedź z przyczyną: „Za blisko mrowiska", „Tylko wewnątrz twoich stref",
+     „Nie ma tu nic do zbierania" itd.</p>
+  <h3>Pułapki</h3>
+  <ul>
+    <li>Stawia się je tylko wewnątrz twoich obszarów zbioru, na twojej połowie pola — podczas wyboru miejsca obszary są widoczne na polu.</li>
+    <li>Po postawieniu pułapka się ładuje (około 17 sekund, postęp widać na karcie), potem się uzbraja.</li>
+    <li>Działa na wrogie mrówki, dzikie zwierzęta i rude mrówki. Wybuch zabija mrówki wokół, pająka, biegacza, nartnika;
+      <b>modliszce</b> odbiera 60 zdrowia.</li>
+    <li>Pułapki wroga są równie groźne. Wróg stawia pułapki od poziomu Normalny.</li>
+    <li>Automatyzacja Pułapki stawia je sama.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Badania</h2>
+  <p>Panel <b>Technologie</b> <span class="k">T</span> otwiera się po zbudowaniu pracowni. Po lewej ulepszenia (trzy poziomy), po prawej automatyzacja.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Panel Technologie"><figcaption>Panel Technologie</figcaption></figure>
+  <table>
+    <tr><th>Ulepszenie</th><th>Poz. I</th><th>Poz. II</th><th>Poz. III</th><th>Działanie</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Większe zbiory</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>Rośliny rosną szybciej i jest ich więcej.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Manewr</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Odblokowuje rodzaj ataku Manewr — wojowniczki obchodzą wroga łukiem i uderzają z flanki; z każdym poziomem szybciej.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Skok genetyczny</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Szybkość mrówek ×1,2 / ×1,4 / ×1,6 i zasięg widzenia we mgle.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Silne wojowniczki</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>Nowe wojowniczki mają 15 / 20 / 25 zdrowia zamiast 10.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Większy magazyn</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Hodowla jedzenia i drewna: +5% / +10% / +18% dochodu z magazynów.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Więcej magazynów</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>+1 magazyn ponad pięć na poziom.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Nowy rodzaj zasobów</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — robotnice zbierają grzyby, obszary można stawiać na grzybach; II — grzyby na naszej połowie rosną o 20% szybciej; III — rośnie ich o 20% więcej.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — jedzenie, <span class="res"><img src="Textures/der_1.png" alt=""></span> — drewno. Wróg bada te same technologie.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Automatyzacja</h2>
+  <p>Kupuje się ją raz w prawej kolumnie panelu Technologie. Większość potem włącza się i wyłącza przyciskiem <i>Auto / Ręczny</i>.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Obszary</h4><p>Obszary zbioru są stawiane automatycznie wokół zasobów.</p><p class="cost">25 jedzenia</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Leśnictwo</h4><p>Część zarośli automatycznie nie jest zbierana — staje się drewnem.</p><p class="cost">10 drewna</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Hodowla grzybów</h4><p>W grzybniach na twojej połowie zostaje ~40% grzybów — grzybnie rosną szybciej. Wymaga Nowego rodzaju zasobów I.</p><p class="cost">30 jedzenia</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">Budowa</h4><p>Automatyczne wylęganie: kolonia sama wylęga potrzebne mrówki.</p><p class="cost">10 jedzenia</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Atak</h4><p>Planowany atak: kolonia sama zbiera wojowniczki i atakuje, gdy jest dość silna.</p><p class="cost">25 jedzenia</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Pułapki</h4><p>Autopułapki: pułapki stawiają się same, dopóki są zasoby.</p><p class="cost">10 jedzenia</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Tryb i obszary zbioru</h2>
+  <div class="side">
+    <div>
+      <h3>Obszary zbioru</h3>
+      <p>Naciśnij Obszar (lub <span class="k">=</span>) i rysuj obszary na polu — mrówki zbierają w nich. <span class="k">-</span> — usuwanie obszarów.
+        Jeśli zasoby są daleko od magazynu, lepiej nie stawiać tam obszaru, dopóki w pobliżu nie stanie magazyn.</p>
+      <h3>Panel Tryb</h3>
+      <ul>
+        <li><b>Leśnictwo</b> <span class="k">F</span> — zaznacz rośliny, których robotnice nie ruszą: wyrosną na drewno. „+" przy kursorze — zaznacz, „−" — zdejmij zaznaczenie.</li>
+        <li><b>Hodowla grzybów</b> <span class="k">G</span> — tak samo zaznacza się grzyby, których się nie zbiera.</li>
+        <li><b>Zachowanie jednostek</b>:
+          <ul><li><b>Atakuj wszystkich</b> — wolne wojowniczki chronią robotnice: rzucają się na każde zwierzę lub wroga, który je zaatakował.</li>
+              <li><b>Zbiory</b> — wszystkie siły na zbieranie zasobów.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Panel Tryb"><figcaption>Panel Tryb</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Rozkazy i zaznaczanie</h2>
+  <h3>Zaznaczanie</h3>
+  <ul>
+    <li><b>Ramka</b>: przytrzymaj lewy przycisk na polu i narysuj zieloną ramkę — mrówki w środku zostaną zaznaczone (wojowniczki, jeśli są, inaczej budowniczki, inaczej robotnice).</li>
+    <li><span class="k">Tab</span> — zaznacz wszystkie swoje wojowniczki.</li>
+    <li>Zaznaczone widać w lewym dolnym rogu: kafelek na mrówkę z paskiem zdrowia, ich liczba i łączna siła.</li>
+    <li><b>Prawy przycisk</b> — anuluj zaznaczenie i zamknij otwarte panele.</li>
+    <li>Zaznaczone mrówki słuchają tylko ciebie: obrona kolonii, Atakuj wszystkich i autoatak ich nie biorą.</li>
+  </ul>
+  <h3>Gdzie można kliknąć</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">Na pole</h4><p>Mrówki idą do punktu (biegnąca przerywana linia) i tam czekają.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Posterunek</h4><p>Drugie kliknięcie obok tego samego punktu, gdy wojowniczki już tam są, tworzy <b>posterunek</b>: wojowniczki trzymają miejsce,
+      biją nadchodzących wrogów i wracają. Nad punktem stoi flaga, a przerywany pierścień „oddycha". Posterunek znosi tylko nowy rozkaz dla tych wojowniczek.
+      Przed drugim kliknięciem na punkt raz po raz spada flaga-podpowiedź.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">Na jedzenie / grzyb</h4><p>Robotnice zbierają pobliskie jedzenie, także poza obszarami, i noszą je do domu. Grzyb obgryzają (jeśli grzyby są zbadane).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">Na drewno</h4><p>Budowniczki zbierają pobliskie drewno.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">Na wroga / zwierzę</h4><p>Zaznaczone atakują cel (czerwony przerywany okrąg). Gdy zginie, przechodzą na młode przy gnieździe, inaczej czekają.</p></div>
+  </div>
+  <p>Zielony celownik przy kursorze pokazuje, dokąd można wysłać mrówki. Mrówki wykonują rozkaz nawet po anulowaniu zaznaczenia,
+     a potem wracają do zwykłej pracy. Ataki rozkazane kliknięciem na wroga też trafiają na wykresy.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Atak</h2>
+  <div class="side">
+    <div>
+      <p>Panel <b>Atak</b>:</p>
+      <ul>
+        <li>U góry — rodzaj twoich mrówek (kliknięcie zmienia), niżej — rodzaj wrogich mrówek do zaatakowania.</li>
+        <li><b>„‹ 1 ›"</b> — ile mrówek wysłać (przytrzymanie — szybko). Wybrane są oznaczone pierścieniem.</li>
+        <li><b>Atak</b> — wyślij oddział.</li>
+        <li><b>Rodzaj ataku</b>: <i>Wprost</i> — od czoła; <i>Manewr</i> — łukiem w obejście (wymaga badania Manewr).</li>
+        <li><b>Ciągły atak</b> — wojowniczki są bez przerwy wysyłane na wroga; panel zostaje otwarty i pokazuje, ile jest „w ataku".</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Panel Atak"><figcaption>Panel Atak</figcaption></figure>
+  </div>
+  <h3>Walka</h3>
+  <ul>
+    <li>Zdrowie wszystkich mierzy się w tych samych jednostkach: robotnica i budowniczka — 1, wojowniczka — 10…25.</li>
+    <li>Zdrowie wojowniczki widać po płatkach wokół niej: u twoich wojowniczek czerwono-pomarańczowe, u wrogich niebieskie.</li>
+    <li>Gdy panel Atak jest zamknięty, czekające mrówki wracają do pracy.</li>
+    <li>Gdy kolonia jest atakowana, rozlega się alarm, a muzyka zmienia się na bojową.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Walka"><figcaption>W środku partii: wróg atakuje kolonię z lewej, błyski to wybuchające pułapki.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Otoczenie</h2>
+  <table>
+    <tr><th>Obiekt</th><th>Przejezdność</th><th>Cechy</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Kamienie</b></td><td>Nie</td><td>Obchodzi się je; przy kamieniach pająki tkają sieci.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Bagna</b></td><td>Tak, 4 razy wolniej</td><td>Mrówki starzeją się 10 razy szybciej. W pobliżu grzyby rosną szybciej i gęściej.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Pniaki</b></td><td>Tak</td><td>Pod niektórymi — nory biegaczy; przy pniakach rosną grzyby. Magazynu nie stawia się na pniaku.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Grzyby</b></td><td>Tak, dwa razy wolniej</td><td>Magazynu nie stawia się na grzybie.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Stawy</b></td><td>Nie (woda)</td><td>Żyzny brzeg: rośliny rosną szybciej i dają więcej nasion. Trzcina na skraju to gotowe drewno i szybko odrasta. Na każdym stawie żyje nartnik; z wody wypełzają ślimaki.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Strumień</b></td><td>Tylko przeprawami</td><td>Przecina pole. Przeprawy są z kamieni lub kłód, szerokie na 3 rzędy; korzystają z nich i mrówki, i zwierzęta.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Pajęczyna</b></td><td>Tak, prawie 3 razy wolniej</td><td>Właścicielka sieci rzuca się na każdego, kto się zbliży.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Staw"><figcaption>Staw z liliami, trzciną i nartnikiem; obok biegacz</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Pajęczyna przy kamieniach"><figcaption>Pajęczyna przy kamieniach i staw po stronie wroga</figcaption></figure>
+  </div>
+  <p>Stawów jest od jednego do czterech, a obie strony dostają po równo: jeden w środku, pary w lustrzanym odbiciu. Jeśli mapa ma strumień, odchodzą od niego boczne odnogi do pobliskich stawów — wąskie kanały wpadające do stawu (lustrzanie na obu połowach). Kanału, tak jak strumienia, nie da się przejść: obchodzi się staw.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Grzyby</h2>
+  <p>Grzybnie rosną przy pniakach, a szczególnie chętnie przy bagnach. Grzyby można zbierać po badaniu Nowy rodzaj zasobów.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Czubajka kania</h4><p>Największa: do <b>13</b> jedzenia.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Borowik</h4><p>Duży: do <b>11</b> jedzenia.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Muchomor</h4><p>Średni: do <b>6</b> jedzenia.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Kurka</h4><p>Mała: do <b>4</b> jedzenia.</p></div>
+  </div>
+  <ul>
+    <li>Im większy grzyb, tym więcej jedzenia, ale tym dłużej się go obgryza. Robotnice biorą tylko dojrzałe grzyby; młode rosną dalej i odżywiają grzybnię.</li>
+    <li>Nad grzybem widać okrąg postępu; do domu niesie się obgryziony kawałek. Niezebrany grzyb z czasem gnije i znika.</li>
+    <li>Grzybnia wypuszcza nitki; gdzie spotkają się nitki dwóch grzybni, powstaje nowa. Nitka, która dotrze do bagna, pije z niego — przy takiej grzybni grzyby pojawiają się 1,7 razy częściej, przy połączonych z nią 1,35 razy.</li>
+    <li>Im dłuższa sieć zrośniętych grzybni, tym częściej pojawiają się grzyby (do 2,5×) i tym są większe.</li>
+    <li>Jeśli zjedzono ponad połowę grzybni, nowe grzyby pojawiają się wielokrotnie wolniej; całkiem wyzbierana odrasta bardzo długo.</li>
+  </ul>
+  <div class="tip">Włącz hodowlę grzybów: zostawione grzyby utrzymują grzybnię w pełnej sile i dłużej cię żywi.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Dzika przyroda</h2>
+  <p>Zwierzęta nie należą ani do ciebie, ani do wroga i żyją z dala od obu mrowisk. Jeśli wybrano Atakuj wszystkich, wolne wojowniczki same biegną
+     do zwierzęcia, które zaatakowało twoje robotnice. Wróg, który ma dość wojowniczek, planuje <b>polowanie</b> na przeszkadzające mu zwierzęta.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Krzyżak ogrodowy</h3>
+  <div class="stats"><span class="hp">zdrowie 30</span><span class="dmg">ugryzienie wojowniczki −4</span><span>młode: 12 / −2, do 6</span></div>
+  <p>Tka sieć przy kamieniach i czeka w środku; rzuca się na każdą zbliżającą się mrówkę i odnosi zdobycz w kokonie. Robotnicę lub budowniczkę zabija jednym ugryzieniem.
+     Z kokonów (1 wojowniczka + 1 robotnica lub 3 robotnice) wykluwają się młode. Ostatni ciężko ranny pająk ucieka do innych kamieni i tka nową sieć.
+     Gdy pająk zostaje zaatakowany, cała rodzina rzuca się na wojowniczki. Pająk odcięty strumieniem szuka drogi przez przeprawę.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Biegacz</h3>
+  <div class="stats"><span class="hp">zdrowie 40</span><span class="dmg">ugryzienie wojowniczki −4</span><span>młode: 14 / −2, do 4</span></div>
+  <p>Żyje w norze pod pniakiem i poluje na samotne mrówki (grup od trzech nie rusza). Szybszy od zwykłej mrówki — uciec mu można dopiero po
+     drugim Skoku genetycznym. Twardy pancerz: wojowniczki ranią go wolniej. Ranny chowa się w norze i leczy; bez młodych może uciec do pustego
+     pniaka i wykopać nową norę. Nie goni zdobyczy za strumieniem.</p>
+  <figure><img src="help/beetle.jpg" alt="Nora biegacza"><figcaption>Nora biegacza pod pniakiem, grzyby, pajęczyna i walka przy przeprawie</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Ślimak</h3>
+  <div class="stats"><span class="hp">zdrowie 10–50</span><span>nie atakuje</span><span>nagroda 10–70 jedzenia</span></div>
+  <p>Od czasu do czasu wypełza ze stawu lub strumienia i powoli pełznie po polu (omijając kamienie i wzgórza, zostawiając lśniący ślad) — zwykle przy wodzie, ale czasem „zmęczony" odpełza daleko. Im dłużej pełznie,
+     tym bardziej rośnie: 6 stadiów; z wody wychodzi w jednym z pierwszych trzech. Gdy przepełza przez jedzenie, zjada je — do 10 kawałków, potem odpoczywa.
+     Ślimaka obgryzają robotnice i budowniczki (wyślij je jak do grzyba); wojowniczki go nie ranią. Im większy ślimak, tym więcej daje jedzenia —
+     ile, pokazuje karta; jedzenie dostaje strona, której mrówek jest przy nim więcej.
+     W ustawieniach świata: Ślimaki — Mało / Normalnie / Dużo (tylko ze stawami lub strumieniem).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Modliszka — boss</h3>
+  <div class="stats"><span class="hp">zdrowie 150</span><span class="dmg">cios w wojowniczkę −8</span><span>nagroda 60 jedzenia</span></div>
+  <div class="side">
+    <div>
+      <p>Ile ich jest, ustalają ustawienia świata: <i>Mało</i> — jedna, <i>Normalnie</i> — dwie (na małej mapie jedna), <i>Dużo</i> — od dwóch do czterech.
+        Czai się w neutralnym pasie, prawie niewidoczna w trawie. Błyskawicznie uderza każdą mrówkę w zasięgu chwytnych odnóży: robotnica ginie,
+        wojowniczka traci 8 zdrowia. Broni się przed wszystkimi naraz — potrzeba tłumu wojowniczek. Strona z większą liczbą wojowniczek przy ciele w chwili śmierci dostaje 60 jedzenia.
+        Pułapka odbiera jej 60 zdrowia. Zabita modliszka już się nie pojawia.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Modliszka"><figcaption>Modliszka w trawie przy grzybni, obok pajęczyna</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Nartnik</h3>
+  <div class="stats"><span class="hp">zdrowie 20</span><span>strąca ładunek</span></div>
+  <p>Ślizga się po stawie i strąca jedzenie lub drewno mrówce idącej tuż przy brzegu — ładunek tonie. Nigdy nie podpływa tam, gdzie w pobliżu jest wojowniczka (bliżej niż ~70),
+     więc strefa patrolu przy stawie chroni brzeg. Zabitego nartnika z czasem zastępuje nowy.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Rude mrówki</h2>
+  <div class="stats"><span class="hp">mrówka 12</span><span class="hp">gniazdo 250</span><span>neutralne</span></div>
+  <div class="side">
+    <div>
+      <p>Neutralna kolonia: jedno gniazdo w środku (<i>Mało</i>), dwa lustrzane (<i>Normalnie</i>) lub po dwa na każdej połowie (<i>Dużo</i>).
+        Rude zbierają okruchy wokół domu i <b>nikogo nie ruszają</b>, dopóki ktoś nie ruszy ich.</p>
+      <ul>
+        <li>Wojowniczki, które podejdą do gniazda, są tylko przepędzane — bez wojny.</li>
+        <li>Strona, której wojowniczki zaatakowały rudą mrówkę lub gniazdo, dostaje <b>waśń</b>: jej mrówki przy gnieździe są atakowane,
+          a od czasu do czasu oddział rudych rusza na <b>wypad</b> na jej robotnice.</li>
+        <li>Zniszczone gniazdo oddaje cały zapas jedzenia stronie z większą liczbą wojowniczek w pobliżu. Zapas widać na karcie.</li>
+        <li>Przy gniazdach rudych mrówek nie rośnie jedzenie ani grzyby; patrole je omijają.</li>
+      </ul>
+      <h3>Nowe kolonie</h3>
+      <p>Gdy gniazdo zbierze 200 jedzenia, oddaje 75 z niego i połowę swoich mrówek na <b>nową kolonię</b>: oddział idzie na wolne miejsce na tym samym brzegu
+        (jak przy tworzeniu mapy — nie przy wodzie, kamieniach, grzybach, jedzeniu, magazynach, pułapkach, innych gniazdach rudych ani twoich koloniach; jeśli miejsce zepsuje się po drodze,
+        wybierane jest inne). Jeśli po drodze zginie ponad połowa oddziału, reszta ucieka do domu. Na miejscu mrówki znoszą gałązki, a gniazdo rośnie w 8 stadiach
+        (na karcie „W budowie: N%"); budowę można zniszczyć. Ukończone jest zwykłym gniazdem rudych mrówek z własnym zapasem. Łącznie
+        na mapie jest najwyżej 3 / 4 / 5 / 7 gniazd rudych — od małej do ogromnej mapy, ale zawsze co najmniej o dwa więcej niż na początku.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Gniazdo rudych mrówek"><figcaption>Gniazdo rudych mrówek</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">Przeciwnik</h2>
+  <div class="side">
+    <div>
+      <p>Komputerowy przeciwnik gra według tych samych zasad: wylęga mrówki, buduje pracownię i łańcuch magazynów, stawia obszary (czerwona przerywana linia), prowadzi badania,
+        stawia pułapki, atakuje i przechodzi strumień przeprawami.</p>
+      <ul>
+        <li>Poluje na przeszkadzające zwierzęta, gdy ma dość wojowniczek.</li>
+        <li>Chroni swoje robotnice w trybie agresywnym.</li>
+        <li>Jego zachowanie zależy od wybranego <a href="#start">poziomu trudności</a>.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Wroga kolonia"><figcaption>Wroga kolonia</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Wyniki i wykresy</h2>
+  <p>Po zwycięstwie lub porażce otwiera się ekran wyników: czas gry, poziom trudności i rozmiar mapy, przyciski <b>Od nowa</b> i <b>Do menu</b>.
+     Po melodii zwycięstwa lub porażki znów gra muzyka menu głównego.</p>
+  <ul>
+    <li><b>Podsumowanie</b> — zdobyte zasoby, zniszczone i stracone mrówki według rodzaju, zbadane technologie, pułapki (postawione / zniszczone / przez wroga),
+      zwierzęta zabite przez kolonie.</li>
+    <li><b>Wykresy</b> — liczba mrówek i zasoby obu stron w czasie. Miecze oznaczają ataki: liczba przy ikonie to, ile różnych mrówek
+      brało udział (liczą się też ataki rozkazane kliknięciem na wroga).</li>
+  </ul>
+  <h3>Statystyki i rankingi</h3>
+  <ul>
+    <li><b>Statystyki</b> (menu główne) — liczniki ze wszystkich partii: rozegrane partie (partia liczy się po 2 minutach gry lub gdy skończy się wcześniej), zwycięstwa i porażki
+      według poziomu trudności, czas gry, zebrane zasoby, zniszczone i stracone mrówki, magazyny i pułapki, pokonane zwierzęta. Liczniki są zapisywane obok gry i w Steam.</li>
+    <li><b>Rankingi</b> — najszybsze zwycięstwo dla każdego poziomu trudności, rozmiaru mapy i trybu (zwykły / bogaty): światowa czołówka i twoi znajomi ze Steam.
+      Po zwycięstwie ekran wyników pokazuje twoje miejsce. Wyniki w trybie Odkrywca nie są zapisywane.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Ustawienia</h2>
+  <ul>
+    <li><b>Dźwięk</b> i <b>Muzyka</b> — wł./wył. i głośność w kreskach (co 10%).</li>
+    <li><b>Przewijanie</b> — szybkość przewijania pola przy krawędzi ekranu i strzałkami: 50% — zwykła, 100% — dwa razy szybciej, 0% — pole nie przewija się przy krawędzi (tylko przeciąganiem).</li>
+    <li><b>Pełny ekran</b> — <i>Wł.</i> (domyślnie): gra zajmuje cały ekran; <i>Wył.</i>: w oknie. Przełącza się też <span class="k">Alt</span>+<span class="k">Enter</span>.</li>
+    <li><b>Rozdzielczość</b> — dla pełnego ekranu, lista rozwijana do 4K (domyślnie — rozdzielczość pulpitu).</li>
+    <li><b>Dynamiczne tło menu</b> — <i>Wł.</i>: w menu głównym leci wideo; <i>Wył.</i> (domyślnie): pokazana jest nieruchoma pierwsza klatka.</li>
+    <li><b>Język</b> — 9 języków: rosyjski, angielski, ukraiński, niemiecki, francuski, hiszpański, portugalski, polski, turecki.</li>
+    <li><b>Skróty klawiszowe</b> — każdy klawisz można przypisać od nowa; „Domyślne" przywraca zwykłe.</li>
+  </ul>
+  <p>Muzyka dopasowuje się do sytuacji: menu, spokojna gra, walka, zwycięstwo, porażka.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Skróty klawiszowe</h2>
+  <p>Klawisze domyślne (można je zmienić w ustawieniach):</p>
+  <table>
+    <tr><th>Klawisz</th><th>Działanie</th><th>Klawisz</th><th>Działanie</th></tr>
+    <tr><td><span class="k">E</span></td><td>Robotnica</td><td><span class="k">T</span></td><td>Panel Technologie</td></tr>
+    <tr><td><span class="k">A</span></td><td>Budowniczka</td><td><span class="k">F</span></td><td>Leśnictwo</td></tr>
+    <tr><td><span class="k">W</span></td><td>Wojowniczka</td><td><span class="k">G</span></td><td>Hodowla grzybów</td></tr>
+    <tr><td><span class="k">Shift</span>+<span class="k">E/A/W</span></td><td>16 mrówek naraz</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Dodaj / usuń obszar</td></tr>
+    <tr><td><span class="k">L</span></td><td>Pracownia</td><td><span class="k">Tab</span></td><td>Zaznacz wszystkie wojowniczki</td></tr>
+    <tr><td><span class="k">S</span></td><td>Magazyn</td><td><span class="k">Home</span></td><td>Do mojej kolonii</td></tr>
+    <tr><td><span class="k">B</span></td><td>Pułapka</td><td><span class="k">Esc</span></td><td>Menu główne</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Enter</span></td><td>Pełny ekran / okno</td><td></td><td></td></tr>
+  </table>
+  <p>Mysz: lewy przycisk — zaznaczanie, ramka, rozkaz; prawy — kliknięcie anuluje zaznaczenie i zamyka panele, przytrzymany przeciąga pole; kółko — zoom; środkowy przycisk — też przeciąga pole.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">Porady</h2>
+  <ul>
+    <li>Zacznij od kilku robotnic, a po 30 sekundach od paru budowniczek: 35 drewna na pracownię i 25 na magazyn to kluczowy etap początku.</li>
+    <li>Stawiaj magazyny w bogatych miejscach z dala od mrowiska — dostawa się skraca, a ścieżki przyspieszają mrówki.</li>
+    <li>Włącz Atakuj wszystkich i trzymaj kilka wojowniczek przy obszarach zbioru — chronią robotnice przed pająkami, biegaczami i nartnikami.</li>
+    <li>Nie posyłaj robotnic przez bagna: są tam powolne i szybko się starzeją.</li>
+    <li>Nie ruszaj rudych bez potrzeby — waśń sprowadza wypady na twoje robotnice. Ale zniszczone gniazdo oddaje cały zapas jedzenia.</li>
+    <li>Na modliszkę idź dużym tłumem albo zwab ją na pułapki — 60 jedzenia jest tego warte.</li>
+    <li>Postaw wojowniczki na posterunku przy obszarze zbioru (drugie kliknięcie w ten sam punkt) — nie rozbiegną się i będą chronić robotnice.</li>
+    <li>Wyślij robotnice do dużego ślimaka, który pełznie po twoim jedzeniu — daje do 70 jedzenia.</li>
+    <li>Większy magazyn działa procentowo od zapasu — bardziej opłaca się, gdy masz dużo zasobów.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · Poradnik gry</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

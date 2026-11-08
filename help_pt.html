@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colony — guia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "ColonyTitle"; src: local("Science Gothic"), url("ScienceGothic.ttf"); }
+:root {
+  --wood-d: #3b2412; --wood: #6b4220; --wood-l: #9a6531;
+  --gold: #f2c45a; --gold-d: #c98f2a;
+  --paper: #ecd3a0; --paper-d: #d9b77a; --ink: #3a2511; --ink-soft: #6a4a26;
+  --leaf: #7fbf3a; --leaf-d: #3d6b17; --red: #b8321f; --water: #2f6d86;
+  --title: "ColonyTitle", "Science Gothic", "Russo One", "Trebuchet MS", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  font: 16px/1.6 "Rubik", "Segoe UI", Verdana, sans-serif;
+  background: #1d2a0e url("Textures/fon.png") repeat;
+  background-size: 384px;
+}
+body::before { content: ""; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse at 50% 0%, rgba(20,30,8,.35), rgba(8,12,3,.82) 70%); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: 430px; display: flex; align-items: flex-end;
+  background: #140d05 url("help/hero.jpg") right 30% / cover no-repeat;
+  border-bottom: 6px solid var(--wood-d); box-shadow: 0 6px 0 var(--gold-d), 0 14px 30px rgba(0,0,0,.6); }
+.hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(12,8,2,.85) 0%, rgba(12,8,2,.45) 45%, rgba(12,8,2,0) 75%),
+              linear-gradient(0deg, rgba(12,8,2,.7), rgba(12,8,2,0) 50%); }
+.hero-in { position: relative; z-index: 1; padding: 40px 6vw 46px; max-width: 760px; }
+.hero h1 { margin: 0; font: 700 clamp(56px, 9vw, 110px)/1 var(--title); letter-spacing: 3px;
+  color: var(--gold); text-shadow: 0 3px 0 #7a4a12, 0 6px 18px rgba(0,0,0,.8); }
+.hero p { color: #f3e6c8; font-size: 18px; margin: 14px 0 0; text-shadow: 0 2px 6px #000; }
+.hero .ver { display: inline-block; margin-top: 18px; padding: 4px 14px; border-radius: 4px;
+  font: 600 13px var(--title); letter-spacing: 1px; color: var(--wood-d);
+  background: linear-gradient(#ffe08a, #d9a23c); box-shadow: 0 2px 0 #7a4a12; }
+
+/* ---------- layout ---------- */
+.wrap { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 34px;
+  max-width: 1280px; margin: 0 auto; padding: 34px 24px 80px; }
+nav.toc { position: sticky; top: 18px; align-self: start; max-height: calc(100vh - 36px); overflow: auto;
+  padding: 18px 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #5a3519, #3e2410);
+  border: 3px solid #2a170a; box-shadow: inset 0 0 0 2px #8a5a2b, 0 8px 22px rgba(0,0,0,.55); }
+nav.toc b { display: block; font: 700 15px var(--title); color: var(--gold); letter-spacing: 1px;
+  text-transform: uppercase; margin: 0 0 8px 6px; }
+nav.toc a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 4px;
+  color: #f0dfbd; text-decoration: none; font-size: 14px; }
+nav.toc a img { width: 22px; height: 22px; object-fit: contain; }
+nav.toc a:hover { background: rgba(242,196,90,.16); color: #fff; }
+
+/* ---------- parchment section ---------- */
+section { position: relative; margin: 0 0 34px; padding: 30px 34px 26px; border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255,245,215,.55), rgba(255,245,215,0) 45%),
+    radial-gradient(ellipse at 90% 90%, rgba(150,100,40,.25), rgba(150,100,40,0) 50%),
+    linear-gradient(135deg, #f0d9a8, #e2c287 60%, #d6b06f);
+  border: 10px solid; border-image: linear-gradient(135deg, #8a5527, #5b3315 30%, #9b6630 55%, #4e2b11 80%, #7c4a20) 1;
+  box-shadow: 0 0 0 2px #2a170a, 0 12px 28px rgba(0,0,0,.55), inset 0 0 40px rgba(120,70,20,.25); }
+h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 16px;
+  font: 700 28px/1.15 var(--title); letter-spacing: 1px; color: var(--wood-d); }
+h2 img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+h3 { font: 700 19px var(--title); color: #7a3d10; margin: 22px 0 8px; letter-spacing: .5px; }
+p { margin: 0 0 10px; }
+a { color: #8a3d0c; }
+ul { margin: 6px 0 12px; padding-left: 22px; }
+li { margin: 3px 0; }
+li::marker { color: var(--gold-d); }
+.k { display: inline-block; min-width: 22px; padding: 0 6px; text-align: center; border-radius: 3px;
+  font: 700 13px/20px var(--title); color: #fbe8bf; background: #4a2c14; box-shadow: 0 2px 0 #24140a; }
+.res { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; white-space: nowrap; }
+.res img { width: 14px; height: 14px; }
+.lead { font-size: 17px; }
+
+/* ---------- note boxes ---------- */
+.tip, .warn { margin: 14px 0; padding: 10px 14px 10px 46px; border-radius: 5px; position: relative; }
+.tip { background: rgba(127,191,58,.22); border-left: 4px solid var(--leaf-d); }
+.warn { background: rgba(184,50,31,.13); border-left: 4px solid var(--red); }
+.tip::before, .warn::before { position: absolute; left: 12px; top: 8px; font-size: 20px; }
+.tip::before { content: "🌱"; } .warn::before { content: "⚠"; color: var(--red); }
+
+/* ---------- screenshots ---------- */
+figure { margin: 16px 0; }
+figure img { display: block; width: 100%; border-radius: 4px; cursor: zoom-in;
+  border: 4px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 8px 18px rgba(0,0,0,.45); transition: transform .15s; }
+figure img:hover { transform: scale(1.01); }
+figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; font-style: italic; text-align: center; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: start; }
+.side { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 10px 0 6px; }
+.card { padding: 12px 14px; border-radius: 6px; background: rgba(255,248,228,.55);
+  border: 1px solid rgba(110,66,28,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.card h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px;
+  font: 700 16px var(--title); color: var(--wood-d); }
+.card h4 img { width: 36px; height: 36px; object-fit: contain; }
+.card p { font-size: 14px; margin: 0 0 4px; }
+.card .cost { font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px;
+  background: rgba(255,248,228,.45); border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 8px 10px; font: 700 13px var(--title); letter-spacing: .5px;
+  color: var(--gold); background: linear-gradient(#5a3519, #3e2410); }
+td { padding: 7px 10px; border-top: 1px solid rgba(110,66,28,.25); vertical-align: top; }
+td img { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+tr:nth-child(even) td { background: rgba(255,255,255,.18); }
+
+/* ---------- stat chips ---------- */
+.stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.stats span { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #4a2c14; color: #fbe8bf; }
+.stats span.hp { background: #2f6b1a; } .stats span.dmg { background: #8e2a17; }
+
+/* ---------- lightbox ---------- */
+#lb { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 50;
+  background: rgba(5,4,1,.88); cursor: zoom-out; padding: 30px; }
+#lb.on { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; border: 5px solid #4e2b11; box-shadow: 0 0 0 2px #c98f2a, 0 20px 60px #000; }
+
+footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; padding: 22px 16px 60px; }
+  nav.toc { position: static; max-height: none; display: flex; flex-wrap: wrap; gap: 2px; }
+  nav.toc b { width: 100%; }
+  section { padding: 22px 18px; }
+  .side { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html" selected>Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <h1>COLONY</h1>
+    <p>Um jogo de estratégia sobre duas colônias de formigas: colete comida e madeira, reúna um exército, pesquise tecnologias,
+       sobreviva entre a vida selvagem — e derrote seus vizinhos.</p>
+    <span class="ver">Guia · versão 1.2</span>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc">
+  <b>Conteúdo</b>
+  <a href="#about"><img src="Textures/icon_victory.png" alt="">O jogo e o objetivo</a>
+  <a href="#start"><img src="Textures/icon_difficulty.png" alt="">Início da partida</a>
+  <a href="#ui"><img src="Textures/icon_mode.png" alt="">Interface</a>
+  <a href="#res"><img src="Textures/order_gather_food_1.png" alt="">Recursos</a>
+  <a href="#units"><img src="Textures/sect_work_a.png" alt="">Unidades</a>
+  <a href="#build"><img src="Textures/sklad.png" alt="">Construções e armadilhas</a>
+  <a href="#tech"><img src="Textures/tech_dna.png" alt="">Pesquisa</a>
+  <a href="#auto"><img src="Textures/auto_zones.png" alt="">Automação</a>
+  <a href="#mode"><img src="Textures/auto_forest.png" alt="">Modo e zonas</a>
+  <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Ordens e seleção</a>
+  <a href="#attack"><img src="Textures/attack.png" alt="">Ataque</a>
+  <a href="#world"><img src="Textures/stone_1.png" alt="">Ambiente</a>
+  <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Cogumelos</a>
+  <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Vida selvagem</a>
+  <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Formigas ruivas</a>
+  <a href="#enemy"><img src="Textures/sect_warr_a.png" alt="">O inimigo</a>
+  <a href="#result"><img src="Textures/icon_win.png" alt="">Resultados e gráficos</a>
+  <a href="#settings"><img src="Textures/icon_map.png" alt="">Opções</a>
+  <a href="#keys"><img src="Textures/backspace.png" alt="">Teclas de atalho</a>
+  <a href="#tips"><img src="Textures/tech_harvest.png" alt="">Dicas</a>
+</nav>
+
+<main>
+
+<!-- ===================================================================== -->
+<section id="about">
+  <h2><img src="Textures/icon_victory.png" alt="">O jogo e o objetivo</h2>
+  <p class="lead">Colony é um jogo de estratégia econômica sobre duas colônias de formigas: a sua e a de um rival controlado pelo computador.
+  O formigueiro inimigo fica espelhado em relação ao centro do campo. Sua tarefa: coletar recursos com habilidade,
+  desenvolver a colônia e quebrar o rival.</p>
+  <figure><img src="help/world.jpg" alt="O campo de jogo">
+    <figcaption>Um mapa médio: à esquerda seu formigueiro (círculo verde), à direita a colônia inimiga com suas zonas de coleta (tracejado vermelho),
+      no centro riachos com travessias, aranhas, um louva-a-deus, a toca de um carabídeo, lagos e ninhos de formigas ruivas.</figcaption></figure>
+  <h3>Vitória e derrota</h3>
+  <ul>
+    <li><b>Vitória</b> — o inimigo não tem mais nenhuma operária (incluindo os ovos na incubadora) e tem menos de 5 de comida, então não pode chocar uma nova.</li>
+    <li><b>Derrota</b> — o mesmo aconteceu com sua colônia.</li>
+    <li>Construções não podem ser destruídas: as colônias só matam as formigas uma da outra.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="start">
+  <h2><img src="Textures/icon_difficulty.png" alt="">Início da partida</h2>
+  <div class="side">
+    <div>
+      <p>No menu principal há duas formas de começar:</p>
+      <ul>
+        <li><b>Novo jogo</b> — o início habitual: <span class="res"><img src="Textures/eda_1.png" alt="">25</span> de comida e <span class="res"><img src="Textures/der_1.png" alt="">10</span> de madeira.</li>
+        <li><b>Modo muitos recursos</b> — os dois lados recebem de saída 1500 de comida e 500 de madeira: construção, pesquisa e combate começam na hora.</li>
+      </ul>
+      <p>No modo muitos recursos, enquanto você ainda tiver comida (pelo menos 10), há uma <b>corrida armamentista</b>: compre mais guerreiras do que o inimigo tem,
+        e ele choca na hora guerreiras de mesma força total (contando as Guerreiras fortes), sem gastar nada em melhorias enquanto isso. Com forças iguais,
+        em melhorias e armazéns ele gasta só o que tem além das suas reservas. Assim, a vitória mais rápida não se consegue com uma investida precoce.</p>
+      <p>Durante uma partida, o menu também mostra <b>Continuar</b> e <b>Recomeçar</b> (o mesmo mapa desde o início). Há ainda as <b>Estatísticas</b> — seus contadores
+        de todas as partidas — e as <b>Classificações</b> da Steam das vitórias mais rápidas.</p>
+      <p>Depois abre-se a tela de ajustes da partida; o jogo começa com <b>Começar</b>. A escolha fica salva.</p>
+    </div>
+    <figure><img src="help/menu.jpg" alt="Menu principal"><figcaption>Menu principal</figcaption></figure>
+  </div>
+  <figure><img src="help/newgame.jpg" alt="Ajustes da partida">
+    <figcaption>À esquerda dificuldade, mapa e visibilidade; à direita os ajustes do mundo; embaixo a prévia do mapa.</figcaption></figure>
+  <h3>Dificuldade</h3>
+  <p>A dificuldade muda apenas o rival do computador:</p>
+  <table>
+    <tr><th>Nível</th><th>O que muda</th></tr>
+    <tr><td><b>Explorador</b></td><td>O inimigo não cria guerreiras, não coloca armadilhas e nunca ataca — explore o campo e a economia com calma. Neste modo não há conquistas.</td></tr>
+    <tr><td><b>Fácil</b></td><td>O inimigo coleta 30% menos, sem armadilhas, e não ataca antes de 6 minutos.</td></tr>
+    <tr><td><b>Normal</b></td><td>O inimigo coleta 10% menos e não ataca antes de 3 minutos.</td></tr>
+    <tr><td><b>Difícil</b></td><td>O inimigo joga com força total desde o início.</td></tr>
+  </table>
+  <h3>Mapa e visibilidade</h3>
+  <ul>
+    <li><b>Mapa</b>: Pequeno (800×600), Médio (1152×864), Grande (1440×1080), Enorme (1728×1296). Num mapa maior há proporcionalmente mais pedras, pântanos e grama.</li>
+    <li><b>Névoa de guerra</b> — só se vê o que está perto do seu formigueiro, dos seus armazéns e das suas formigas. O terreno explorado fica semivisível; um formigueiro inimigo encontrado e seus armazéns permanecem no mapa. Explosões e efeitos na névoa não são vistos. Cada nível do Salto genético aumenta o alcance de visão.</li>
+    <li><b>Mapa inteiro visível</b> — com a roda do mouse dá para afastar até ver o campo inteiro. Sem esta opção, não além de 800×600 — o campo rola.</li>
+  </ul>
+  <h3>Ajustes do mundo</h3>
+  <p>Cada elemento do ambiente e da fauna pode ser ligado ou desligado, com a quantidade escolhida
+     (<i>Poucos / Normal / Muitos</i>): pedras, pântanos, tocos, lagos, riacho, cogumelos, alfaiates, caracóis (só com lagos ou riacho), carabídeos, aranhas, louva-a-deus, formigas ruivas.
+     «Padrão» restaura o mundo habitual. Embaixo à direita — uma prévia do mapa ao vivo.</p>
+  <div class="side">
+    <div>
+      <h3>Escolher o lugar do formigueiro</h3>
+      <p>Depois de Começar, a câmera sobrevoa o campo, e então você escolhe com um clique o lugar da sua colônia. Hexágonos marcam os lugares permitidos;
+        o formigueiro não pode ficar perto demais do centro nem das bordas. O inimigo aparece espelhado.</p>
+      <p>A primeira coisa a fazer é chocar pelo menos uma operária (dica na parte de baixo da tela).</p>
+    </div>
+    <figure><img src="help/startpos.jpg" alt="Escolha da posição inicial"><figcaption>Escolha da posição inicial</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="ui">
+  <h2><img src="Textures/icon_mode.png" alt="">Interface</h2>
+  <figure><img src="help/toolbar.jpg" alt="Barra superior"><figcaption>Barra superior</figcaption></figure>
+  <ul>
+    <li><b>Construir</b> — chocar formigas e construções.</li>
+    <li><b>Tecnologia</b> — melhorias, automação e armadilhas (depois de construir o laboratório).</li>
+    <li><span class="res"><img src="Textures/eda_1.png" alt=""></span> <b>Comida</b> e <span class="res"><img src="Textures/der_1.png" alt=""></span> <b>Madeira</b> — suas reservas.</li>
+    <li><b>Zona</b> — desenhar zonas de coleta: <b>On</b> — adicionar, <b>Off</b>; teclas <span class="k">=</span> / <span class="k">-</span>.</li>
+    <li><b>Ataque</b> — painel de ordens e ataque. <b>Modo</b> — silvicultura, micocultura e conduta das unidades.</li>
+    <li>À direita — o tempo de jogo. Embaixo — a linha de dicas e o painel das formigas selecionadas.</li>
+  </ul>
+  <h3>Câmera</h3>
+  <ul>
+    <li>Roda do mouse — aproximar/afastar em direção ao cursor (até 2,5×).</li>
+    <li>Botão direito pressionado — arrastar o campo («pegar e puxar»); um clique direito curto continua cancelando a seleção.</li>
+    <li>Setas — rolar o campo; botão direito (ou do meio) pressionado — arrastar o campo.</li>
+    <li><span class="k">Home</span> — voltar ao seu formigueiro.</li>
+  </ul>
+  <h3>Dicas ao passar o mouse</h3>
+  <p>Aponte para uma formiga, planta, cogumelo, armadilha, animal ou formigueiro — aparece um cartão: saúde, idade,
+    crescimento, amadurecimento, apodrecimento, carga da armadilha, as reservas de um ninho de formigas ruivas etc.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="res">
+  <h2><img src="Textures/order_gather_food_1.png" alt="">Recursos</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/eda_1.png" alt="">Comida</h4>
+      <p>Cresce a partir de sementes: um grupo de plantas maduro dá novas sementes. É coletada pelas operárias. Comida que fica muito tempo sem ser coletada lenhifica e vira madeira.</p></div>
+    <div class="card"><h4><img src="Textures/der_1.png" alt="">Madeira</h4>
+      <p>É coletada pelas construtoras. Surge da comida que ficou muito tempo sem ser coletada e cresce como junco na margem dos lagos. Necessária para o laboratório, os armazéns, as guerreiras e parte da pesquisa.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Cogumelos</h4>
+      <p>Outra fonte de comida após a pesquisa Novo tipo de recurso. Veja a seção <a href="#mush">Cogumelos</a>.</p></div>
+  </div>
+  <h3>Coleta e entrega</h3>
+  <ul>
+    <li>As formigas só coletam recursos nas <b>zonas de coleta</b> (ou por ordem direta) e levam a carga ao armazém ou formigueiro mais próximo.</li>
+    <li>Com carga, uma formiga anda 30% mais devagar.</li>
+    <li>Formigas livres sem nada para coletar piscam como manchas sobre o formigueiro.</li>
+  </ul>
+  <h3>Trilhas de formigas</h3>
+  <p>Onde as formigas da colônia passam muito, a grama é pisoteada até virar uma trilha de areia granulada. Na própria trilha as formigas andam mais rápido — até +15%.
+     Uma trilha abandonada é coberta pela grama em poucos minutos. As trilhas do inimigo só se veem onde você vê o campo.</p>
+  <div class="tip">Coloque os armazéns de modo que o caminho «campo → armazém» seja curto e bem pisado: a trilha acelera a entrega por si só.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="units">
+  <h2><img src="Textures/sect_work_a.png" alt="">Unidades</h2>
+  <p>As formigas são chocadas no painel <b>Construir</b>: primeiro aparece um ovo na incubadora ao redor do formigueiro (até 16 de uma vez), e dele sai a formiga.
+     <b>Shift + tecla</b> encomenda 16 formigas de uma vez.</p>
+  <div class="side">
+    <div>
+      <table>
+        <tr><th>Unidade</th><th>Preço</th><th>Função</th></tr>
+        <tr><td><img src="Textures/sect_work_a.png" alt=""><b>Operária</b> <span class="k">E</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">5</span></td><td>Coleta comida e cogumelos. 1 ponto de saúde.</td></tr>
+        <tr><td><img src="Textures/sect_arch_a.png" alt=""><b>Construtora</b> <span class="k">A</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">3</span> <span class="res"><img src="Textures/der_1.png" alt="">2</span></td><td>Coleta madeira e junco. 1 ponto de saúde. No Novo jogo, nem você nem o inimigo podem chocar construtoras nos primeiros 30 segundos após o início (a primeira operária), para que a partida comece de forma justa; no modo muitos recursos, imediatamente.</td></tr>
+        <tr><td><img src="Textures/sect_warr_a.png" alt=""><b>Guerreira</b> <span class="k">W</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">10</span>*</td><td>Ataque e defesa. Saúde 10 (15/20/25 com Guerreiras fortes). Requer o laboratório.</td></tr>
+      </table>
+      <p style="font-size:13px">* A cada nível de Guerreiras fortes a guerreira fica mais cara: 35/15, 45/25, 50/30. A melhoria vale só para guerreiras novas.</p>
+    </div>
+    <figure><img src="help/panel_build.jpg" alt="Painel Construir"><figcaption>O painel Construir</figcaption></figure>
+  </div>
+  <h3>Limite e idade</h3>
+  <ul>
+    <li>No máximo 40 operárias e 40 construtoras; cada armazém aumenta cada limite em 10. Guerreiras não têm limite.</li>
+    <li>As formigas envelhecem e morrem de velhice — a barra de idade no cartão vai do verde ao vermelho. No pântano envelhecem 10 vezes mais rápido.</li>
+    <li>Em ataque, as formigas andam 30% mais rápido que o normal.</li>
+  </ul>
+  <h3>Operárias e construtoras também mordem</h3>
+  <p>Por ordem, operárias e construtoras podem ser enviadas contra formigas inimigas e animais. Mordem fraco (nos animais, quatro vezes menos que uma guerreira),
+     e a mordida delas não melhora — um último recurso quando não há guerreiras.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="build">
+  <h2><img src="Textures/sklad.png" alt="">Construções e armadilhas</h2>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/murav_norm.png" alt="">Formigueiro</h4>
+      <p>A construção principal: é colocada antes do início da partida. Para cá são trazidos os recursos, e aqui nascem as formigas.</p></div>
+    <div class="card"><h4><img src="Textures/tch_mur.png" alt="">Laboratório <span class="k">L</span></h4>
+      <p>Um anexo do formigueiro, sem lugar a escolher. Libera guerreiras, pesquisa e armadilhas.</p>
+      <p class="cost">Preço: <span class="res"><img src="Textures/der_1.png" alt="">35</span></p></div>
+    <div class="card"><h4><img src="Textures/sklad.png" alt="">Armazém <span class="k">S</span></h4>
+      <p>Um ponto de entrega próximo para os recursos e +10 ao limite de operárias e construtoras. Até 5 armazéns, Mais armazéns adiciona outros.</p>
+      <p class="cost">Preço: <span class="res"><img src="Textures/der_1.png" alt="">25</span></p></div>
+    <div class="card"><h4><img src="Textures/bomb.png" alt="">Armadilha <span class="k">B</span></h4>
+      <p>Uma mina: explode quando uma formiga alheia ou um animal pisa nela.</p>
+      <p class="cost">Preço: <span class="res"><img src="Textures/eda_1.png" alt="">1</span> <span class="res"><img src="Textures/der_1.png" alt="">1</span></p></div>
+  </div>
+  <h3>Onde se pode pôr um armazém</h3>
+  <ul>
+    <li>Só ao alcance do formigueiro ou de outro armazém seu — a rede de armazéns cresce passo a passo (o alcance aparece em círculos tracejados).</li>
+    <li>Não perto demais de recursos em crescimento.</li>
+    <li>Não sobre tocos, cogumelos, lagos e junco, o riacho, ninhos de formigas ruivas, armadilhas, comida, madeira nem teias de aranha. Na margem de um lago, pode.</li>
+    <li>O inimigo segue as mesmas regras.</li>
+  </ul>
+  <p>Se um armazém, uma armadilha ou uma zona não pode ser colocado em algum lugar, aparece perto do cursor uma dica com o motivo: «Perto demais de um formigueiro», «Só dentro das suas zonas»,
+     «Nada para coletar aqui» etc.</p>
+  <h3>Armadilhas</h3>
+  <ul>
+    <li>São colocadas só dentro das suas zonas de coleta, na sua metade do campo — enquanto você escolhe o lugar, as zonas aparecem no campo.</li>
+    <li>Depois de colocada, a armadilha carrega (cerca de 17 segundos, o progresso aparece no cartão) e então fica armada.</li>
+    <li>Dispara com formigas inimigas, vida selvagem e formigas ruivas. A explosão mata as formigas ao redor, uma aranha, um carabídeo, um alfaiate;
+      de um <b>louva-a-deus</b> tira 60 de saúde.</li>
+    <li>As armadilhas do inimigo são igualmente perigosas. O inimigo coloca armadilhas a partir da dificuldade Normal.</li>
+    <li>A automação Armadilhas as coloca sozinha.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tech">
+  <h2><img src="Textures/tech_dna.png" alt="">Pesquisa</h2>
+  <p>O painel <b>Tecnologia</b> <span class="k">T</span> abre depois de construir o laboratório. À esquerda as melhorias (três níveis), à direita a automação.</p>
+  <figure><img src="help/panel_tech.jpg" alt="Painel Tecnologia"><figcaption>O painel Tecnologia</figcaption></figure>
+  <table>
+    <tr><th>Melhoria</th><th>Nív. I</th><th>Nív. II</th><th>Nív. III</th><th>Efeito</th></tr>
+    <tr><td><img src="Textures/tech_harvest.png" alt=""><b>Melhor colheita</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">80</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">120</span></td><td>As plantas crescem mais rápido e há mais delas.</td></tr>
+    <tr><td><img src="Textures/tech_maneuver.png" alt=""><b>Manobra</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">70</span></td><td>Libera o tipo de ataque Manobra — as guerreiras contornam o inimigo em arco e atacam pelo flanco; mais rápido a cada nível.</td></tr>
+    <tr><td><img src="Textures/tech_dna.png" alt=""><b>Salto genético</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">85</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">95</span></td><td>Velocidade das formigas ×1,2 / ×1,4 / ×1,6 e alcance de visão na névoa.</td></tr>
+    <tr><td><img src="Textures/tech_swords.png" alt=""><b>Guerreiras fortes</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">35</span> <span class="res"><img src="Textures/der_1.png" alt="">20</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">30</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">7</span></td><td>As guerreiras novas têm 15 / 20 / 25 de saúde em vez de 10.</td></tr>
+    <tr><td><img src="Textures/tech_storage.png" alt=""><b>Ampliar armazém</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">15</span> <span class="res"><img src="Textures/der_1.png" alt="">5</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">45</span> <span class="res"><img src="Textures/der_1.png" alt="">8</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span> <span class="res"><img src="Textures/der_1.png" alt="">11</span></td><td>Criação de comida e madeira: +5% / +10% / +18% de renda dos armazéns.</td></tr>
+    <tr><td><img src="Textures/tech_depots.png" alt=""><b>Mais armazéns</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">30</span> <span class="res"><img src="Textures/der_1.png" alt="">15</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">50</span> <span class="res"><img src="Textures/der_1.png" alt="">25</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">75</span> <span class="res"><img src="Textures/der_1.png" alt="">40</span></td><td>+1 armazém além de cinco por nível.</td></tr>
+    <tr><td><img src="Textures/tech_mushroom.png" alt=""><b>Novo tipo de recurso</b></td><td><span class="res"><img src="Textures/eda_1.png" alt="">60</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">125</span></td><td><span class="res"><img src="Textures/eda_1.png" alt="">180</span></td><td>I — as operárias coletam cogumelos, dá para pôr zonas sobre cogumelos; II — os cogumelos da nossa metade crescem 20% mais rápido; III — crescem 20% mais.</td></tr>
+  </table>
+  <p style="font-size:13px"><span class="res"><img src="Textures/eda_1.png" alt=""></span> — comida, <span class="res"><img src="Textures/der_1.png" alt=""></span> — madeira. O inimigo pesquisa as mesmas tecnologias.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="auto">
+  <h2><img src="Textures/auto_zones.png" alt="">Automação</h2>
+  <p>É comprada uma vez na coluna direita do painel Tecnologia. Depois, a maioria se liga e desliga com o botão <i>Auto / Manual</i>.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/auto_zones.png" alt="">Zonas</h4><p>As zonas de coleta são colocadas automaticamente ao redor dos recursos.</p><p class="cost">25 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_forest.png" alt="">Silvicultura</h4><p>Parte do matagal automaticamente não é coletada — vira madeira.</p><p class="cost">10 madeira</p></div>
+    <div class="card"><h4><img src="Textures/auto_mush.png" alt="">Micocultura</h4><p>Nos micélios da sua metade fica ~40% dos cogumelos — os micélios crescem mais rápido. Requer Novo tipo de recurso I.</p><p class="cost">30 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_build.png" alt="">Construção</h4><p>Choca automática: a colônia choca sozinha as formigas necessárias.</p><p class="cost">10 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_attack.png" alt="">Ataque</h4><p>Ataque planejado: a colônia reúne guerreiras sozinha e ataca quando está forte o bastante.</p><p class="cost">25 comida</p></div>
+    <div class="card"><h4><img src="Textures/auto_traps.png" alt="">Armadilhas</h4><p>Autoarmadilhas: as armadilhas são colocadas sozinhas enquanto houver recursos.</p><p class="cost">10 comida</p></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mode">
+  <h2><img src="Textures/auto_forest.png" alt="">Modo e zonas de coleta</h2>
+  <div class="side">
+    <div>
+      <h3>Zonas de coleta</h3>
+      <p>Clique em Zona (ou <span class="k">=</span>) e desenhe zonas no campo — as formigas coletam dentro delas. <span class="k">-</span> — remover zonas.
+        Se os recursos estão longe de um armazém, é melhor não pôr zona ali até haver um armazém por perto.</p>
+      <h3>O painel Modo</h3>
+      <ul>
+        <li><b>Silvicultura</b> <span class="k">F</span> — marque as plantas que as operárias não vão tocar: elas crescerão até virar madeira. «+» no cursor — marcar, «−» — tirar a marca.</li>
+        <li><b>Micocultura</b> <span class="k">G</span> — da mesma forma marcam-se os cogumelos que não serão coletados.</li>
+        <li><b>Conduta das unidades</b>:
+          <ul><li><b>Atacar todos</b> — as guerreiras livres protegem as operárias: atiram-se sobre qualquer animal ou inimigo que as tenha atacado.</li>
+              <li><b>Colheita</b> — todas as forças na coleta de recursos.</li></ul></li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_mode.jpg" alt="Painel Modo"><figcaption>O painel Modo</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="orders">
+  <h2><img src="Textures/order_flag_1.png" alt="">Ordens e seleção</h2>
+  <h3>Seleção</h3>
+  <ul>
+    <li><b>Moldura</b>: segure o botão esquerdo no campo e trace uma moldura verde — as formigas dentro são selecionadas (guerreiras, se houver; senão construtoras; senão operárias).</li>
+    <li><span class="k">Tab</span> — selecionar todas as suas guerreiras.</li>
+    <li>As selecionadas aparecem embaixo à esquerda: um quadro por formiga com barra de saúde, a quantidade e a força total.</li>
+    <li><b>Botão direito</b> — cancelar a seleção e fechar os painéis abertos.</li>
+    <li>As formigas selecionadas obedecem só a você: a defesa da colônia, Atacar todos e o autoataque não as pegam.</li>
+  </ul>
+  <h3>Onde se pode clicar</h3>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/order_flag_1.png" alt="">No campo</h4><p>As formigas vão até o ponto (uma linha tracejada animada) e esperam lá.</p></div>
+    <div class="card"><h4><img src="Textures/order_post_1.png" alt="">Posto</h4><p>Um segundo clique perto do mesmo ponto, quando as guerreiras já estão lá, cria um <b>posto</b>: as guerreiras guardam o lugar,
+      batem nos inimigos que se aproximam e voltam. Sobre o ponto ergue-se uma bandeira, e o anel tracejado «respira». Só uma nova ordem a essas guerreiras desfaz o posto.
+      Antes do segundo clique, uma bandeira de dica cai repetidamente sobre o ponto.</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_food_1.png" alt="">Na comida / num cogumelo</h4><p>As operárias coletam a comida próxima, mesmo fora das zonas, e levam para casa. Um cogumelo, elas roem (se os cogumelos estiverem pesquisados).</p></div>
+    <div class="card"><h4><img src="Textures/order_gather_wood_1.png" alt="">Na madeira</h4><p>As construtoras coletam a madeira próxima.</p></div>
+    <div class="card"><h4><img src="Textures/order_flag_red_1.png" alt="">Num inimigo / animal</h4><p>As selecionadas atacam o alvo (círculo tracejado vermelho). Se ele morrer, passam para os filhotes do ninho; senão, esperam.</p></div>
+  </div>
+  <p>A mira verde no cursor mostra para onde as formigas podem ser enviadas. As formigas cumprem a ordem mesmo depois de cancelada a seleção
+     e depois voltam ao trabalho habitual. Ataques ordenados com clique num inimigo também aparecem nos gráficos.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="attack">
+  <h2><img src="Textures/attack.png" alt="">Ataque</h2>
+  <div class="side">
+    <div>
+      <p>O painel <b>Ataque</b>:</p>
+      <ul>
+        <li>Em cima — o tipo das suas formigas (um clique muda), embaixo — o tipo de formigas inimigas a atacar.</li>
+        <li><b>«‹ 1 ›»</b> — quantas formigas enviar (segurar — rápido). As escolhidas ficam marcadas com um anel.</li>
+        <li><b>Ataque</b> — enviar o destacamento.</li>
+        <li><b>Tipo de ataque</b>: <i>Direto</i> — de frente; <i>Manobra</i> — em arco contornando (requer a pesquisa Manobra).</li>
+        <li><b>Ataque constante</b> — as guerreiras são enviadas sem parar contra o inimigo; o painel fica aberto e mostra quantas estão «atacando».</li>
+      </ul>
+    </div>
+    <figure><img src="help/panel_attack.jpg" alt="Painel Ataque"><figcaption>O painel Ataque</figcaption></figure>
+  </div>
+  <h3>Combate</h3>
+  <ul>
+    <li>A saúde de todos é medida nas mesmas unidades: operária e construtora — 1, guerreira — 10…25.</li>
+    <li>A saúde de uma guerreira aparece nas pétalas ao seu redor: vermelho-alaranjadas nas suas guerreiras, azuis nas do inimigo.</li>
+    <li>Com o painel Ataque fechado, as formigas que esperam voltam ao trabalho.</li>
+    <li>Quando a colônia é atacada, toca um alarme e a música muda para a de combate.</li>
+  </ul>
+  <figure><img src="help/battle.jpg" alt="Combate"><figcaption>No meio da partida: o inimigo ataca a colônia pela esquerda, os clarões são armadilhas explodindo.</figcaption></figure>
+</section>
+
+<!-- ===================================================================== -->
+<section id="world">
+  <h2><img src="Textures/stone_1.png" alt="">Ambiente</h2>
+  <table>
+    <tr><th>Objeto</th><th>Transitável</th><th>Particularidades</th></tr>
+    <tr><td><img src="Textures/stone_1.png" alt=""><b>Pedras</b></td><td>Não</td><td>São contornadas; junto às pedras as aranhas tecem suas teias.</td></tr>
+    <tr><td><img src="Textures/swamp_1.png" alt=""><b>Pântanos</b></td><td>Sim, 4 vezes mais devagar</td><td>As formigas envelhecem 10 vezes mais rápido. Por perto, os cogumelos crescem mais rápido e mais densos.</td></tr>
+    <tr><td><img src="Textures/fauna_snag_1.png" alt=""><b>Tocos</b></td><td>Sim</td><td>Sob alguns — tocas de carabídeos; junto aos tocos crescem cogumelos. Não se pode pôr armazém sobre um toco.</td></tr>
+    <tr><td><img src="Textures/mushroom_1.png" alt=""><b>Cogumelos</b></td><td>Sim, duas vezes mais devagar</td><td>Não se pode pôr armazém sobre um cogumelo.</td></tr>
+    <tr><td><img src="Textures/pond_lily.png" alt=""><b>Lagos</b></td><td>Não (água)</td><td>Margem fértil: as plantas crescem mais rápido e dão mais sementes. O junco na borda é madeira pronta e volta a crescer rápido. Em cada lago vive um alfaiate; da água saem caracóis.</td></tr>
+    <tr><td><img src="Textures/bridge_log_1.png" alt=""><b>Riacho</b></td><td>Só pelas travessias</td><td>Atravessa o campo. As travessias são de pedras ou troncos, com 3 fileiras de largura; formigas e animais as usam.</td></tr>
+    <tr><td><img src="Textures/fauna_web.png" alt=""><b>Teia de aranha</b></td><td>Sim, quase 3 vezes mais devagar</td><td>A dona da teia se atira sobre quem se aproxima.</td></tr>
+  </table>
+  <div class="row">
+    <figure><img src="help/pond.jpg" alt="Lago"><figcaption>Um lago com nenúfares, junco e um alfaiate; ao lado, um carabídeo</figcaption></figure>
+    <figure><img src="help/spider.jpg" alt="Teia junto às pedras"><figcaption>Uma teia junto às pedras e um lago do lado inimigo</figcaption></figure>
+  </div>
+  <p>Há de um a quatro lagos, e os dois lados recebem igual: um no centro, os pares espelhados. Se o mapa tem riacho, dele saem braços laterais para os lagos próximos — canais estreitos que desembocam no lago (espelhados nas duas metades). Um canal, como o riacho, não pode ser atravessado: contorna-se o lago.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="mush">
+  <h2><img src="Textures/mushroom_3.png" alt="">Cogumelos</h2>
+  <p>Os micélios crescem junto aos tocos e principalmente junto aos pântanos. Os cogumelos podem ser coletados depois da pesquisa Novo tipo de recurso.</p>
+  <div class="cards">
+    <div class="card"><h4><img src="Textures/mushroom_3.png" alt="">Parasol</h4><p>O maior: até <b>13</b> de comida.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_1.png" alt="">Boleto</h4><p>Grande: até <b>11</b> de comida.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_4.png" alt="">Amanita</h4><p>Médio: até <b>6</b> de comida.</p></div>
+    <div class="card"><h4><img src="Textures/mushroom_2.png" alt="">Cantarelo</h4><p>Pequeno: até <b>4</b> de comida.</p></div>
+  </div>
+  <ul>
+    <li>Quanto maior o cogumelo, mais comida, porém mais tempo para roê-lo. As operárias só pegam cogumelos maduros; os jovens continuam crescendo e alimentam o micélio.</li>
+    <li>Sobre o cogumelo aparece um círculo de progresso; para casa vai um pedaço roído. Um cogumelo não coletado acaba apodrecendo e some.</li>
+    <li>Um micélio estende fios; onde os fios de dois micélios se encontram, nasce um novo. Um fio que alcança um pântano bebe dele — nesse micélio os cogumelos aparecem 1,7 vez mais, nos ligados a ele 1,35 vez.</li>
+    <li>Quanto mais longa a rede de micélios unidos, mais vezes aparecem cogumelos (até 2,5×) e maiores eles são.</li>
+    <li>Se mais da metade de um micélio for comida, os novos cogumelos aparecem muitas vezes mais devagar; um totalmente colhido leva muito tempo para se recuperar.</li>
+  </ul>
+  <div class="tip">Ligue a micocultura: os cogumelos deixados mantêm o micélio com força total, e ele alimenta você por mais tempo.</div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="fauna">
+  <h2><img src="Textures/fauna_spider_1.png" alt="">Vida selvagem</h2>
+  <p>Os animais não são seus nem do inimigo e vivem longe dos dois formigueiros. Se Atacar todos estiver escolhido, as guerreiras livres correm sozinhas
+     até um animal que atacou suas operárias. Um inimigo com guerreiras suficientes planeja uma <b>caçada</b> aos animais que o atrapalham.</p>
+
+  <h3><img src="Textures/fauna_spider_1.png" alt="" style="width:28px;vertical-align:middle"> Aranha-de-jardim</h3>
+  <div class="stats"><span class="hp">saúde 30</span><span class="dmg">mordida na guerreira −4</span><span>filhotes: 12 / −2, até 6</span></div>
+  <p>Tece a teia junto às pedras e espera no centro; atira-se sobre qualquer formiga que se aproxime e leva a presa num casulo. Mata uma operária ou construtora com uma mordida.
+     Dos casulos (1 guerreira + 1 operária ou 3 operárias) nascem filhotes. A última aranha gravemente ferida foge para outras pedras e tece uma nova teia.
+     Se uma aranha é atacada, a família inteira se atira sobre as guerreiras. Uma aranha isolada pelo riacho procura caminho por uma travessia.</p>
+
+  <h3><img src="Textures/fauna_carabus_1.png" alt="" style="width:28px;vertical-align:middle"> Carabídeo</h3>
+  <div class="stats"><span class="hp">saúde 40</span><span class="dmg">mordida na guerreira −4</span><span>filhotes: 14 / −2, até 4</span></div>
+  <p>Vive numa toca sob um toco e caça formigas solitárias (grupos de três ou mais ele não toca). Mais rápido que uma formiga comum — só se escapa dele depois
+     do segundo Salto genético. Carapaça dura: as guerreiras o ferem mais devagar. Ferido, esconde-se na toca e se cura; sem filhotes pode fugir para um toco
+     vazio e cavar uma nova toca. Não persegue presas do outro lado do riacho.</p>
+  <figure><img src="help/beetle.jpg" alt="Toca de um carabídeo"><figcaption>A toca de um carabídeo sob um toco, cogumelos, uma teia e um combate numa travessia</figcaption></figure>
+
+  <h3><img src="Textures/snail_4_1.png" alt="" style="width:28px;vertical-align:middle"> Caracol</h3>
+  <div class="stats"><span class="hp">saúde 10–50</span><span>não ataca</span><span>recompensa 10–70 comida</span></div>
+  <p>De vez em quando sai de um lago ou do riacho e rasteja devagar pelo campo (contornando pedras e colinas, deixando um rastro brilhante) — quase sempre perto da água, mas às vezes vai «cansado» para longe. Quanto mais rasteja,
+     mais cresce: 6 estágios; sai da água num dos três primeiros. Se passa por cima de comida, come — até 10 pedaços, e depois descansa.
+     O caracol é roído por operárias e construtoras (envie-as como a um cogumelo); as guerreiras não o ferem. Quanto maior o caracol, mais comida ele dá —
+     quanto, diz o cartão; a comida vai para o lado cujas formigas são mais numerosas junto a ele.
+     Nos ajustes do mundo: Caracóis — Poucos / Normal / Muitos (só com lagos ou riacho).</p>
+
+  <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Louva-a-deus — o chefe</h3>
+  <div class="stats"><span class="hp">saúde 150</span><span class="dmg">golpe na guerreira −8</span><span>recompensa 60 comida</span></div>
+  <div class="side">
+    <div>
+      <p>Quantos há, definem os ajustes do mundo: <i>Poucos</i> — um, <i>Normal</i> — dois (num mapa pequeno, um), <i>Muitos</i> — de dois a quatro.
+        Fica à espreita na faixa neutra, quase invisível na grama. Golpeia como um raio qualquer formiga ao alcance das patas raptoriais: uma operária morre,
+        uma guerreira perde 8 de saúde. Defende-se de todas ao redor — é preciso uma multidão de guerreiras. O lado com mais guerreiras junto ao corpo no momento da morte recebe 60 de comida.
+        Uma armadilha tira dele 60 de saúde. Um louva-a-deus morto não reaparece.</p>
+    </div>
+    <figure><img src="help/mantis.jpg" alt="Louva-a-deus"><figcaption>Um louva-a-deus na grama junto a um micélio, ao lado uma teia</figcaption></figure>
+  </div>
+
+  <h3><img src="Textures/pond_strider_1.png" alt="" style="width:28px;vertical-align:middle"> Alfaiate</h3>
+  <div class="stats"><span class="hp">saúde 20</span><span>derruba a carga</span></div>
+  <p>Desliza pelo lago e derruba a comida ou a madeira de uma formiga que anda rente à margem — a carga afunda. Nunca nada para onde haja uma guerreira por perto (a menos de ~70),
+     por isso uma zona de patrulha junto ao lago protege a margem. Um alfaiate morto é substituído com o tempo por um novo.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="redants">
+  <h2><img src="Textures/red_ant_1.png" alt="">Formigas ruivas</h2>
+  <div class="stats"><span class="hp">formiga 12</span><span class="hp">ninho 250</span><span>neutras</span></div>
+  <div class="side">
+    <div>
+      <p>Uma colônia neutra: um ninho no centro (<i>Poucos</i>), dois espelhados (<i>Normal</i>) ou dois em cada metade (<i>Muitos</i>).
+        As ruivas juntam migalhas ao redor de casa e <b>não mexem com ninguém</b> enquanto ninguém mexer com elas.</p>
+      <ul>
+        <li>Guerreiras que chegam perto do ninho são apenas enxotadas — sem guerra.</li>
+        <li>O lado cujas guerreiras atacaram uma formiga ruiva ou um ninho ganha uma <b>rixa</b>: suas formigas junto ao ninho são atacadas,
+          e de vez em quando um destacamento de ruivas sai num <b>ataque</b> contra suas operárias.</li>
+        <li>Um ninho destruído entrega toda a reserva de comida ao lado com mais guerreiras por perto. A reserva aparece no cartão.</li>
+        <li>Junto aos ninhos de formigas ruivas não crescem comida nem cogumelos; as patrulhas os contornam.</li>
+      </ul>
+      <h3>Novas colônias</h3>
+      <p>Quando um ninho junta 200 de comida, entrega 75 e metade das suas formigas a uma <b>nova colônia</b>: o destacamento vai para um lugar livre na mesma margem
+        (como na criação do mapa — não junto à água, pedras, cogumelos, comida, armazéns, armadilhas, outros ninhos de ruivas nem às suas colônias; se o lugar estragar no caminho,
+        escolhe-se outro). Se mais da metade do destacamento morrer no caminho, as restantes fogem para casa. No local, as formigas trazem gravetos e o ninho cresce em 8 estágios
+        (no cartão «Em construção: N%»); a obra pode ser destruída. Pronto, é um ninho de formigas ruivas comum com reserva própria. No total
+        há no máximo 3 / 4 / 5 / 7 ninhos de ruivas no mapa — do pequeno ao enorme, mas sempre pelo menos dois a mais do que no início.</p>
+    </div>
+    <figure><img src="help/rednest.jpg" alt="Ninho de formigas ruivas"><figcaption>Ninho de formigas ruivas</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="enemy">
+  <h2><img src="Textures/sect_warr_a.png" alt="">O inimigo</h2>
+  <div class="side">
+    <div>
+      <p>O rival do computador joga pelas mesmas regras: choca formigas, constrói um laboratório e uma cadeia de armazéns, põe zonas (tracejado vermelho), pesquisa,
+        coloca armadilhas, ataca e atravessa o riacho pelas travessias.</p>
+      <ul>
+        <li>Caça animais incômodos se tiver guerreiras suficientes.</li>
+        <li>Protege suas operárias no modo agressivo.</li>
+        <li>Seu comportamento depende da <a href="#start">dificuldade</a> escolhida.</li>
+      </ul>
+    </div>
+    <figure><img src="help/enemy.jpg" alt="Colônia inimiga"><figcaption>A colônia inimiga</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section id="result">
+  <h2><img src="Textures/icon_win.png" alt="">Resultados e gráficos</h2>
+  <p>Depois de uma vitória ou derrota abre-se a tela de resultados: tempo de jogo, dificuldade e tamanho do mapa, botões <b>Recomeçar</b> e <b>Ao menu</b>.
+     Depois da melodia de vitória ou derrota volta a música do menu principal.</p>
+  <ul>
+    <li><b>Resumo</b> — recursos obtidos, formigas destruídas e perdidas por tipo, tecnologias pesquisadas, armadilhas (colocadas / destruídas / do inimigo),
+      animais mortos pelas colônias.</li>
+    <li><b>Gráficos</b> — número de formigas e recursos dos dois lados ao longo do tempo. Espadas marcam os ataques: o número junto ao ícone é quantas formigas diferentes
+      participaram (ataques ordenados com clique num inimigo também contam).</li>
+  </ul>
+  <h3>Estatísticas e classificações</h3>
+  <ul>
+    <li><b>Estatísticas</b> (menu principal) — contadores de todas as partidas: partidas jogadas (uma partida conta depois de 2 minutos de jogo ou se terminar antes), vitórias e derrotas
+      por dificuldade, tempo de jogo, recursos coletados, formigas destruídas e perdidas, armazéns e armadilhas, animais vencidos. Os contadores ficam guardados junto ao jogo e na Steam.</li>
+    <li><b>Classificações</b> — a vitória mais rápida para cada dificuldade, tamanho de mapa e modo (normal / rico): o top mundial e seus amigos da Steam.
+      Depois de uma vitória, a tela de resultados mostra sua posição. Resultados no modo Explorador não são salvos.</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="settings">
+  <h2><img src="Textures/icon_map.png" alt="">Opções</h2>
+  <ul>
+    <li><b>Som</b> e <b>Música</b> — ligar/desligar e volume em barras (passos de 10%).</li>
+    <li><b>Rolagem</b> — velocidade de rolagem do campo na borda da tela e pelas setas: 50% — normal, 100% — o dobro, 0% — o campo não rola na borda (só arrastando).</li>
+    <li><b>Tela cheia</b> — <i>Ligado</i> (padrão): o jogo ocupa a tela; <i>Desligado</i>: em janela. Também alterna com <span class="k">Alt</span>+<span class="k">Enter</span>.</li>
+    <li><b>Resolução</b> — para a tela cheia, uma lista suspensa até 4K (padrão — a da área de trabalho).</li>
+    <li><b>Fundo de menu dinâmico</b> — <i>Ligado</i>: no menu principal passa um vídeo; <i>Desligado</i> (padrão): mostra-se o primeiro quadro parado.</li>
+    <li><b>Idioma</b> — 9 idiomas: russo, inglês, ucraniano, alemão, francês, espanhol, português, polonês, turco.</li>
+    <li><b>Teclas de atalho</b> — qualquer tecla pode ser reatribuída; «Padrão» restaura as habituais.</li>
+  </ul>
+  <p>A música se adapta à situação: menu, jogo tranquilo, combate, vitória, derrota.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="keys">
+  <h2><img src="Textures/backspace.png" alt="">Teclas de atalho</h2>
+  <p>Teclas padrão (podem ser mudadas nas opções):</p>
+  <table>
+    <tr><th>Tecla</th><th>Ação</th><th>Tecla</th><th>Ação</th></tr>
+    <tr><td><span class="k">E</span></td><td>Operária</td><td><span class="k">T</span></td><td>Painel Tecnologia</td></tr>
+    <tr><td><span class="k">A</span></td><td>Construtora</td><td><span class="k">F</span></td><td>Silvicultura</td></tr>
+    <tr><td><span class="k">W</span></td><td>Guerreira</td><td><span class="k">G</span></td><td>Micocultura</td></tr>
+    <tr><td><span class="k">Shift</span>+<span class="k">E/A/W</span></td><td>16 formigas de uma vez</td><td><span class="k">=</span> / <span class="k">-</span></td><td>Adicionar / remover zona</td></tr>
+    <tr><td><span class="k">L</span></td><td>Laboratório</td><td><span class="k">Tab</span></td><td>Selecionar todas as guerreiras</td></tr>
+    <tr><td><span class="k">S</span></td><td>Armazém</td><td><span class="k">Home</span></td><td>Para minha colônia</td></tr>
+    <tr><td><span class="k">B</span></td><td>Armadilha</td><td><span class="k">Esc</span></td><td>Menu principal</td></tr>
+    <tr><td><span class="k">Alt</span>+<span class="k">Enter</span></td><td>Tela cheia / janela</td><td></td><td></td></tr>
+  </table>
+  <p>Mouse: botão esquerdo — seleção, moldura, ordem; direito — um clique cancela a seleção e fecha painéis, pressionado arrasta o campo; roda — zoom; botão do meio — também arrasta o campo.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="tips">
+  <h2><img src="Textures/tech_harvest.png" alt="">Dicas</h2>
+  <ul>
+    <li>Comece com algumas operárias e, depois de 30 segundos, um par de construtoras: 35 de madeira para o laboratório e 25 para o armazém são a etapa-chave do início.</li>
+    <li>Ponha armazéns em lugares ricos longe do formigueiro — a entrega fica curta, e as trilhas aceleram as formigas.</li>
+    <li>Ligue Atacar todos e mantenha algumas guerreiras junto às zonas de coleta — elas protegem as operárias de aranhas, carabídeos e alfaiates.</li>
+    <li>Não mande operárias através de pântanos: lá elas ficam lentas e envelhecem rápido.</li>
+    <li>Não mexa com as ruivas sem necessidade — a rixa traz ataques contra suas operárias. Mas um ninho destruído entrega toda a reserva de comida.</li>
+    <li>Ataque o louva-a-deus com uma grande multidão ou atraia-o para armadilhas — 60 de comida valem a pena.</li>
+    <li>Ponha guerreiras de posto junto a uma zona de coleta (segundo clique no mesmo ponto) — elas não se dispersam e protegem as operárias.</li>
+    <li>Envie operárias a um caracol grande que rasteja sobre sua comida — ele dá até 70 de comida.</li>
+    <li>Ampliar armazém age em porcentagem da reserva — compensa mais quando você tem muitos recursos.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Colony 1.2 · Guia do jogo</footer>
+
+<div id="lb"><img alt=""></div>
+<script>
+(function () {
+  var lb = document.getElementById('lb'), big = lb.querySelector('img');
+  document.querySelectorAll('figure img').forEach(function (im) {
+    im.addEventListener('click', function () { big.src = im.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function () { lb.classList.remove('on'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>
