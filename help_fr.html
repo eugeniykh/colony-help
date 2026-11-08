@@ -139,6 +139,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <body>
 <style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html" selected>Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
 
+
 <header class="hero">
   <div class="hero-in">
     <h1>COLONY</h1>
@@ -163,6 +164,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Ordres et sélection</a>
   <a href="#attack"><img src="Textures/attack.png" alt="">Attaque</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Environnement</a>
+  <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Grottes</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Champignons</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Faune sauvage</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Fourmis rousses</a>
@@ -230,7 +232,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Réglages du monde</h3>
   <p>Chaque élément de l'environnement et de la faune peut être activé ou désactivé, avec sa quantité
-     (<i>Peu / Normal / Beaucoup</i>) : pierres, marais, souches, étangs, ruisseau, champignons, gerris, escargots (seulement avec étangs ou ruisseau), carabes, araignées, mante, fourmis rousses.
+     (<i>Peu / Normal / Beaucoup</i>) : pierres, marais, souches, étangs, ruisseau, grottes, champignons, gerris, escargots (seulement avec étangs ou ruisseau), carabes, araignées, mante, fourmis rousses.
      « Par défaut » rétablit le monde habituel. En bas à droite — un aperçu de la carte en direct.</p>
   <div class="side">
     <div>
@@ -476,6 +478,23 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
     <figure><img src="help/spider.jpg" alt="Toile contre les pierres"><figcaption>Une toile contre les pierres et un étang du côté ennemi</figcaption></figure>
   </div>
   <p>Il y a d'un à quatre étangs, et chaque camp en reçoit autant : un au centre, les paires en miroir. Si la carte a un ruisseau, des bras latéraux en partent vers les étangs voisins — d'étroits chenaux qui se jettent dans l'étang (en miroir sur les deux moitiés). Un chenal, comme le ruisseau, ne se franchit pas : on contourne l'étang.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="caves">
+  <h2><img src="Textures/cave_stone_open.png" alt="">Grottes</h2>
+  <div class="row">
+    <figure><img src="Textures/cave_peat_open.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/cave_peat_closed.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>Le terrain peut avoir des grottes (réglages du monde : <i>Peu / Normal / Beaucoup</i> — 2, 4 ou 6, par paires : une sur chaque moitié). Chacune a son aspect : pierre, terre noire, argile, sous les racines, grès, calcaire, tourbe ; une lumière brille à l'intérieur — différente dans chaque grotte.</p>
+<ul>
+  <li>Sélectionnez <b>10 ouvrières ou bâtisseuses</b> et cliquez sur la grotte : exactement les 10 plus proches y vont. À moins de 10, l'exploration ne commence pas. Les guerrières n'entrent pas dans les grottes.</li>
+  <li>À l'intérieur, les fourmis restent à la colonie (la limite et la victoire les comptent) mais ne récoltent rien. L'exploration dure environ 90 secondes ; un anneau de progression s'affiche au-dessus de la grotte.</li>
+  <li>Le résultat : <b>chance</b> — 500 de nourriture, ou 200 de bois, ou 300 de nourriture et 75 de bois ; <b>rien</b> — les fourmis ressortent simplement ; <b>malheur</b> — les fourmis disparaissent. Dans tous les cas l'entrée s'effondre : la grotte est explorée et ne brille plus.</li>
+  <li>Si une seule des dix meurt en chemin, les autres reviennent et la grotte reste inexplorée.</li>
+  <li>L'ennemi explore aussi les grottes de sa moitié quand il peut se passer de fourmis : avec beaucoup de nourriture il envoie des ouvrières, sinon des bâtisseuses.</li>
+</ul>
 </section>
 
 <!-- ===================================================================== -->

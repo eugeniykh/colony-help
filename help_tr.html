@@ -139,6 +139,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <body>
 <style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html" selected>Türkçe</option></select></div>
 
+
 <header class="hero">
   <div class="hero-in">
     <h1>COLONY</h1>
@@ -163,6 +164,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Emirler ve seçim</a>
   <a href="#attack"><img src="Textures/attack.png" alt="">Saldırı</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Çevre</a>
+  <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Mağaralar</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Mantarlar</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Yaban hayatı</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Kızıl karıncalar</a>
@@ -230,7 +232,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Dünya ayarları</h3>
   <p>Çevrenin ve yaban hayatının her öğesi açılıp kapatılabilir ve miktarı seçilebilir
-     (<i>Az / Normal / Çok</i>): taşlar, bataklıklar, kütükler, göletler, dere, mantarlar, su örümcekleri, salyangozlar (yalnızca gölet veya dereyle), toprak böcekleri, örümcekler, peygamberdevesi, kızıl karıncalar.
+     (<i>Az / Normal / Çok</i>): taşlar, bataklıklar, kütükler, göletler, dere, mağaralar, mantarlar, su örümcekleri, salyangozlar (yalnızca gölet veya dereyle), toprak böcekleri, örümcekler, peygamberdevesi, kızıl karıncalar.
      «Varsayılan» olağan dünyayı geri getirir. Sağ altta — haritanın canlı önizlemesi.</p>
   <div class="side">
     <div>
@@ -476,6 +478,23 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
     <figure><img src="help/spider.jpg" alt="Taşlardaki ağ"><figcaption>Taşlardaki bir ağ ve düşman tarafında bir gölet</figcaption></figure>
   </div>
   <p>Bir ila dört gölet olur ve iki taraf eşit pay alır: biri ortada, çiftler ayna simetrisiyle. Haritada dere varsa, ondan yakın göletlere yan kollar ayrılır — gölete dökülen dar kanallar (iki yarıda da ayna simetrisiyle). Kanal da dere gibi geçilemez: göletin etrafından dolanılır.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="caves">
+  <h2><img src="Textures/cave_stone_open.png" alt="">Mağaralar</h2>
+  <div class="row">
+    <figure><img src="Textures/cave_peat_open.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/cave_peat_closed.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>Alanda mağaralar olabilir (dünya ayarları: <i>Az / Normal / Çok</i> — 2, 4 veya 6, çiftler halinde: her yarıda bir). Her birinin görünüşü farklıdır: taş, kara toprak, kil, köklerin altı, kumtaşı, kireçtaşı, turba; içeriden bir ışık parlar — her mağarada başka.</p>
+<ul>
+  <li><b>10 işçi veya mimar</b> seç ve mağaraya tıkla: tam olarak en yakın 10'u gider. 10'dan azıyla keşif başlamaz. Savaşçılar mağaraya girmez.</li>
+  <li>İçeride karıncalar koloniye ait kalır (sınırda ve zaferde sayılır) ama hiçbir şey toplamaz. Keşif yaklaşık 90 saniye sürer; mağaranın üstünde bir ilerleme halkası görünür.</li>
+  <li>Sonuç: <b>şans</b> — 500 yiyecek, ya da 200 odun, ya da 300 yiyecek ve 75 odun; <b>hiçbir şey</b> — karıncalar sadece dışarı çıkar; <b>talihsizlik</b> — karıncalar kaybolur. Her durumda giriş çöker: mağara keşfedilmiştir ve artık parlamaz.</li>
+  <li>Yolda onlardan biri bile ölürse, diğerleri geri döner ve mağara keşfedilmemiş kalır.</li>
+  <li>Düşman da yarısındaki mağaraları, karınca ayırabildiğinde keşfeder: yiyeceği boldur ise işçi, yoksa mimar gönderir.</li>
+</ul>
 </section>
 
 <!-- ===================================================================== -->

@@ -139,6 +139,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <body>
 <style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html" selected>Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
 
+
 <header class="hero">
   <div class="hero-in">
     <h1>COLONY</h1>
@@ -163,6 +164,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Órdenes y selección</a>
   <a href="#attack"><img src="Textures/attack.png" alt="">Ataque</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Entorno</a>
+  <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Cuevas</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Setas</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Vida salvaje</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Hormigas rojas</a>
@@ -230,7 +232,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Ajustes del mundo</h3>
   <p>Cada elemento del entorno y de la fauna se puede activar o desactivar y elegir su cantidad
-     (<i>Pocos / Normal / Muchos</i>): piedras, pantanos, tocones, estanques, arroyo, setas, zapateros, caracoles (solo con estanques o arroyo), carábidos, arañas, mantis, hormigas rojas.
+     (<i>Pocos / Normal / Muchos</i>): piedras, pantanos, tocones, estanques, arroyo, cuevas, setas, zapateros, caracoles (solo con estanques o arroyo), carábidos, arañas, mantis, hormigas rojas.
      «Por defecto» restablece el mundo habitual. Abajo a la derecha — una vista previa del mapa en vivo.</p>
   <div class="side">
     <div>
@@ -476,6 +478,23 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
     <figure><img src="help/spider.jpg" alt="Telaraña junto a las piedras"><figcaption>Una telaraña junto a las piedras y un estanque del lado enemigo</figcaption></figure>
   </div>
   <p>Hay de uno a cuatro estanques, y ambos bandos reciben los mismos: uno en el centro, los pares en espejo. Si el mapa tiene arroyo, de él salen brazos laterales hacia los estanques cercanos — canales estrechos que desembocan en el estanque (en espejo en ambas mitades). Un canal, como el arroyo, no se puede cruzar: hay que rodear el estanque.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="caves">
+  <h2><img src="Textures/cave_stone_open.png" alt="">Cuevas</h2>
+  <div class="row">
+    <figure><img src="Textures/cave_peat_open.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/cave_peat_closed.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>En el campo puede haber cuevas (ajustes del mundo: <i>Pocos / Normal / Muchos</i> — 2, 4 o 6, por pares: una en cada mitad). Cada una tiene su aspecto: piedra, tierra negra, arcilla, bajo las raíces, arenisca, caliza, turba; dentro brilla una luz, distinta en cada cueva.</p>
+<ul>
+  <li>Selecciona <b>10 obreras o constructoras</b> y haz clic en la cueva: van exactamente las 10 más cercanas. Con menos de 10 la exploración no empieza. Las guerreras no entran en las cuevas.</li>
+  <li>Dentro, las hormigas siguen siendo de la colonia (cuentan para el límite y la victoria), pero no recogen nada. La exploración dura unos 90 segundos; sobre la cueva se ve un anillo de progreso.</li>
+  <li>El resultado: <b>suerte</b> — 500 de comida, o 200 de madera, o 300 de comida y 75 de madera; <b>nada</b> — las hormigas simplemente salen; <b>desgracia</b> — las hormigas desaparecen. En cualquier caso la entrada se derrumba: la cueva queda explorada y ya no brilla.</li>
+  <li>Si muere aunque sea una de las diez por el camino, las demás vuelven y la cueva queda sin explorar.</li>
+  <li>El enemigo también explora las cuevas de su mitad cuando puede prescindir de hormigas: con mucha comida envía obreras; si no, constructoras.</li>
+</ul>
 </section>
 
 <!-- ===================================================================== -->

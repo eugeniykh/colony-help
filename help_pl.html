@@ -139,6 +139,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <body>
 <style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html" selected>Polski</option><option value="help_tr.html">Türkçe</option></select></div>
 
+
 <header class="hero">
   <div class="hero-in">
     <h1>COLONY</h1>
@@ -163,6 +164,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Rozkazy i zaznaczanie</a>
   <a href="#attack"><img src="Textures/attack.png" alt="">Atak</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Otoczenie</a>
+  <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Jaskinie</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Grzyby</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Dzika przyroda</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Rude mrówki</a>
@@ -230,7 +232,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Ustawienia świata</h3>
   <p>Każdy element otoczenia i fauny można włączyć lub wyłączyć i wybrać jego ilość
-     (<i>Mało / Normalnie / Dużo</i>): kamienie, bagna, pniaki, stawy, strumień, grzyby, nartniki, ślimaki (tylko ze stawami lub strumieniem), biegacze, pająki, modliszka, rude mrówki.
+     (<i>Mało / Normalnie / Dużo</i>): kamienie, bagna, pniaki, stawy, strumień, jaskinie, grzyby, nartniki, ślimaki (tylko ze stawami lub strumieniem), biegacze, pająki, modliszka, rude mrówki.
      „Domyślne" przywraca zwykły świat. W prawym dolnym rogu — podgląd mapy na żywo.</p>
   <div class="side">
     <div>
@@ -476,6 +478,23 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
     <figure><img src="help/spider.jpg" alt="Pajęczyna przy kamieniach"><figcaption>Pajęczyna przy kamieniach i staw po stronie wroga</figcaption></figure>
   </div>
   <p>Stawów jest od jednego do czterech, a obie strony dostają po równo: jeden w środku, pary w lustrzanym odbiciu. Jeśli mapa ma strumień, odchodzą od niego boczne odnogi do pobliskich stawów — wąskie kanały wpadające do stawu (lustrzanie na obu połowach). Kanału, tak jak strumienia, nie da się przejść: obchodzi się staw.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="caves">
+  <h2><img src="Textures/cave_stone_open.png" alt="">Jaskinie</h2>
+  <div class="row">
+    <figure><img src="Textures/cave_peat_open.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/cave_peat_closed.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>Na polu mogą być jaskinie (ustawienia świata: <i>Mało / Normalnie / Dużo</i> — 2, 4 lub 6, parami: po jednej na każdej połowie). Każda wygląda inaczej: kamienna, czarnoziemna, gliniana, pod korzeniami, piaskowcowa, wapienna, torfowa; w środku świeci światło — w każdej jaskini inne.</p>
+<ul>
+  <li>Zaznacz <b>10 robotnic lub budowniczek</b> i kliknij jaskinię: pójdzie dokładnie 10 najbliższych. Przy mniej niż 10 badanie się nie zacznie. Wojowniczki nie wchodzą do jaskiń.</li>
+  <li>W środku mrówki nadal należą do kolonii (liczą się do limitu i przy zwycięstwie), ale niczego nie zbierają. Badanie trwa około 90 sekund; nad jaskinią widać pierścień postępu.</li>
+  <li>Wynik: <b>szczęście</b> — 500 jedzenia, albo 200 drewna, albo 300 jedzenia i 75 drewna; <b>nic</b> — mrówki po prostu wychodzą; <b>pech</b> — mrówki znikają. Tak czy inaczej wejście się zasypuje: jaskinia jest zbadana i już nie świeci.</li>
+  <li>Jeśli po drodze zginie choć jedna z dziesięciu, reszta wraca, a jaskinia zostaje niezbadana.</li>
+  <li>Wróg też bada jaskinie na swojej połowie, gdy może puścić mrówki: przy dużych zapasach jedzenia wysyła robotnice, inaczej budowniczki.</li>
+</ul>
 </section>
 
 <!-- ===================================================================== -->

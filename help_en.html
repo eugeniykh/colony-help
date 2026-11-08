@@ -139,6 +139,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <body>
 <style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html" selected>English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
 
+
 <header class="hero">
   <div class="hero-in">
     <h1>COLONY</h1>
@@ -163,6 +164,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Orders and selection</a>
   <a href="#attack"><img src="Textures/attack.png" alt="">Attack</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Surroundings</a>
+  <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Caves</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Mushrooms</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Wildlife</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Red ants</a>
@@ -230,7 +232,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>World settings</h3>
   <p>Every element of the surroundings and the wildlife can be turned on or off, and its amount chosen
-     (<i>Few / Normal / Many</i>): stones, swamps, snags, ponds, the stream, mushrooms, water striders, snails (only with ponds or the stream), ground beetles, spiders, the mantis, red ants.
+     (<i>Few / Normal / Many</i>): stones, swamps, snags, ponds, the stream, caves, mushrooms, water striders, snails (only with ponds or the stream), ground beetles, spiders, the mantis, red ants.
      "Reset to Default" brings back the standard world. Bottom right — a live preview of the map.</p>
   <div class="side">
     <div>
@@ -476,6 +478,23 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
     <figure><img src="help/spider.jpg" alt="A web by the stones"><figcaption>A web by the stones and a pond on the enemy's side</figcaption></figure>
   </div>
   <p>There are one to four ponds, and both sides get them equally: one in the middle, pairs mirrored. If the map has a stream, offshoots run from it to the ponds near it — narrow channels flowing into the pond (mirrored on both halves). A channel, like the stream, cannot be crossed: it is walked round the pond.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="caves">
+  <h2><img src="Textures/cave_stone_open.png" alt="">Caves</h2>
+  <div class="row">
+    <figure><img src="Textures/cave_peat_open.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/cave_peat_closed.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>The field may have caves (world settings: <i>Few / Normal / Many</i> — 2, 4 or 6, in pairs: one on each half). Each looks different: stone, black earth, clay, under the roots, sandstone, limestone, peat; a light glows inside — each cave its own.</p>
+<ul>
+  <li>Select <b>10 workers or architects</b> and click the cave: exactly the 10 nearest go. With fewer than 10 the exploring does not start. Warriors do not go into caves.</li>
+  <li>Inside, the ants still belong to the colony (the limit and the victory count them) but gather nothing. Exploring takes about 90 seconds; a progress ring shows over the cave.</li>
+  <li>The outcome: <b>luck</b> — 500 food, or 200 wood, or 300 food and 75 wood; <b>nothing</b> — the ants simply come out; <b>misfortune</b> — the ants vanish. Either way the mouth caves in: the cave is explored and glows no more.</li>
+  <li>If even one of the ten dies on the way, the others come back and the cave stays unexplored.</li>
+  <li>The enemy explores the caves on its half too, when it can spare the ants: with plenty of food it sends workers, otherwise architects.</li>
+</ul>
 </section>
 
 <!-- ===================================================================== -->

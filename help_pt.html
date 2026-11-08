@@ -139,6 +139,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <body>
 <style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html" selected>Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
 
+
 <header class="hero">
   <div class="hero-in">
     <h1>COLONY</h1>
@@ -163,6 +164,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Ordens e seleção</a>
   <a href="#attack"><img src="Textures/attack.png" alt="">Ataque</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Ambiente</a>
+  <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Cavernas</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Cogumelos</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Vida selvagem</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Formigas ruivas</a>
@@ -230,7 +232,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Ajustes do mundo</h3>
   <p>Cada elemento do ambiente e da fauna pode ser ligado ou desligado, com a quantidade escolhida
-     (<i>Poucos / Normal / Muitos</i>): pedras, pântanos, tocos, lagos, riacho, cogumelos, alfaiates, caracóis (só com lagos ou riacho), carabídeos, aranhas, louva-a-deus, formigas ruivas.
+     (<i>Poucos / Normal / Muitos</i>): pedras, pântanos, tocos, lagos, riacho, cavernas, cogumelos, alfaiates, caracóis (só com lagos ou riacho), carabídeos, aranhas, louva-a-deus, formigas ruivas.
      «Padrão» restaura o mundo habitual. Embaixo à direita — uma prévia do mapa ao vivo.</p>
   <div class="side">
     <div>
@@ -476,6 +478,23 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
     <figure><img src="help/spider.jpg" alt="Teia junto às pedras"><figcaption>Uma teia junto às pedras e um lago do lado inimigo</figcaption></figure>
   </div>
   <p>Há de um a quatro lagos, e os dois lados recebem igual: um no centro, os pares espelhados. Se o mapa tem riacho, dele saem braços laterais para os lagos próximos — canais estreitos que desembocam no lago (espelhados nas duas metades). Um canal, como o riacho, não pode ser atravessado: contorna-se o lago.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="caves">
+  <h2><img src="Textures/cave_stone_open.png" alt="">Cavernas</h2>
+  <div class="row">
+    <figure><img src="Textures/cave_peat_open.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/cave_peat_closed.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>O campo pode ter cavernas (ajustes do mundo: <i>Poucos / Normal / Muitos</i> — 2, 4 ou 6, em pares: uma em cada metade). Cada uma tem seu aspecto: pedra, terra preta, argila, sob as raízes, arenito, calcário, turfa; lá dentro brilha uma luz — diferente em cada caverna.</p>
+<ul>
+  <li>Selecione <b>10 operárias ou construtoras</b> e clique na caverna: vão exatamente as 10 mais próximas. Com menos de 10 a exploração não começa. Guerreiras não entram em cavernas.</li>
+  <li>Lá dentro as formigas continuam sendo da colônia (contam no limite e na vitória), mas não coletam nada. A exploração leva cerca de 90 segundos; sobre a caverna aparece um anel de progresso.</li>
+  <li>O resultado: <b>sorte</b> — 500 de comida, ou 200 de madeira, ou 300 de comida e 75 de madeira; <b>nada</b> — as formigas simplesmente saem; <b>azar</b> — as formigas somem. De qualquer forma a entrada desaba: a caverna está explorada e não brilha mais.</li>
+  <li>Se uma das dez morrer no caminho, as outras voltam e a caverna fica sem explorar.</li>
+  <li>O inimigo também explora as cavernas da sua metade quando pode dispensar formigas: com muita comida manda operárias; senão, construtoras.</li>
+</ul>
 </section>
 
 <!-- ===================================================================== -->

@@ -139,6 +139,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <body>
 <style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html" selected>Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
 
+
 <header class="hero">
   <div class="hero-in">
     <h1>COLONY</h1>
@@ -163,6 +164,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#orders"><img src="Textures/order_flag_1.png" alt="">Befehle und Auswahl</a>
   <a href="#attack"><img src="Textures/attack.png" alt="">Angriff</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Umgebung</a>
+  <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Höhlen</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Pilze</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Wildtiere</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Rote Ameisen</a>
@@ -230,7 +232,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Welteinstellungen</h3>
   <p>Jedes Element der Umgebung und der Wildtiere lässt sich ein- oder ausschalten und in der Menge wählen
-     (<i>Wenig / Normal / Viel</i>): Steine, Sümpfe, Baumstümpfe, Teiche, Bach, Pilze, Wasserläufer, Schnecken (nur mit Teichen oder Bach), Laufkäfer, Spinnen, Gottesanbeterin, Rote Ameisen.
+     (<i>Wenig / Normal / Viel</i>): Steine, Sümpfe, Baumstümpfe, Teiche, Bach, Höhlen, Pilze, Wasserläufer, Schnecken (nur mit Teichen oder Bach), Laufkäfer, Spinnen, Gottesanbeterin, Rote Ameisen.
      „Standard" stellt die übliche Welt wieder her. Unten rechts — eine Live-Vorschau der Karte.</p>
   <div class="side">
     <div>
@@ -476,6 +478,23 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
     <figure><img src="help/spider.jpg" alt="Netz an den Steinen"><figcaption>Ein Netz an den Steinen und ein Teich auf der Seite des Gegners</figcaption></figure>
   </div>
   <p>Es gibt einen bis vier Teiche, und beide Seiten bekommen gleich viel: einer in der Mitte, Paare gespiegelt. Hat die Karte einen Bach, führen von ihm Seitenarme zu den nahen Teichen — schmale Rinnen, die in den Teich münden (gespiegelt auf beiden Hälften). Eine Rinne lässt sich wie der Bach nicht überqueren: Man geht um den Teich herum.</p>
+</section>
+
+<!-- ===================================================================== -->
+<section id="caves">
+  <h2><img src="Textures/cave_stone_open.png" alt="">Höhlen</h2>
+  <div class="row">
+    <figure><img src="Textures/cave_peat_open.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/cave_peat_closed.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>Auf dem Feld kann es Höhlen geben (Welteinstellungen: <i>Wenig / Normal / Viel</i> — 2, 4 oder 6, paarweise: je eine auf jeder Hälfte). Jede sieht anders aus: Stein, Schwarzerde, Lehm, unter Wurzeln, Sandstein, Kalkstein, Torf; drinnen leuchtet ein Licht — in jeder Höhle ein anderes.</p>
+<ul>
+  <li>Wähle <b>10 Arbeiterinnen oder Architektinnen</b> und klicke auf die Höhle: Genau die 10 nächsten gehen. Mit weniger als 10 beginnt die Erkundung nicht. Kriegerinnen gehen nicht in Höhlen.</li>
+  <li>Drinnen gehören die Ameisen weiter zur Kolonie (Limit und Sieg zählen sie mit), sammeln aber nichts. Die Erkundung dauert etwa 90 Sekunden; über der Höhle zeigt ein Ring den Fortschritt.</li>
+  <li>Das Ergebnis: <b>Glück</b> — 500 Nahrung, oder 200 Holz, oder 300 Nahrung und 75 Holz; <b>nichts</b> — die Ameisen kommen einfach heraus; <b>Pech</b> — die Ameisen verschwinden. So oder so stürzt der Eingang ein: Die Höhle ist erkundet und leuchtet nicht mehr.</li>
+  <li>Stirbt unterwegs auch nur eine der zehn, kehren die anderen um, und die Höhle bleibt unerkundet.</li>
+  <li>Auch der Gegner erkundet die Höhlen auf seiner Hälfte, wenn er Ameisen entbehren kann: Bei viel Nahrung schickt er Arbeiterinnen, sonst Architektinnen.</li>
+</ul>
 </section>
 
 <!-- ===================================================================== -->
