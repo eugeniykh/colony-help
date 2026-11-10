@@ -165,6 +165,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#attack"><img src="Textures/attack.png" alt="">Atak</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Otoczenie</a>
   <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Jaskinie</a>
+  <a href="#trees"><img src="Textures/tree_oak_full.png" alt="">Drzewa</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Grzyby</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Dzika przyroda</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Rude mrówki</a>
@@ -491,12 +492,29 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <ul>
   <li>Zaznacz <b>10 robotnic lub budowniczek</b> i kliknij jaskinię: pójdzie dokładnie 10 najbliższych. Przy mniej niż 10 badanie się nie zacznie. Wojowniczki nie wchodzą do jaskiń.</li>
   <li>W środku mrówki nadal należą do kolonii (liczą się do limitu i przy zwycięstwie), ale niczego nie zbierają. Badanie trwa około 90 sekund; nad jaskinią widać pierścień postępu.</li>
-  <li>Wynik: <b>szczęście</b> — 500 jedzenia, albo 200 drewna, albo 300 jedzenia i 75 drewna; <b>nic</b> — mrówki po prostu wychodzą; <b>pech</b> — mrówki znikają. Tak czy inaczej wejście się zasypuje: jaskinia jest zbadana i już nie świeci.</li>
+  <li>Wynik: <b>szczęście</b> — 500 jedzenia, albo 200 drewna, albo 300 jedzenia i 75 drewna; <b>nic</b> — mrówki po prostu wychodzą; <b>pech</b> — mrówki znikają. Tak czy inaczej wejście się zasypuje: jaskinia jest zbadana i już nie świeci, a po paru minutach znika zupełnie.</li>
   <li>Jeśli po drodze zginie choć jedna z dziesięciu, reszta wraca, a jaskinia zostaje niezbadana.</li>
   <li>Wróg też bada jaskinie na swojej połowie, gdy może puścić mrówki: przy dużych zapasach jedzenia wysyła robotnice, inaczej budowniczki.</li>
   <li>Dopóki oddział jest w środku, z jaskini unosi się dym.</li>
   <li>Wszystkie jaskinie na jednej mapie są różne: rodzaj, światło i jego kolor się nie powtarzają. Wokół każdej leży pył w kolorze jej ziemi.</li>
   <li>Wyniki są w wierszu „Jaskinie” podsumowania partii i w menu głównym → Statystyki (widać tam też, które z 7 rodzajów już zbadałeś). Za jaskinie są trzy osiągnięcia: „Skarb”, „Wszystkie głębiny” i „Żadnej nie pominąć”.</li>
+</ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="trees">
+  <h2><img src="Textures/tree_oak_full.png" alt="">Drzewa</h2>
+  <div class="row">
+    <figure><img src="Textures/tree_oak_full.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/tree_pine_full.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>Na polu rosną drzewa — dęby i sosny (w ustawieniach świata: <i>Mało</i> — jedno drzewo pośrodku, wspólne dla obu stron; <i>Normalnie</i> — po jednym na każdej połowie; <i>Dużo</i> — po trzy). Na początku partii są małe i stopniowo rosną.</p>
+<ul>
+  <li>Architekci sami obgryzają gałęzie drzew na swojej połowie (przy drzewie do 3 naraz). Obgryziona gałąź spada i zostawia stos drewna: architekci zanoszą je jak zwykle, strefa zbioru nie jest potrzebna. Im większe drzewo, tym więcej drewna z gałęzi.</li>
+  <li>Obgryziona gałąź po kilku minutach odrasta — najpierw mała.</li>
+  <li>Od czasu do czasu drzewo kołysze się na wietrze: z gałęzi, których nikt nie gryzie, spadają <b>żołędzie</b> (dąb, jedzenie) lub <b>szyszki</b> (sosna, drewno). Żołędź niesie jeden architekt, szyszkę dwaj razem; jeśli jeden z nich zginie, drugi rzuca ładunek i wraca do pracy.</li>
+  <li>Wybór należy do ciebie: oznacz drzewo narzędziem „Leśnictwo”, a architekci przestaną je gryźć — będzie dawać tylko owoce. Przeciwnik decyduje sam: dopóki ma dość drewna, oszczędza swoje drzewa dla owoców. Automatyczne leśnictwo nie rusza drzew i nie zmienia twojego wyboru.</li>
+  <li>Gdy pod koroną są mrówki, staje się ona półprzezroczysta.</li>
 </ul>
 </section>
 

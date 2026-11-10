@@ -165,6 +165,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#attack"><img src="Textures/attack.png" alt="">Ataque</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Ambiente</a>
   <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Cavernas</a>
+  <a href="#trees"><img src="Textures/tree_oak_full.png" alt="">Árvores</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Cogumelos</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Vida selvagem</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Formigas ruivas</a>
@@ -491,12 +492,29 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <ul>
   <li>Selecione <b>10 operárias ou construtoras</b> e clique na caverna: vão exatamente as 10 mais próximas. Com menos de 10 a exploração não começa. Guerreiras não entram em cavernas.</li>
   <li>Lá dentro as formigas continuam sendo da colônia (contam no limite e na vitória), mas não coletam nada. A exploração leva cerca de 90 segundos; sobre a caverna aparece um anel de progresso.</li>
-  <li>O resultado: <b>sorte</b> — 500 de comida, ou 200 de madeira, ou 300 de comida e 75 de madeira; <b>nada</b> — as formigas simplesmente saem; <b>azar</b> — as formigas somem. De qualquer forma a entrada desaba: a caverna está explorada e não brilha mais.</li>
+  <li>O resultado: <b>sorte</b> — 500 de comida, ou 200 de madeira, ou 300 de comida e 75 de madeira; <b>nada</b> — as formigas simplesmente saem; <b>azar</b> — as formigas somem. De qualquer forma a entrada desaba: a caverna está explorada e não brilha mais; alguns minutos depois some de vez.</li>
   <li>Se uma das dez morrer no caminho, as outras voltam e a caverna fica sem explorar.</li>
   <li>O inimigo também explora as cavernas da sua metade quando pode dispensar formigas: com muita comida manda operárias; senão, construtoras.</li>
   <li>Enquanto a expedição está lá dentro, sobe fumaça da caverna.</li>
   <li>Todas as cavernas de um mapa são diferentes: o tipo, a luz e a cor dela não se repetem. Ao redor de cada uma há poeira da cor da sua terra.</li>
   <li>Os resultados estão na linha «Cavernas» do resumo da partida e em menu principal → Estatísticas (onde também se vê quais dos 7 tipos você já explorou). As cavernas têm três conquistas: «Tesouro», «Todas as profundezas» e «Nenhuma para trás».</li>
+</ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="trees">
+  <h2><img src="Textures/tree_oak_full.png" alt="">Árvores</h2>
+  <div class="row">
+    <figure><img src="Textures/tree_oak_full.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/tree_pine_full.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>No campo crescem árvores — carvalhos e pinheiros (nas configurações do mundo: <i>Poucos</i> — uma árvore no meio, partilhada pelos dois lados; <i>Normal</i> — uma em cada metade; <i>Muitos</i> — três em cada metade). No início da partida são pequenas e crescem aos poucos.</p>
+<ul>
+  <li>Os arquitetos roem por conta própria os galhos das árvores da sua metade (até 3 por árvore). Um galho roído cai e deixa um monte de madeira: os arquitetos levam-na para casa como sempre, sem zona de coleta. Quanto maior a árvore, mais madeira dá um galho.</li>
+  <li>Um galho roído volta a crescer após alguns minutos — pequeno no início.</li>
+  <li>De vez em quando a árvore balança ao vento: dos galhos que ninguém rói caem <b>bolotas</b> (carvalho, comida) ou <b>pinhas</b> (pinheiro, madeira). Uma bolota é levada por um arquiteto, uma pinha por dois juntos; se um dos dois for morto, o outro larga a carga e volta ao trabalho.</li>
+  <li>A escolha é sua: marque uma árvore com a ferramenta «Florestas» e os arquitetos param de roê-la — ela só dará frutos. O inimigo decide sozinho: enquanto tiver madeira suficiente, poupa as suas árvores pelos frutos. A silvicultura automática não mexe nas árvores nem muda a sua escolha.</li>
+  <li>Enquanto houver formigas sob uma copa, ela fica transparente.</li>
 </ul>
 </section>
 

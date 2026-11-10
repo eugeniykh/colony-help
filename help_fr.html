@@ -165,6 +165,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <a href="#attack"><img src="Textures/attack.png" alt="">Attaque</a>
   <a href="#world"><img src="Textures/stone_1.png" alt="">Environnement</a>
   <a href="#caves"><img src="Textures/cave_stone_open.png" alt="">Grottes</a>
+  <a href="#trees"><img src="Textures/tree_oak_full.png" alt="">Arbres</a>
   <a href="#mush"><img src="Textures/mushroom_3.png" alt="">Champignons</a>
   <a href="#fauna"><img src="Textures/fauna_spider_1.png" alt="">Faune sauvage</a>
   <a href="#redants"><img src="Textures/red_ant_1.png" alt="">Fourmis rousses</a>
@@ -491,12 +492,29 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 <ul>
   <li>Sélectionnez <b>10 ouvrières ou bâtisseuses</b> et cliquez sur la grotte : exactement les 10 plus proches y vont. À moins de 10, l'exploration ne commence pas. Les guerrières n'entrent pas dans les grottes.</li>
   <li>À l'intérieur, les fourmis restent à la colonie (la limite et la victoire les comptent) mais ne récoltent rien. L'exploration dure environ 90 secondes ; un anneau de progression s'affiche au-dessus de la grotte.</li>
-  <li>Le résultat : <b>chance</b> — 500 de nourriture, ou 200 de bois, ou 300 de nourriture et 75 de bois ; <b>rien</b> — les fourmis ressortent simplement ; <b>malheur</b> — les fourmis disparaissent. Dans tous les cas l'entrée s'effondre : la grotte est explorée et ne brille plus.</li>
+  <li>Le résultat : <b>chance</b> — 500 de nourriture, ou 200 de bois, ou 300 de nourriture et 75 de bois ; <b>rien</b> — les fourmis ressortent simplement ; <b>malheur</b> — les fourmis disparaissent. Dans tous les cas l'entrée s'effondre : la grotte est explorée et ne brille plus ; quelques minutes plus tard elle disparaît tout à fait.</li>
   <li>Si une seule des dix meurt en chemin, les autres reviennent et la grotte reste inexplorée.</li>
   <li>L'ennemi explore aussi les grottes de sa moitié quand il peut se passer de fourmis : avec beaucoup de nourriture il envoie des ouvrières, sinon des bâtisseuses.</li>
   <li>Tant que l'expédition est à l'intérieur, de la fumée s'élève de la grotte.</li>
   <li>Toutes les grottes d'une carte sont différentes : leur sorte, leur lumière et sa couleur ne se répètent pas. Autour de chacune, une poussière de la couleur de sa terre.</li>
   <li>Les résultats figurent à la ligne « Grottes » du bilan de partie et dans menu principal → Statistiques (on y voit aussi lesquelles des 7 sortes vous avez explorées). Les grottes ont trois succès : « Trésor », « Toutes les profondeurs » et « N'en oublier aucune ».</li>
+</ul>
+</section>
+
+<!-- ===================================================================== -->
+<section id="trees">
+  <h2><img src="Textures/tree_oak_full.png" alt="">Arbres</h2>
+  <div class="row">
+    <figure><img src="Textures/tree_oak_full.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+    <figure><img src="Textures/tree_pine_full.png" alt="" style="background:#4f7a2a;border-radius:8px"></figure>
+  </div>
+  <p>Des arbres poussent sur le terrain — chênes et pins (dans les réglages du monde : <i>Peu</i> — un arbre au milieu, partagé par les deux camps ; <i>Normal</i> — un sur chaque moitié ; <i>Beaucoup</i> — trois sur chaque moitié). Ils sont petits au début de la partie et grandissent peu à peu.</p>
+<ul>
+  <li>Les architectes rongent d'eux-mêmes les branches des arbres de leur moitié (jusqu'à 3 par arbre). Une branche rongée tombe et laisse un tas de bois : les architectes le rapportent comme d'habitude, sans zone de récolte. Plus l'arbre est grand, plus une branche donne de bois.</li>
+  <li>Une branche rongée repousse au bout de quelques minutes — petite d'abord.</li>
+  <li>De temps en temps l'arbre se balance au vent : des branches que personne ne ronge tombent des <b>glands</b> (chêne, nourriture) ou des <b>pommes de pin</b> (pin, bois). Un architecte porte un gland, deux portent une pomme de pin ensemble ; si l'un des deux est tué, l'autre lâche sa charge et retourne au travail.</li>
+  <li>À vous de choisir : marquez un arbre avec l'outil « Forêts » et les architectes cessent de le ronger — il ne donne plus que ses fruits. L'ennemi décide seul : tant qu'il a assez de bois, il épargne ses arbres pour leurs fruits. La sylviculture automatique ne touche pas aux arbres et ne change jamais votre choix.</li>
+  <li>Tant que des fourmis sont sous une couronne, elle devient transparente.</li>
 </ul>
 </section>
 
