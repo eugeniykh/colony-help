@@ -137,8 +137,6 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 </style>
 </head>
 <body>
-<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html" selected>Polski</option><option value="help_tr.html">Türkçe</option></select></div>
-
 
 <header class="hero">
   <div class="hero-in">
@@ -233,7 +231,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Ustawienia świata</h3>
   <p>Każdy element otoczenia i fauny można włączyć lub wyłączyć i wybrać jego ilość
-     (<i>Mało / Normalnie / Dużo</i>): kamienie, bagna, pniaki, stawy, strumień, jaskinie, grzyby, nartniki, ślimaki (tylko ze stawami lub strumieniem), biegacze, pająki, modliszka, rude mrówki.
+     (<i>Mało / Normalnie / Dużo</i>): kamienie, bagna, pniaki, stawy, strumień, jaskinie, grzyby, nartniki, ślimaki (tylko ze stawami lub strumieniem), biegacze, pająki, modliszka, rude mrówki, chrząszcze bombardierzy.
      „Domyślne" przywraca zwykły świat. W prawym dolnym rogu — podgląd mapy na żywo.</p>
   <div class="side">
     <div>
@@ -565,6 +563,10 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
      Ślimaka obgryzają robotnice i budowniczki (wyślij je jak do grzyba); wojowniczki go nie ranią. Im większy ślimak, tym więcej daje jedzenia —
      ile, pokazuje karta; jedzenie dostaje strona, której mrówek jest przy nim więcej.
      W ustawieniach świata: Ślimaki — Mało / Normalnie / Dużo (tylko ze stawami lub strumieniem).</p>
+
+  <h3><img src="Textures/bombardier_0.png" alt="" style="width:28px;vertical-align:middle"> Chrząszcz bombardier</h3>
+  <div class="stats"><span class="hp">zdrowie 60</span><span>nie atakuje</span><span class="dmg">chmura: wojowniczka −6</span><span>nagroda 60 jedzenia</span></div>
+  <p>Spokojny wędrowiec bez domu: chodzi po całym polu krótkimi odcinkami z odpoczynkami, trzyma się z dala od mrowisk i nikogo nie rusza. Wojowniczki nie atakują go same — tylko na twój rozkaz (prawy klik na chrząszczu). Jedna lub dwie wojowniczki zagryzą go bezpiecznie: po prostu powoli odchodzi. Ale gryziony przez trzy lub więcej naraz strzela do tyłu gorącą chmurą: robotnice i architektki w chmurze giną, wojowniczki dostają −6 i zostają odrzucone. Potem przez 5 sekund przeładowuje i ucieka — jest wtedy bezbronny. Atak tłumem jest gorszy niż we dwie. Na polu są najwyżej dwa chrząszcze: pierwszy przychodzi z brzegu pola po około półtorej minuty, nowy — 2–3 minuty po śmierci poprzedniego. Przeciwnik na niego nie poluje. W ustawieniach świata: „Chrząszcz bombardier”.</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Modliszka — boss</h3>
   <div class="stats"><span class="hp">zdrowie 150</span><span class="dmg">cios w wojowniczkę −8</span><span>nagroda 60 jedzenia</span></div>

@@ -137,8 +137,6 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 </style>
 </head>
 <body>
-<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html" selected>Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
-
 
 <header class="hero">
   <div class="hero-in">
@@ -233,7 +231,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Настройка мира</h3>
   <p>Каждый элемент окружения и дикой природы можно включить или выключить и выбрать количество
-     (<i>Мало / Обычно / Много</i>): камни, болота, коряги, пруды, ручей, пещеры, деревья, грибы, водомерки, улитки (только если есть пруды или ручей), жужелицы, пауки, богомол, рыжие муравьи.
+     (<i>Мало / Обычно / Много</i>): камни, болота, коряги, пруды, ручей, пещеры, деревья, грибы, водомерки, улитки (только если есть пруды или ручей), жужелицы, пауки, богомол, рыжие муравьи, жуки-бомбардиры.
      «По умолчанию» возвращает стандартный мир. Справа внизу — живой предпросмотр карты.</p>
   <div class="side">
     <div>
@@ -565,6 +563,10 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
      Улитку грызут рабочие и строители (отправьте их на нее, как на гриб); воины ее не ранят. Чем крупнее улитка, тем больше еды за нее —
      сколько, видно в подсказке; еда достается той стороне, чьих муравьев у нее больше.
      В настройках мира: «Улитки» — Мало / Обычно / Много (только если есть пруды или ручей).</p>
+
+  <h3><img src="Textures/bombardier_0.png" alt="" style="width:28px;vertical-align:middle"> Жук-бомбардир</h3>
+  <div class="stats"><span class="hp">здоровье 60</span><span>не нападает</span><span class="dmg">облако: воину −6</span><span>награда 60 еды</span></div>
+  <p>Мирный бродяга без дома: ходит по всему полю короткими перебежками с отдыхом, держится в стороне от муравейников и сам никого не трогает. Воины на него не бросаются — только по вашему приказу (правый щелчок по жуку). Один или два воина спокойно его загрызут: он лишь медленно уходит. Но если его кусают трое и больше сразу, жук стреляет назад горячим облаком: рабочие и строители в облаке гибнут, воины получают −6 и отлетают. Потом он 5 секунд перезаряжается и убегает — в это время он беззащитен. Толпой нападать хуже, чем парой. На поле не больше двух жуков: первый приходит с края поля примерно через полторы минуты, новый — через 2–3 минуты после гибели прежнего. Противник на него не охотится. В настройках мира: «Жук-бомбардир».</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Богомол — босс</h3>
   <div class="stats"><span class="hp">здоровье 150</span><span class="dmg">удар воину −8</span><span>награда 60 еды</span></div>

@@ -137,8 +137,6 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 </style>
 </head>
 <body>
-<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html" selected>English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
-
 
 <header class="hero">
   <div class="hero-in">
@@ -233,7 +231,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>World settings</h3>
   <p>Every element of the surroundings and the wildlife can be turned on or off, and its amount chosen
-     (<i>Few / Normal / Many</i>): stones, swamps, snags, ponds, the stream, caves, mushrooms, water striders, snails (only with ponds or the stream), ground beetles, spiders, the mantis, red ants.
+     (<i>Few / Normal / Many</i>): stones, swamps, snags, ponds, the stream, caves, mushrooms, water striders, snails (only with ponds or the stream), ground beetles, spiders, the mantis, red ants, bombardier beetles.
      "Reset to Default" brings back the standard world. Bottom right — a live preview of the map.</p>
   <div class="side">
     <div>
@@ -565,6 +563,10 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
      Workers and architects gnaw a snail (send them at it, like at a mushroom); warriors do not hurt it. The bigger the snail, the more food it gives —
      how much is shown in the hint; the food goes to the side whose ants are by it in greater number.
      In the World settings: Snails — Few / Normal / Many (only with ponds or the stream).</p>
+
+  <h3><img src="Textures/bombardier_0.png" alt="" style="width:28px;vertical-align:middle"> Bombardier beetle</h3>
+  <div class="stats"><span class="hp">health 60</span><span>does not attack</span><span class="dmg">cloud: warrior −6</span><span>reward 60 food</span></div>
+  <p>A peaceful wanderer with no home: it walks all over the field in short runs with rests, keeps away from the anthills and never touches anyone. Warriors do not go for it on their own — only on your order (right-click the beetle). One or two warriors gnaw it down safely: it just slowly walks off. But bitten by three or more at once, the beetle fires a hot cloud backwards: workers and architects in the cloud die, warriors take −6 and are thrown aside. Then it reloads for 5 seconds and runs away — defenceless meanwhile. A crowd is worse than a pair. There are no more than two beetles on the field: the first comes from the edge of the field after about a minute and a half, a new one 2–3 minutes after the last one's death. The enemy does not hunt it. In the world settings: "Bombardier beetle".</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Praying mantis — the boss</h3>
   <div class="stats"><span class="hp">health 150</span><span class="dmg">strike to a warrior −8</span><span>reward 60 food</span></div>

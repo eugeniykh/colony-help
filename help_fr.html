@@ -137,8 +137,6 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 </style>
 </head>
 <body>
-<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html" selected>Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
-
 
 <header class="hero">
   <div class="hero-in">
@@ -233,7 +231,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Réglages du monde</h3>
   <p>Chaque élément de l'environnement et de la faune peut être activé ou désactivé, avec sa quantité
-     (<i>Peu / Normal / Beaucoup</i>) : pierres, marais, souches, étangs, ruisseau, grottes, champignons, gerris, escargots (seulement avec étangs ou ruisseau), carabes, araignées, mante, fourmis rousses.
+     (<i>Peu / Normal / Beaucoup</i>) : pierres, marais, souches, étangs, ruisseau, grottes, champignons, gerris, escargots (seulement avec étangs ou ruisseau), carabes, araignées, mante, fourmis rousses, coléoptères bombardiers.
      « Par défaut » rétablit le monde habituel. En bas à droite — un aperçu de la carte en direct.</p>
   <div class="side">
     <div>
@@ -565,6 +563,10 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
      Un escargot est rongé par les ouvrières et les bâtisseuses (envoyez-les comme vers un champignon) ; les guerrières ne le blessent pas. Plus l'escargot est grand, plus il rapporte de nourriture —
      la quantité est dans l'infobulle ; la nourriture va au camp dont les fourmis sont les plus nombreuses près de lui.
      Dans les réglages du monde : Escargots — Peu / Normal / Beaucoup (seulement avec étangs ou ruisseau).</p>
+
+  <h3><img src="Textures/bombardier_0.png" alt="" style="width:28px;vertical-align:middle"> Coléoptère bombardier</h3>
+  <div class="stats"><span class="hp">Santé 60</span><span>n'attaque pas</span><span class="dmg">nuage : guerrière −6</span><span>récompense 60 nourriture</span></div>
+  <p>Un vagabond paisible, sans abri : il parcourt tout le terrain par petites courses entrecoupées de pauses, se tient à l'écart des fourmilières et ne touche personne. Les guerrières ne l'attaquent pas d'elles-mêmes — seulement sur votre ordre (clic droit sur le coléoptère). Une ou deux guerrières en viennent à bout sans danger : il s'éloigne simplement, lentement. Mais mordu par trois fourmis ou plus à la fois, il tire un nuage brûlant vers l'arrière : les ouvrières et les architectes prises dans le nuage meurent, les guerrières perdent 6 et sont projetées. Il recharge ensuite pendant 5 secondes et s'enfuit — sans défense pendant ce temps. Attaquer en foule est pire qu'à deux. Il n'y a jamais plus de deux coléoptères sur le terrain : le premier arrive du bord du terrain après environ une minute et demie, un nouveau 2 à 3 minutes après la mort du précédent. L'ennemi ne le chasse pas. Dans les réglages du monde : « Coléoptère bombardier ».</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Mante religieuse — le boss</h3>
   <div class="stats"><span class="hp">Santé 150</span><span class="dmg">coup contre guerrière −8</span><span>récompense 60 nourriture</span></div>

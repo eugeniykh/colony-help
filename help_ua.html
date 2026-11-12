@@ -137,8 +137,6 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 </style>
 </head>
 <body>
-<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html" selected>Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
-
 
 <header class="hero">
   <div class="hero-in">
@@ -233,7 +231,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Налаштування світу</h3>
   <p>Кожен елемент довкілля й дикої природи можна ввімкнути чи вимкнути й вибрати кількість
-     (<i>Мало / Звичайно / Багато</i>): каміння, болота, коряги, ставки, струмок, печери, гриби, водомірки, равлики (лише якщо є ставки чи струмок), туруни, павуки, богомол, руді мурахи.
+     (<i>Мало / Звичайно / Багато</i>): каміння, болота, коряги, ставки, струмок, печери, гриби, водомірки, равлики (лише якщо є ставки чи струмок), туруни, павуки, богомол, руді мурахи, жуки-бомбардири.
      «За замовчуванням» повертає стандартний світ. Праворуч унизу — живий попередній перегляд мапи.</p>
   <div class="side">
     <div>
@@ -565,6 +563,10 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
      Равлика гризуть робітники й будівельники (відправте їх на нього, як на гриб); воїни його не ранять. Що більший равлик, то більше за нього їжі —
      скільки, видно в підказці; їжа дістається тій стороні, чиїх мурах біля нього більше.
      У налаштуваннях світу: «Равлики» — Мало / Звичайно / Багато (лише якщо є ставки чи струмок).</p>
+
+  <h3><img src="Textures/bombardier_0.png" alt="" style="width:28px;vertical-align:middle"> Жук-бомбардир</h3>
+  <div class="stats"><span class="hp">здоров'я 60</span><span>не нападає</span><span class="dmg">хмара: воїну −6</span><span>нагорода 60 їжі</span></div>
+  <p>Мирний бродяга без дому: ходить усім полем короткими перебіжками з відпочинком, тримається осторонь мурашників і сам нікого не чіпає. Воїни на нього не кидаються — лише за вашим наказом (правий клік по жуку). Один чи два воїни спокійно його загризуть: він лише повільно відходить. Та якщо його кусають троє й більше одразу, жук стріляє назад гарячою хмарою: робітники й будівельники в хмарі гинуть, воїни дістають −6 і відлітають. Потім він 5 секунд перезаряджається й тікає — у цей час він беззахисний. Нападати натовпом гірше, ніж удвох. На полі не більше двох жуків: перший приходить з краю поля приблизно за півтори хвилини, новий — за 2–3 хвилини після загибелі попереднього. Противник на нього не полює. У налаштуваннях світу: «Жук-бомбардир».</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Богомол — бос</h3>
   <div class="stats"><span class="hp">здоров'я 150</span><span class="dmg">удар воїну −8</span><span>нагорода 60 їжі</span></div>

@@ -137,8 +137,6 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 </style>
 </head>
 <body>
-<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html" selected>Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html">Türkçe</option></select></div>
-
 
 <header class="hero">
   <div class="hero-in">
@@ -233,7 +231,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Ajustes del mundo</h3>
   <p>Cada elemento del entorno y de la fauna se puede activar o desactivar y elegir su cantidad
-     (<i>Pocos / Normal / Muchos</i>): piedras, pantanos, tocones, estanques, arroyo, cuevas, setas, zapateros, caracoles (solo con estanques o arroyo), carábidos, arañas, mantis, hormigas rojas.
+     (<i>Pocos / Normal / Muchos</i>): piedras, pantanos, tocones, estanques, arroyo, cuevas, setas, zapateros, caracoles (solo con estanques o arroyo), carábidos, arañas, mantis, hormigas rojas, escarabajos bombarderos.
      «Por defecto» restablece el mundo habitual. Abajo a la derecha — una vista previa del mapa en vivo.</p>
   <div class="side">
     <div>
@@ -565,6 +563,10 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
      Al caracol lo roen las obreras y constructoras (envíalas como a una seta); las guerreras no lo hieren. Cuanto mayor es el caracol, más comida da —
      cuánta, lo dice la ficha; la comida va al bando cuyas hormigas son más numerosas junto a él.
      En los ajustes del mundo: Caracoles — Pocos / Normal / Muchos (solo con estanques o arroyo).</p>
+
+  <h3><img src="Textures/bombardier_0.png" alt="" style="width:28px;vertical-align:middle"> Escarabajo bombardero</h3>
+  <div class="stats"><span class="hp">salud 60</span><span>no ataca</span><span class="dmg">nube: guerrera −6</span><span>recompensa 60 comida</span></div>
+  <p>Un vagabundo pacífico y sin hogar: recorre todo el campo en carreras cortas con descansos, se mantiene lejos de los hormigueros y no toca a nadie. Las guerreras no lo atacan por su cuenta — solo por orden tuya (clic derecho sobre el escarabajo). Una o dos guerreras acaban con él sin peligro: simplemente se aleja despacio. Pero si lo muerden tres o más a la vez, dispara hacia atrás una nube ardiente: las obreras y arquitectas dentro de la nube mueren, las guerreras reciben −6 y salen despedidas. Después recarga durante 5 segundos y huye — mientras tanto está indefenso. Atacar en multitud es peor que en pareja. En el campo no hay más de dos escarabajos: el primero llega desde el borde del campo al cabo de un minuto y medio, uno nuevo 2–3 minutos después de la muerte del anterior. El enemigo no lo caza. En los ajustes del mundo: «Escarabajo bombardero».</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Mantis religiosa — el jefe</h3>
   <div class="stats"><span class="hp">salud 150</span><span class="dmg">golpe a guerrera −8</span><span>recompensa 60 comida</span></div>

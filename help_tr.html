@@ -137,8 +137,6 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
 </style>
 </head>
 <body>
-<style>#langbar{position:fixed;top:8px;right:10px;z-index:50;background:rgba(20,14,8,.82);border:1px solid rgba(214,176,91,.5);border-radius:8px;padding:4px 6px;font:13px system-ui,sans-serif}#langbar select{background:transparent;color:#f3e3bd;border:0;font:inherit;cursor:pointer}#langbar option{color:#000}</style><div id="langbar"><select aria-label="Language" onchange="location.href=this.value"><option value="help.html">Русский</option><option value="help_en.html">English</option><option value="help_ua.html">Українська</option><option value="help_de.html">Deutsch</option><option value="help_fr.html">Français</option><option value="help_es.html">Español</option><option value="help_pt.html">Português</option><option value="help_pl.html">Polski</option><option value="help_tr.html" selected>Türkçe</option></select></div>
-
 
 <header class="hero">
   <div class="hero-in">
@@ -233,7 +231,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Dünya ayarları</h3>
   <p>Çevrenin ve yaban hayatının her öğesi açılıp kapatılabilir ve miktarı seçilebilir
-     (<i>Az / Normal / Çok</i>): taşlar, bataklıklar, kütükler, göletler, dere, mağaralar, mantarlar, su örümcekleri, salyangozlar (yalnızca gölet veya dereyle), toprak böcekleri, örümcekler, peygamberdevesi, kızıl karıncalar.
+     (<i>Az / Normal / Çok</i>): taşlar, bataklıklar, kütükler, göletler, dere, mağaralar, mantarlar, su örümcekleri, salyangozlar (yalnızca gölet veya dereyle), toprak böcekleri, örümcekler, peygamberdevesi, kızıl karıncalar, bombacı böcekler.
      «Varsayılan» olağan dünyayı geri getirir. Sağ altta — haritanın canlı önizlemesi.</p>
   <div class="side">
     <div>
@@ -565,6 +563,10 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
      Salyangozu işçiler ve mimarlar kemirir (onları bir mantara gönderir gibi gönder); savaşçılar onu yaralamaz. Salyangoz ne kadar büyükse o kadar çok yiyecek verir —
      ne kadar olduğu kartta yazar; yiyecek, yanında karıncası daha çok olan tarafa gider.
      Dünya ayarlarında: Salyangozlar — Az / Normal / Çok (yalnızca gölet veya dereyle).</p>
+
+  <h3><img src="Textures/bombardier_0.png" alt="" style="width:28px;vertical-align:middle"> Bombacı böcek</h3>
+  <div class="stats"><span class="hp">sağlık 60</span><span>saldırmaz</span><span class="dmg">bulut: savaşçıya −6</span><span>ödül 60 yiyecek</span></div>
+  <p>Yuvası olmayan barışçıl bir gezgin: bütün alanı kısa koşular ve molalarla dolaşır, karınca yuvalarından uzak durur ve kimseye dokunmaz. Savaşçılar ona kendiliğinden saldırmaz — yalnızca senin emrinle (böceğe sağ tıkla). Bir veya iki savaşçı onu güvenle öldürür: yalnızca yavaşça uzaklaşır. Ama aynı anda üç veya daha fazla karınca ısırırsa arkaya doğru sıcak bir bulut püskürtür: buluttaki işçiler ve mimarlar ölür, savaşçılar −6 alır ve savrulur. Sonra 5 saniye doldurur ve kaçar — bu sürede savunmasızdır. Kalabalıkla saldırmak, iki savaşçıyla saldırmaktan kötüdür. Alanda en fazla iki böcek olur: ilki yaklaşık bir buçuk dakika sonra alanın kenarından gelir, yenisi öncekinin ölümünden 2–3 dakika sonra. Düşman onu avlamaz. Dünya ayarlarında: «Bombacı böcek».</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Peygamberdevesi — boss</h3>
   <div class="stats"><span class="hp">sağlık 150</span><span class="dmg">savaşçıya darbe −8</span><span>ödül 60 yiyecek</span></div>
