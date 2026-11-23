@@ -234,7 +234,7 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   </ul>
   <h3>Ajustes del mundo</h3>
   <p>Cada elemento del entorno y de la fauna se puede activar o desactivar y elegir su cantidad
-     (<i>Pocos / Normal / Muchos</i>): piedras, pantanos, tocones, estanques, arroyo, cuevas, setas, zapateros, caracoles (solo con estanques o arroyo), carábidos, arañas, mantis, hormigas rojas, escarabajos bombarderos.
+     (<i>Pocos / Normal / Muchos</i>): piedras, pantanos, tocones, estanques, arroyo, cuevas, setas, zapateros, caracoles (solo con estanques o arroyo), carábidos, arañas, mantis, hormigas rojas, escarabajos bombarderos, erizos.
      «Por defecto» restablece el mundo habitual. Abajo a la derecha — una vista previa del mapa en vivo.</p>
   <div class="side">
     <div>
@@ -565,12 +565,16 @@ footer { text-align: center; color: #cdbb93; font-size: 13px; padding: 0 0 40px;
   <p>De vez en cuando sale de un estanque o del arroyo y se arrastra despacio por el campo (rodeando piedras y colinas, dejando un rastro brillante) — casi siempre cerca del agua, pero a veces se va «cansado» lejos. Cuanto más se arrastra,
      más crece: 6 etapas; sale del agua en una de las tres primeras. Si pasa sobre comida, se la come — hasta 10 trozos, y luego descansa.
      Al caracol lo roen las obreras y constructoras (envíalas como a una seta); las guerreras no lo hieren. Cuanto mayor es el caracol, más comida da —
-     cuánta, lo dice la ficha; la comida va al bando cuyas hormigas son más numerosas junto a él.
+     cuánta, lo dice la ficha; la comida va al bando cuyas hormigas son más numerosas junto a él. El enemigo también caza caracoles: si ve uno cerca de sus hormigas o en su mitad, envía a roerlo a 2–3 de sus obreras o constructoras libres más cercanas.
      En los ajustes del mundo: Caracoles — Pocos / Normal / Muchos (solo con estanques o arroyo).</p>
 
   <h3><img src="Textures/bombardier_icon.png" alt="" style="width:28px;vertical-align:middle"> Escarabajo bombardero</h3>
   <div class="stats"><span class="hp">salud 60</span><span>no ataca</span><span class="dmg">nube: guerrera −6</span><span>recompensa 60 comida</span></div>
   <p>Un vagabundo pacífico y sin hogar: recorre todo el campo en carreras cortas con descansos, se mantiene lejos de los hormigueros y no toca a nadie. Las guerreras no lo atacan por su cuenta — solo por orden tuya (clic derecho sobre el escarabajo). Una o dos guerreras acaban con él sin peligro: simplemente se aleja despacio. Pero si lo muerden tres o más a la vez, dispara hacia atrás una nube ardiente: las obreras y arquitectas dentro de la nube mueren, las guerreras reciben −6 y salen despedidas. Después recarga durante 5 segundos y huye — mientras tanto está indefenso. Atacar en multitud es peor que en pareja. Los escarabajos llegan desde el borde del campo: el primero al cabo de un minuto y medio, el siguiente unos minutos después. El enemigo no lo caza. En los ajustes del mundo: «Escarabajo bombardero» — Pocos / Normal / Muchos (1 / 2 / 3 escarabajos a la vez en el campo; con Muchos, los nuevos llegan antes). El escarabajo no ve las trampas: si pisa una armada, pierde 40 de salud y huye lejos; una segunda trampa lo mata y el dueño de la trampa recibe las 60 de comida.</p>
+
+  <h3><img src="Textures/hedgehog_icon.png" alt="" style="width:28px;vertical-align:middle"> Erizo — los elementos</h3>
+  <div class="stats"><span class="hp">invulnerable</span><span>come obreras y constructoras</span><span class="dmg">púas: guerrero −1</span></div>
+  <p>Un visitante del borde del campo al que no se puede matar. Recorre todo el campo rodeando piedras, estanques, pantanos y nidos de hormigas rojas (cruza el arroyo solo por un puente), y se detiene a olfatear. A una obrera o constructora que ve cerca la persigue y se la come; tras 3 hormigas está lleno y no caza a nadie durante un minuto. En su hormiguero las hormigas están a salvo. Si lo muerden guerreros (por tu orden), el erizo se hace una bola de púas durante 4 segundos: no le pasa nada y cada guerrero junto a él se pincha. Luego huye y deja en paz a las hormigas un rato: así los guerreros pueden ahuyentarlo. El enemigo envía algunos guerreros contra él cuando caza junto a su colonia. Tras 2–3 minutos se va por el borde y más tarde llega otro. Ajustes del mundo, sección «Elementos»: «Erizo» — Pocos / Normal / Muchos (Muchos: hasta dos a la vez, y llegan más a menudo).</p>
 
   <h3><img src="Textures/fauna_mantis_idle.png" alt="" style="width:28px;vertical-align:middle"> Mantis religiosa — el jefe</h3>
   <div class="stats"><span class="hp">salud 150</span><span class="dmg">golpe a guerrera −8</span><span>recompensa 60 comida</span></div>
